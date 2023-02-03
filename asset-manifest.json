@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/eCommerceApp/static/css/main.e43bc2ed.css",
+    "main.js": "/eCommerceApp/static/js/main.64d6f681.js",
+    "static/media/text_avatar.png": "/eCommerceApp/static/media/text_avatar.626de38d8be84902941e.png",
+    "static/media/walmartLogo.svg": "/eCommerceApp/static/media/walmartLogo.d6ea228a23740ffc7649a5fd061c0a48.svg",
+    "index.html": "/eCommerceApp/index.html",
+    "main.e43bc2ed.css.map": "/eCommerceApp/static/css/main.e43bc2ed.css.map",
+    "main.64d6f681.js.map": "/eCommerceApp/static/js/main.64d6f681.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e43bc2ed.css",
+    "static/js/main.64d6f681.js"
+  ]
+}
