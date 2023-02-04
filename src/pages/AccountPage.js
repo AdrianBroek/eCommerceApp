@@ -19,18 +19,30 @@ const AccountPage = () => {
     const [activePopup, setActivePopup] = useState({
         open: false,
         confirm: false,
-        correctCheck: {
-            name: false,
-            email: false,
-            address: false,
-            password: false,
-            valid: false,
-        } 
+        valid: false
+    })
+    const [info, setInfo] = useState()
+    const [correctCheck, setCorrectCheck] = useState({
+        name: false,
+        email: false,
+        address: false,
+        password: false,
     })
 
     useEffect(()=> {
         // console.log(JSON.parse(localStorage.getItem('user')))
     }, [data])
+
+    useEffect(()=> {
+        if(correctCheck.name && correctCheck.email && correctCheck.address && correctCheck.password){
+            console.log('leci')
+            setActivePopup(prevState => ({
+                ...prevState,
+                valid: true
+            }))
+        }
+
+    }, [correctCheck])
 
 
 
@@ -46,74 +58,75 @@ const AccountPage = () => {
                 setData((state) => ({...state, address: e.target.value}))
                 break;
             case "password" :
-                setData((state) => ({...state, password: e.target.value}))
+                setData(state => ({...state, password: e.target.value}))
                 break;
         }
     }
 
-    function submitHandler (e){
-        e.preventDefault();
+    function containsUppercase(str) {
+        return /[A-Z]/.test(str);
     }
 
-    // validate
+    function checkMail(str) {
+        if (/[@]/.test(str)){
+            return /[.]/.test(str)
+        }
+    }
+
+    function checkPassw(str) {
+        if (/[123456789]/.test(str)){
+            return /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(str)
+        }
+    }
+
     useEffect(()=> {
+        console.log(correctCheck)
+    }, [correctCheck])
 
-        function containsUppercase(str) {
-            return /[A-Z]/.test(str);
-        }
-
-        function checkMail(str) {
-            if (/[@]/.test(str)){
-                return /[.]/.test(str)
-            }
-        }
-
-        function checkPassw(str) {
-            if (/[123456789]/.test(str)){
-                return /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(str)
-            }
-        }
+    function submitHandler (e){
+        e.preventDefault();
 
         const inputs = document.querySelectorAll('input')
         inputs.forEach((element, index) => {
             if (element.value.length >= 6){
-                // if has more that 5 letters - start
+                // if has more than 5 letters - start
 
                 if (containsUppercase(element.value)){
                     // if has 1 uppercase letter
                     element.style.border="2px solid green"
                     console.log(element.id)
-                    // switch(element.id){
-                    //     case "name" :
-                    //         setActivePopup( prevState => ({
-                    //             ...prevState,
-                    //             name: true
-                    //         }))
-                    //         break;
-                    //     case "email" :
-                    //         setActivePopup( prevState => ({
-                    //             ...prevState,
-                    //             email: true
-                    //         }))
-                    //         break;
-                    //     case "address" :
-                    //         setActivePopup( prevState => ({
-                    //             ...prevState,
-                    //             address: true
-                    //         }))
-                    //         break;
-                    //     case "password" :
-                    //         setActivePopup( prevState => ({
-                    //             ...prevState,
-                    //             password: true
-                    //         }))
-                    //         break;
-                    //     default :
-                    //         return setActivePopup( prevState => ({
-                    //             ...prevState
-                    //         }))
-                    //         break;
-                    // }
+                    switch(element.id){
+                        case "name": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                name: true,
+                            }))                            
+                            break
+                        }
+                        case "email": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                email: true,
+                            }))                           
+                            break
+                        }
+                        case "address": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                address: true,
+                            }))                             
+                            break
+                        }
+                        case "password": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                password: true,
+                            }))                            
+                            break
+                        }
+                        default :
+                            return setCorrectCheck(prevState => ({...prevState}))
+                    }
                 } else {
                     element.style.border="2px solid red"
                     element.classList.add('wrong')
@@ -129,6 +142,10 @@ const AccountPage = () => {
                     if (checkMail(element.value)){
                         element.classList.remove('wrong')
                         element.style.border="2px solid green"
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            email: true,
+                        }))  
                     }else {
                         element.style.border="2px solid red"
                         element.classList.add('wrong')
@@ -144,6 +161,10 @@ const AccountPage = () => {
                     if (checkPassw(element.value)){
                         element.classList.remove('wrong')
                         element.style.border="2px solid green"
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            password: true,
+                        })) 
                     } else {
                         element.style.border="2px solid red"
                         element.classList.add('wrong')
@@ -161,6 +182,74 @@ const AccountPage = () => {
                 }
 
         });
+        // if(correctCheck.name && correctCheck.email && correctCheck.address && correctCheck.password){
+        //     console.log('leci2')
+        //     console.log(activePopup)
+        //     setActivePopup(prevState => ({
+        //         ...prevState,
+        //         valid: true
+        //     }))
+        //     console.log(activePopup)
+        // }
+    }
+
+    // validate
+    useEffect(()=> {
+        const inputs = document.querySelectorAll('input')
+        inputs.forEach((element, index) => {
+            if (element.value.length >= 6){
+                // if has more than 5 letters - start
+                if (containsUppercase(element.value)){
+                    // if has 1 uppercase letter
+                    element.style.border="2px solid green"
+
+                } else {
+                    element.style.border="2px solid red"
+                    // element.classList.add('wrong')
+                    // setTimeout(()=> {
+                    //     element.classList.remove('wrong')
+                    // },[1000])
+                }
+
+                if (element.classList.contains("email")){
+                    // check mail
+
+                    // console.log(element.value)
+                    if (checkMail(element.value)){
+                        element.classList.remove('wrong')
+                        element.style.border="2px solid green"
+                    }else {
+                        element.style.border="2px solid red"
+                        // element.classList.add('wrong')
+                        // setTimeout(()=> {
+                        //     element.classList.remove('wrong')
+                        // },[1000])
+                    }
+                }
+                if (element.classList.contains("password")){
+                    // check passw
+
+                    // console.log(element.value)
+                    if (checkPassw(element.value)){
+                        // element.classList.remove('wrong')
+                        element.style.border="2px solid green"
+                    } else {
+                        element.style.border="2px solid red"
+                        // element.classList.add('wrong')
+                        // setTimeout(()=> {
+                        //     element.classList.remove('wrong')
+                        // },[1000])
+                    }
+                }
+            } else {
+                    element.style.border="2px solid red"
+                    // element.classList.add('wrong')
+                    // setTimeout(()=> {
+                    //     element.classList.remove('wrong')
+                    // },[1000])
+                }
+
+        });
     }, [inputHandler])
 
     function confirm(){
@@ -172,12 +261,14 @@ const AccountPage = () => {
     }
 
     useEffect(()=> {
-        if(activePopup.confirm === true && activePopup.open === false && activePopup.correctCheck.valid === true) {
+        if(activePopup.confirm === true && activePopup.open === false && activePopup.valid === true) {
             dispatch(registerAction(data))
-            .then(setActivePopup({
+            .then(setActivePopup(prevState => ({
+                ...prevState,
                 open: false,
                 confirm: false
             }))
+            )
         }
     }, [activePopup])
 
@@ -205,8 +296,10 @@ const AccountPage = () => {
                             <label for="password">Password</label>
                         </div>
                         <button onClick={confirm} type="submit">Update</button>                
+                        <div className="info">
+                            Hasło musi zawierać ileś tam znaków
+                        </div>
                     </form>
-                    
                 </div>
             ) : (
                 <Link to="/login">
@@ -217,8 +310,8 @@ const AccountPage = () => {
             (
                 <div className="confirmation">
                     Are you sure to change your account data?
-                    <button onClick={() => setActivePopup(prevState => ({confirm: true, open: false}))}>Yes</button>
-                    <button onClick={() => setActivePopup(prevState => ({confirm: false, open: false}))}>I'm not</button>
+                    <button onClick={() => setActivePopup(prevState => ({...prevState, confirm: true, open: false}))}>Yes</button>
+                    <button onClick={() => setActivePopup(prevState => ({...prevState, confirm: false, open: false}))}>I'm not</button>
                 </div>
             ) : (
                 <></>

@@ -12,6 +12,7 @@
         align-items: center;
         justify-content: center;
         max-width: 500px;
+        position: relative;
         img {
             max-width: 100%;
             border-radius: 50%;
@@ -79,6 +80,11 @@
         }
         .name, .email, .address, .password {
             position: relative;
+        }
+        .info {
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     }
     .confirmation {
