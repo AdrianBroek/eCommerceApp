@@ -4,13 +4,51 @@
 @import './categories';
 @import './cartPopup';
 @import './productPage';
+@import './loginPage';
 @import './accPage';
+@import './registerPage';
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+}
+
+button,
+.abutton {
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-transform: normal;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    border: none;
+    text-decoration: none;
+    a {
+        height: 100%;
+        width: 100%;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+    &.a {
+        background-color: #888; 
+    }
+    &.b {
+        background-color: orange;
+    }
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
 .loader {

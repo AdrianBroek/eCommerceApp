@@ -1,6 +1,30 @@
 .categories-list {
     position: relative;
     margin: 6rem 0 4rem 0;
+    justify-content: flex-start !important;
+    height: 25vh;
+    .slider {
+        position: absolute;
+        width: 80%;
+        height: 200px;
+        background: #888;
+        overflow: hidden;
+        top: 30%;
+        left: 10%;
+    }
+    .innerSlider {
+        position: absolute;
+        display: flex;
+        column-gap: .5rem;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 200%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        transition: 0s ease-in;
+    }
     h2 {
         position: absolute;
         top: -80%;

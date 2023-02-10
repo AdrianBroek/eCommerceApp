@@ -2,6 +2,18 @@
     a{
         display: flex;
         align-items: center;
+        &.my_account{
+            position: absolute;
+            right: 100px;
+        }
+    }
+    .logout, .register{ 
+        position: absolute;
+        right: 125px;
+        cursor: pointer;
+    }
+    .register {
+        right: 100px;
     }
     .logoContainer {
         background-color: #000000;

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const categoryProductsAction = (category) => async (dispatch) => {
 
-    console.log(category + ' to ja')
+    // console.log(category + ' to ja')
 
     if(category){
         const options = {

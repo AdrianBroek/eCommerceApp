@@ -11,7 +11,7 @@ import ProductsPage from "./pages/ProductsPage";
 import CategoryPage from "./pages/CategoryPage";
 import CartPopup from "./components/CartPopup";
 import ProductPage from "./pages/ProductPage";
-import Login from "./pages/Login";
+import Login from "./pages/LoginPage";
 import Register from "./pages/RegisterPage";
 import AccountPage from "./pages/AccountPage";
 

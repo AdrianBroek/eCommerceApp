@@ -27,7 +27,7 @@ function HomePage() {
   return (
     <div className="HomePage">
         <section className="categories-list flex">
-          <h2>Pick category:</h2>
+          {/* <h2>Pick category:</h2> */}
           {!isLoadingCat && dataCat.map((el, index) => (
              <CategorySquare key={index} cat={el} />
           ))}

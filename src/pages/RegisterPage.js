@@ -52,15 +52,29 @@ const RegisterPage = () => {
     }
 
     return (
-        <form id="registerPage" onSubmit={(e) => detectSubmit(e)}>
-            <p>Register a Walmart account!</p>
-            <input onChange={usernameInputHandler} type="text" placeholder="username"/>
-            <input onChange={passwordInputHandler} type="text" placeholder="password"/>
-            <input onChange={emailInputHandler} type="text" placeholder="email"/>
-            <input onChange={addressInputHandler} type="text" placeholder="address"/>
-            <button onClick={() => dispatch(registerAction(input))}>Register</button>
-            <p>Already have an account? <Link to="/login">Sign in</Link></p>
-        </form>
+        <section id="registerPage">
+            <form onSubmit={(e) => detectSubmit(e)}>
+                <h2>Register a Walmart account!</h2>
+                <div className="name">
+                    <input onChange={usernameInputHandler} type="text"/>
+                    <label htmlFor="username">username</label>
+                </div>
+                <div className="password">
+                    <input onChange={passwordInputHandler} type="text"/>
+                    <label htmlFor="password">password</label>
+                </div>
+                <div className="email">
+                    <input onChange={emailInputHandler} type="text"/>
+                    <label htmlFor="email">email</label>
+                </div>
+                <div className="address">
+                    <input onChange={addressInputHandler} type="text"/>
+                    <label htmlFor="address">address</label>
+                </div>
+                <button className="abutton a" onClick={() => dispatch(registerAction(input))}>Register</button>
+                <p>Already have an account? <Link to="/login">Sign in</Link></p>
+            </form>
+        </section>
     )
 }
 

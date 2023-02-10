@@ -302,9 +302,11 @@ const AccountPage = () => {
                     </form>
                 </div>
             ) : (
-                <Link to="/login">
-                    Login
-                </Link>
+                <button style={{marginTop: '1rem'}} className="buttona a flex">
+                    <Link to="/login">
+                        Login
+                    </Link>
+                </button>
             )}
             {activePopup.open ? 
             (

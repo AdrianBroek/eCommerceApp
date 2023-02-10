@@ -2,10 +2,11 @@ import React from "react";
 import logo from '../images/walmartLogo.svg'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faUser } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { faUserPlus, faUser, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
+    const dispatch = useDispatch()
 
     const {logged, userData} = useSelector(state => state.loggedStatus)
 
@@ -16,13 +17,18 @@ const Navbar = () => {
                     <img src={logo} />
                 </Link>
                 {!logged ? (
-                    <Link to='/register'>
-                        <FontAwesomeIcon icon={faUserPlus} />
+                    <Link className="register" to='/register'>
+                        <FontAwesomeIcon color="white" icon={faUserPlus} />
                     </Link>
                 ): (
-                    <Link to='/my_account'>
-                        <FontAwesomeIcon icon={faUser} />
-                    </Link>
+                    <>
+                        <Link className="my_account" to='/my_account'>
+                            <FontAwesomeIcon color="white" icon={faUser} />
+                        </Link>
+                        <div className="logout" onClick={()=> dispatch({type: "USER_LOGOUT"})}>
+                            <FontAwesomeIcon color="white" icon={faSignOut} />
+                        </div>
+                    </>
                 )}
 
             </div>

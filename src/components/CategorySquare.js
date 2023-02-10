@@ -7,8 +7,8 @@ const CategorySquare = ({cat}) => {
     const {activeCategory} = useSelector(state => state.categories)
 
     return (
-        <div className="category-square">
-            <Link
+        <div className="noselect category-square">
+            <Link draggable="false"
             className={activeCategory === cat ? 'active' : ''}
             onClick={() => dispatch({
                 type: "SET_ACTIVE_CATEGORY", 

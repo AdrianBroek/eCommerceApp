@@ -1,0 +1,135 @@
+#registerPage {
+    form {
+        display: grid;
+        column-gap: 1rem;
+        row-gap: 1rem;
+        grid-template-columns: 45% 45%;
+        padding: 2rem;
+        margin: 5rem auto;
+        box-shadow: rgba(0, 0, 0, 10%) 0px 4px 12px;
+        background: white;
+        border-radius: 1rem;
+        align-items: center;
+        justify-content: center;
+        max-width: 500px;
+        position: relative;
+        h2,p  {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 50%;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            height: 25vh;
+            margin: auto;
+            object-fit: contain;
+        }
+        img, h2 {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        h2 {
+            width: 100%;
+            text-align: center;
+            margin: 5rem 0;
+        }
+        input, button {
+            text-decoration: none;
+            height: fit-content;
+            border-radius: .25rem;
+            padding: .5rem;
+            transition: .15s ease-out;
+            &:focus,&:active{
+                border: 1px solid #000;
+            }
+        }
+        input {
+            border: 2px solid #888;
+        }
+        button {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            &.signIn {
+                background-color: red;
+            }
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
+        }
+        input {
+            position: relative;
+            width: 100%;
+            &.wrong {
+                animation: shake 1s infinite;
+            }
+        }
+        label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 5px;
+            padding: .25rem;
+            line-height: .8;
+            transition: .135s ease-in;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            font-size: .95rem;
+            color: rgba(136, 136, 136, 0.541);
+        }
+        input:focus + label,
+        input:valid + label {
+            top: -65%;
+            transform: translateY(65%);
+            font-size: .75rem;
+            color: #000;
+        }
+        .name, .email, .address, .password {
+            position: relative;
+        }
+        .info {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+    .popup {
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -20%);
+        background: #fff;
+        padding: 3rem;
+        border-radius: 0.5rem;
+        box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        text-align: center;
+        svg {
+            height: 50px;
+            color: orange;
+        }
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(-3px)
+    }
+    10% {
+        transform: translateX(3px)
+    }
+    25% {
+        transform: translateX(-3px)
+    }
+    50% {
+        transform: translateX(0px)
+    }
+    100% {
+        transform: translateX(0px)
+    }
+}

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import loginAction from "../actions/loginAction";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -59,20 +61,32 @@ const Login = () => {
     }
 
     return (
-        <>
-        <form id="loginPage" onSubmit={(e)=>submitHandler(e)}>
-            <p>Login to your Walmart account!</p>
-            <input type="text" placeholder="email" onChange={mailCheck}/>
-            <input type="text" placeholder="pass" onChange={passCheck}/>
-            <button type="submit">Login</button>
-            <Link to="/register">Sign in</Link>
+        <section id="loginPage">
+        <form  onSubmit={(e)=>submitHandler(e)}>
+            <h2>Login to your Walmart account!</h2>
+            <div className="email">
+                <input type="text" onChange={mailCheck}/>
+                <label for="email">Email</label>
+            </div>
+            <div className="password">
+                <input type="text" onChange={passCheck}/>
+                <label for="password">Password</label>
+            </div>
+            <button className="a" type="submit">Login</button>
+            <button className="abutton b">
+                <Link to="/register">Sign in</Link>
+            </button>
         </form>
         {logged && (
             <div className="popup">
-                <p>You are logged in {userData.mail}!</p>
+                <p>
+                    <FontAwesomeIcon icon={faCircleCheck} />
+                </p>
+                <p>You are <strong>logged</strong> in {userData.username}!</p>
+                <Link className="abutton a" to='/my_account'>Got it!</Link>
             </div>
         )}
-        </>
+        </section>
     )
 }
 

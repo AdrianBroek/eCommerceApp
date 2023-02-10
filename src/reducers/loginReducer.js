@@ -27,6 +27,11 @@ const login = (state = initState, action) => {
                 ...state,
                 userData: action.payload
             }
+        case "USER_LOGOUT":
+            return {
+                ...state,
+                logged: false,
+            }
         default:
             return {
                 ...state
