@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons"
 
-const InCartItem = ({props}) => {
+const InCartItem = ({props, price, setPrice}) => {
     const dispatch = useDispatch()
     const {item} = useSelector(state => state.cart)
+
+    useEffect(()=> {
+        console.log(price)
+        setPrice(prevPrice => [
+            ...prevPrice,
+            props.price
+        ])
+    }, [])
+
 
     const deleteItem = () => {
         const newCartData = item.filter(items => props.id != items.id)
@@ -15,6 +24,7 @@ const InCartItem = ({props}) => {
                 data: newCartData
             }
         })
+
     }
 
     return (
