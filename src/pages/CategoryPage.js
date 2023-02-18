@@ -78,7 +78,6 @@ const ProductsPage = () => {
                     <Products key={el.id} props={el}/>
                 ))}
             </section>
-            
         </section>
     )
 }

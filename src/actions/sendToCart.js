@@ -1,11 +1,12 @@
-const sendToCart = (props) => async (dispatch) => {
+const sendToCart = (props, count) => async (dispatch) => {
     const itemData = await props
 
-    console.log(props)
+    console.log(props, count)
     dispatch({
         type: "SEND_PRODUCTS",
         payload: {
-          data: itemData,
+          product: itemData,
+          quantity: count
         }
       })
     // console.log(itemData)

@@ -38,7 +38,7 @@
             position: relative;
             flex: 2;
             text-align: center;
-            button {
+            .addToCart {
                 padding: 2rem;
                 border-radius: 1rem;
                 border: 0;
@@ -47,9 +47,63 @@
                 color: #fff;
                 font-weight: 600;
                 cursor: pointer;
-
                 svg {
                     margin-left: .75rem;
+                }
+            }
+            .prodCount {
+                position: relative;
+                height: 55px;
+                /* Chrome, Safari, Edge, Opera */
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+                }
+                /* Firefox */
+                input[type=number] {
+                    -moz-appearance: textfield;
+                }
+                input {
+                    // pointer-events: none;
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    text-decoration: none;
+                    outline: none;
+                    padding: .7rem;
+                    padding-right: 1.5rem;
+                    border-radius: .5rem;
+                    border: 2px solid #888;
+                    transition: .35s ease-in-out;
+                    &:hover, &:focus, &:active {
+                        border: 2px solid #000;
+                    }
+                }
+                .buttonHolder {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    height: 100%;
+                    width: 25px;
+                    right: 5px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    button {
+                        padding: 0;
+                        margin: 0;
+                        background-color: #888;
+                    }
+                    &.minus {
+                        
+                    }
+                    &.plus {
+
+                    }
                 }
             }
             .price {

@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import productAction from "../actions/productAction";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faCartShopping, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons"
 import sendToCart from '../actions/sendToCart'
 import Loader from '../components/Loader'
 
@@ -11,13 +11,27 @@ const ProductPage = () => {
     const {pathname} = useLocation()
     const dispatch = useDispatch();
     const {data, isLoading} = useSelector(state => state.productData)
+    const [prodCount, setProdCount] = useState(0)
 
     useEffect(()=>{
         const link = pathname.substring(pathname.lastIndexOf("/"))
         const linkDone = link.replace("/", '')
         dispatch(productAction(linkDone))
         console.log(data)
+        console.log(prodCount)
     }, [])
+
+    useEffect(()=>{
+        console.log(prodCount)
+    }, [prodCount])
+
+    function minusHandler(){
+        if (prodCount > 0) {
+            setProdCount(prodCount - 1)
+        }else {
+            setProdCount(0)
+        }
+    }
 
     return (
         <>
@@ -58,14 +72,19 @@ const ProductPage = () => {
                     <div className="right">
                         <p>{data.title}</p>
                         <p className="price">{data.price} $</p>
-                        <button onClick={() => dispatch(sendToCart(data))}>Add to cart<FontAwesomeIcon icon={faCartShopping} /></button>
+                        <div className="prodCount">
+                            <input maxLength={1} value={prodCount} type="number" />
+                            <div className="buttonHolder">
+                                <button onClick={()=>setProdCount(prodCount + 1)} className="plus"><FontAwesomeIcon icon={faPlus} /></button>
+                                <button onClick={()=>minusHandler()} className="minus"><FontAwesomeIcon icon={faMinus} /></button>
+                            </div>         
+                        </div>
+                        <button className="addToCart" onClick={() => dispatch(sendToCart(data, prodCount))}>Add to cart<FontAwesomeIcon icon={faCartShopping} /></button>
                     </div>
                 </div>
                 <div className="description">
                     <p>{data.description}</p>
                 </div>
-
-                
             </section>
         )}
         </>

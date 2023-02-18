@@ -1,7 +1,9 @@
 import React from "react"
 
 const initState = {
-    item: [],
+    item: [
+
+    ],
     open: false,
     popup: {
         op: false,
@@ -16,11 +18,11 @@ const cartReducer = (state = initState, action) => {
                 ...state,
                 item: [
                     ...state.item,
-                    action.payload.data,
+                    action.payload,
                 ],
                 popup: {
                     op: true,
-                    prop: action.payload.data
+                    prop: action.payload
                 }
             }
         case "CLOSE_POPUP": 
@@ -39,7 +41,7 @@ const cartReducer = (state = initState, action) => {
         case "DELETE_PROD":
             return {
                 ...state,
-                item: action.payload.data,
+                item: action.payload,
             }
         case "CLEAR_ALL_PROD":
             return {

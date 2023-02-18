@@ -30,7 +30,7 @@ const Products = ({props}) => {
                 <p>{props.price} <span>$</span></p>
             </div>
             <div className='addToCart'>
-                <button onClick={() => dispatch(sendToCart(props))}><FontAwesomeIcon icon={faCartPlus} />    Add to Cart</button>
+                <button onClick={() => dispatch(sendToCart(props, 42))}><FontAwesomeIcon icon={faCartPlus} />Add to Cart</button>
             </div>
         </div>
     )
