@@ -8,17 +8,21 @@ const CartPage = () => {
     const {item, open} = useSelector(state => state.cart)
     const [sum, setSum] = useState()
 
+    let proData = item[0]
+
     // useEffect(()=> {
     //     console.log(price)
     //     setSum(price.reduce((prevNm, nm) => prevNm + nm, 0))
     // }, [item, []])
 
     useEffect(()=> {
-        console.log(item)
+        // console.log(proData)
     }, [item, []])
 
     // let sum = price.reduce((prevNm, nm) => prevNm + nm, 0)
 
+
+    
     return (
         <section id="cartPage">
             <div className="flex page-title">
@@ -33,7 +37,7 @@ const CartPage = () => {
                     <div className="delete">Delete</div>
                 </div>
                 {item.map((product)=> (
-                    <InCartItem price={price} setPrice={setPrice} key={product.id} props={product}/>
+                    <InCartItem  key={product.id} props={product}/>
                 ))}
                 {item.length > 0 ? 
                     <section>

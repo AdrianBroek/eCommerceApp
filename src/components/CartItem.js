@@ -8,8 +8,10 @@ const CartItem = ({props}) => {
     const dispatch = useDispatch()
     const {item, open} = useSelector(state => state.cart)
 
+    let prodata = props.product
+
     const deleteItem = () => {
-        const newCartData = item.filter(items => props.id != items.id)
+        const newCartData = item.filter(items => prodata.id != items.product.id)
         dispatch({
             type: "DELETE_PROD",
             payload: {
@@ -20,9 +22,9 @@ const CartItem = ({props}) => {
 
     return (
         <div className="product-cart">
-            <img src={props.image}></img>
-            <p>{props.title}</p>
-            <button onClick={()=> deleteItem()}>
+            <img src={prodata.image}></img>
+            <p>{prodata.title}</p>
+            <button className="abutton" onClick={()=> deleteItem()}>
                 <FontAwesomeIcon icon={faTrash} />
             </button>
         </div>

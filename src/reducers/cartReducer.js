@@ -41,7 +41,7 @@ const cartReducer = (state = initState, action) => {
         case "DELETE_PROD":
             return {
                 ...state,
-                item: action.payload,
+                item: action.payload.data,
             }
         case "CLEAR_ALL_PROD":
             return {

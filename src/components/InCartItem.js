@@ -3,43 +3,46 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons"
 
-const InCartItem = ({props, price, setPrice}) => {
+const InCartItem = ({props}) => {
     const dispatch = useDispatch()
     const {item} = useSelector(state => state.cart)
 
-    useEffect(()=> {
-        console.log(price)
-        setPrice(prevPrice => [
-            ...prevPrice,
-            props.price
-        ])
-    }, [])
+    let prodata = props.product
+
+    // useEffect(()=> {
+    //     // console.log(item)
+    //     // console.log(prodata.id)
+    //     setPrice(prevPrice => [
+    //         ...prevPrice,
+    //         props.price
+    //     ])
+    // }, [])
 
 
     const deleteItem = () => {
-        const newCartData = item.filter(items => props.id != items.id)
+        const newCartData = item.filter(items => prodata.id != items.product.id)
+        
         dispatch({
             type: "DELETE_PROD",
             payload: {
                 data: newCartData
             }
         })
-
     }
 
     return (
             <section className="product">
                 <div>
-                    quantity
+                    {props.quantity}
                 </div>
                 <div>
-                    <img src={props.image} height='auto' width='80px'></img>
+                    <img src={prodata.image} height='auto' width='80px'></img>
                 </div>
                 <div>
-                    {props.title}
+                    {prodata.title}
                 </div>
                 <div>
-                    {props.price} $
+                    {prodata.price} $
                 </div>
                 <div className="del">
                     <button onClick={()=> deleteItem()}>
