@@ -5,16 +5,21 @@
         .product {
             .del button{
                 border: none;
-                background: none;
                 cursor: pointer;
-                transition: .3s ease-in;
+                transition: .12s ease-in;
+                width: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 35px;
+                border-radius: 50%;
                 &:hover {
-                    width: 50px;
-                    height: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 50%;
+                    // width: 50px;
+                    // height: 50px;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+                    // border-radius: 50%;
                     background: orange;
                 }
             }
@@ -22,11 +27,28 @@
                 border-bottom-left-radius: 1.5rem;
                 border-bottom-right-radius: 1.5rem;
             }
+            .quantity {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                row-gap: 1rem;
+                button {
+                    background-color: #888;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
         }
         .table, .product {
             max-width: 1024px;
             display: grid;
-            grid-template-columns: .5fr 1fr 3fr 1fr .5fr;
+            grid-template-columns: .75fr 1fr 3fr 1fr .5fr;
             place-items: center;
             width: 100%;
             border-bottom: 1px solid #ebebeb;

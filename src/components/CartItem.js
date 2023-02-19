@@ -13,7 +13,7 @@ const CartItem = ({props}) => {
     const deleteItem = () => {
         const newCartData = item.filter(items => prodata.id != items.product.id)
         dispatch({
-            type: "DELETE_PROD",
+            type: "UPDATE_CART",
             payload: {
                 data: newCartData
             }

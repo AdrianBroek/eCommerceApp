@@ -38,7 +38,7 @@ const cartReducer = (state = initState, action) => {
                 ...state,
                 open: !state.open,
             }
-        case "DELETE_PROD":
+        case "UPDATE_CART":
             return {
                 ...state,
                 item: action.payload.data,

@@ -54,6 +54,8 @@
             .prodCount {
                 position: relative;
                 height: 55px;
+                max-width: 100px;
+                margin: 2rem auto;
                 /* Chrome, Safari, Edge, Opera */
                 input::-webkit-outer-spin-button,
                 input::-webkit-inner-spin-button {
