@@ -5,6 +5,7 @@ import cartReducer from './cartReducer'
 import categoriesReducer from './categoriesReducer'
 import categoryProductsReducer from './categoryProductsReducer'
 import productReducer from './productReducer'
+import totalReducer from './totalReducer'
 import login from './loginReducer'
 
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     categories: categoriesReducer,
     categoryProducts: categoryProductsReducer,
     productData: productReducer,
-    loggedStatus: login  
+    loggedStatus: login,
+    totalCart: totalReducer
 })
 
 export default rootReducer

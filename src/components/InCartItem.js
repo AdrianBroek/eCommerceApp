@@ -3,21 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faTrash, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom";
+import sendTotalData from "../actions/sendTotalData";
 
 const InCartItem = ({props}) => {
     const dispatch = useDispatch()
     const {item} = useSelector(state => state.cart)
 
     let prodata = props.product
-
-    // useEffect(()=> {
-    //     // console.log(item)
-    //     // console.log(prodata.id)
-    //     setPrice(prevPrice => [
-    //         ...prevPrice,
-    //         props.price
-    //     ])
-    // }, [])
 
     let link = "/product/" + prodata.id
 
@@ -37,8 +29,12 @@ const InCartItem = ({props}) => {
     useEffect(()=> {
         if (prodQty >= 1){
             props.quantity = prodQty
-            console.log(prodQty)
-            console.log(props.quantity)
+            dispatch({
+                type: "UPDATE_CART",
+                payload: {
+                    data: item
+                }
+            })
         }
 
     }, [prodQty])
@@ -46,6 +42,13 @@ const InCartItem = ({props}) => {
     function plusQuantity(){
         if (prodQty >= 1){
             setProdQty(prodQty+1)
+            // console.log(item)
+            dispatch({
+                type: "UPDATE_CART",
+                payload: {
+                    data: item
+                }
+            })
         }
     }
 
@@ -54,7 +57,24 @@ const InCartItem = ({props}) => {
             setProdQty(prodQty-1)
         }
     }
+    
+    function countSum(){
+        let tablicaCen = []
+        console.log(tablicaCen)
+        item.forEach(element => {
+            let sumka = element.product.price * element.quantity
+            tablicaCen.push(sumka)
+        });
+        return tablicaCen
+        
+    }
 
+
+    useEffect(()=> {
+        let sumData = countSum()
+        const totalSum = sumData.reduce((prevNm, nm) => prevNm + nm, 0)
+        dispatch(sendTotalData(item, totalSum))
+    }, [prodQty])
 
     return (
         <section className="product">
@@ -64,7 +84,7 @@ const InCartItem = ({props}) => {
                 <button onClick={ ()=> minusQuantity() } className="minus"><FontAwesomeIcon icon={faMinus} /></button>
             </div>
             <div>
-                <img src={prodata.image} height='auto' width='80px'></img>
+                <img src={prodata.image} height='auto' width='60px'></img>
             </div>
             <div>
                 <Link to={link}>

@@ -1,28 +1,32 @@
 import React, {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import InCartItem from '../components/InCartItem'
+import { useDispatch } from "react-redux";
+import sendTotalData from "../actions/sendTotalData";
 
 const CartPage = () => {
-
-    const [price, setPrice] = useState([])
+    const dispatch = useDispatch()
     const {item, open} = useSelector(state => state.cart)
-    const [sum, setSum] = useState()
+    const {totalPrice} = useSelector(state => state.totalCart)
 
-    let proData = item[0]
-
-    // useEffect(()=> {
-    //     console.log(price)
-    //     setSum(price.reduce((prevNm, nm) => prevNm + nm, 0))
-    // }, [item, []])
+    function countSum(){
+        let tablicaCen = []
+        console.log(tablicaCen)
+        item.forEach(element => {
+            let sumka = element.product.price * element.quantity
+            tablicaCen.push(sumka)
+        });
+        return tablicaCen
+        
+    }
+    let sumData = countSum()
+    const totalSum = sumData.reduce((prevNm, nm) => prevNm + nm, 0)
 
     useEffect(()=> {
-        // console.log(proData)
-    }, [item, []])
+        console.log('change')
+        dispatch(sendTotalData(item, totalSum))
+    }, [item])
 
-    // let sum = price.reduce((prevNm, nm) => prevNm + nm, 0)
-
-
-    
     return (
         <section id="cartPage">
             <div className="flex page-title">
@@ -37,7 +41,7 @@ const CartPage = () => {
                     <div className="delete">Delete</div>
                 </div>
                 {item.map((product)=> (
-                    <InCartItem  key={product.id} props={product}/>
+                    <InCartItem key={product.id} props={product}/>
                 ))}
                 {item.length > 0 ? 
                     <section>
@@ -45,7 +49,7 @@ const CartPage = () => {
                             <div className="quantity">Quantity</div>
                             <div className="image">Image</div>
                             <div className="prodname">Product name</div>
-                            <div className="price">{sum ? sum : ""}</div>
+                            <div className="price">{totalPrice} $</div>
                             <div className="delete">Delete</div>
                         </div>
                     </section>
