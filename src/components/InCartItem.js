@@ -87,7 +87,7 @@ const InCartItem = ({props}) => {
                 <img src={prodata.image} height='auto' width='60px'></img>
             </div>
             <div>
-                <Link to={link}>
+                <Link className="link" to={link}>
                 {prodata.title}
                 </Link>
             </div>

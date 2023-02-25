@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import InCartItem from '../components/InCartItem'
 import { useDispatch } from "react-redux";
 import sendTotalData from "../actions/sendTotalData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const CartPage = () => {
     const dispatch = useDispatch()
@@ -32,29 +34,29 @@ const CartPage = () => {
             <div className="flex page-title">
                 <h1>Your cart</h1>
             </div>
-            <section id="products" className="flex">
-                <div className="table">
-                    <div className="quantity">Quantity</div>
-                    <div className="image">Image</div>
-                    <div className="prodname">Product name</div>
-                    <div className="price">Price</div>
-                    <div className="delete">Delete</div>
-                </div>
-                {item.map((product)=> (
-                    <InCartItem key={product.id} props={product}/>
-                ))}
-                {item.length > 0 ? 
-                    <section>
+            <section className="cartContainer">
+                <section id="products" className="flex">
+                    <div className="table">
+                        <div className="quantity">Quantity</div>
+                        <div className="image">Image</div>
+                        <div className="prodname">Product name</div>
+                        <div className="price">Price</div>
+                        <div className="delete">Delete</div>
+                    </div>
+                    {item.map((product)=> (
+                        <InCartItem key={product.id} props={product}/>
+                    ))}
+                    {item.length > 0 ? 
                         <div className="table">
-                            <div className="quantity">Quantity</div>
-                            <div className="image">Image</div>
-                            <div className="prodname">Product name</div>
+                            <div className="quantity"></div>
+                            <div className="image"></div>
+                            <div className="prodname"></div>
                             <div className="price">{totalPrice} $</div>
-                            <div className="delete">Delete</div>
+                            <div className="delete"></div>
                         </div>
-                    </section>
-                :
-                    <h5 className="page-title">Empty, add something.</h5>}
+                    :
+                        <p className="page-title"><FontAwesomeIcon icon={faCircleInfo} /> Empty, add something.</p>}
+                </section>
             </section>
         </section>
     )

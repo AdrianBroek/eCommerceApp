@@ -28,6 +28,8 @@
                 justify-content: center;
                 position: relative;
                 max-height: 500px;
+                width: 100%;
+                height: 100%;
                 img {
                     object-fit: contain;
                     max-width: 65%;
@@ -65,9 +67,10 @@
                 /* Firefox */
                 input[type=number] {
                     -moz-appearance: textfield;
+                    
                 }
                 input {
-                    // pointer-events: none;
+                    pointer-events: none;
                     position: absolute;
                     height: 100%;
                     width: 100%;

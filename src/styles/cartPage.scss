@@ -1,7 +1,19 @@
 #cartPage {
     #products {
+        max-width: 1024px;
+        margin: auto;
         flex-direction: column;
         margin-bottom: 5rem;
+        box-shadow: rgba(50, 50, 93, 0.25) 
+        0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 
+        0px 1px 3px -1px;
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        overflow: hidden;
+        background-color: #fff;
         .product {
             .del button{
                 border: none;
@@ -13,19 +25,6 @@
                 justify-content: center;
                 height: 35px;
                 border-radius: 50%;
-                &:hover {
-                    // width: 50px;
-                    // height: 50px;
-                    // display: flex;
-                    // justify-content: center;
-                    // align-items: center;
-                    // border-radius: 50%;
-                    background: orange;
-                }
-            }
-            &:last-child{
-                border-bottom-left-radius: 1.5rem;
-                border-bottom-right-radius: 1.5rem;
             }
             .quantity {
                 display: flex;
@@ -46,20 +45,14 @@
             }
         }
         .table, .product {
-            max-width: 1024px;
             display: grid;
             grid-template-columns: .75fr 1fr 3fr 1fr .5fr;
             place-items: center;
             width: 100%;
             border-bottom: 1px solid #ebebeb;
             padding: 1rem .5rem;
-            background-color: #fff;
         }
         .table {
-            background: #000000;
-            color: #fff;
-            border-top-left-radius: 1.5rem;
-            border-top-right-radius: 1.5rem;
             div {
                 width: 100%;
                 border-right: 1px solid #ebebeb;
