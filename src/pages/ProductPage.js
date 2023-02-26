@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import productAction from "../actions/productAction";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons"
+import { faCartShopping, faPlus, faMinus, faCircleXmark } from "@fortawesome/free-solid-svg-icons"
 import sendToCart from '../actions/sendToCart'
 import Loader from '../components/Loader'
 
@@ -11,25 +11,35 @@ const ProductPage = () => {
     const {pathname} = useLocation()
     const dispatch = useDispatch();
     const {data, isLoading} = useSelector(state => state.productData)
-    const [prodCount, setProdCount] = useState(0)
+    const {item} = useSelector(state => state.cart)
+    const [prodCount, setProdCount] = useState(1)
+    const [error, setError] = useState(false)
 
     useEffect(()=>{
         const link = pathname.substring(pathname.lastIndexOf("/"))
         const linkDone = link.replace("/", '')
         dispatch(productAction(linkDone))
-        console.log(data)
-        console.log(prodCount)
     }, [])
-
-    useEffect(()=>{
-        console.log(prodCount)
-    }, [prodCount])
 
     function minusHandler(){
         if (prodCount > 0) {
             setProdCount(prodCount - 1)
         }else {
             setProdCount(0)
+        }
+    }
+
+    useEffect(()=> {
+        if(prodCount){
+            setError(false)
+        }
+    }, [addToCart])
+
+    function addToCart(){
+        if(prodCount){
+            dispatch(sendToCart(data, prodCount, item))
+        }else{
+            setError(true)
         }
     }
 
@@ -79,7 +89,8 @@ const ProductPage = () => {
                                 <button onClick={()=>minusHandler()} className="minus"><FontAwesomeIcon icon={faMinus} /></button>
                             </div>         
                         </div>
-                        <button className="addToCart" onClick={() => dispatch(sendToCart(data, prodCount))}>Add to cart<FontAwesomeIcon icon={faCartShopping} /></button>
+                        <button className="addToCart" onClick={() => addToCart()}>Add to cart<FontAwesomeIcon icon={faCartShopping} /></button>
+                        {error ? <div className="error flex"><p>Count must be at least <b>1</b></p><div className="close" onClick={()=> setError(false)}><FontAwesomeIcon icon={faCircleXmark} /></div></div> : ""}
                     </div>
                 </div>
                 <div className="description">

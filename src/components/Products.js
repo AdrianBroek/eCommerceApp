@@ -11,6 +11,7 @@ import productAction from '../actions/productAction';
 
 const Products = ({props}) => {
     const dispatch = useDispatch()
+    const {item} = useSelector(state => state.cart)
 
     return (
         <div className='product'>
@@ -30,7 +31,7 @@ const Products = ({props}) => {
                 <p>{props.price} <span>$</span></p>
             </div>
             <div className='addToCart'>
-                <button onClick={() => dispatch(sendToCart(props, 1))}><FontAwesomeIcon icon={faCartPlus} />Add to Cart</button>
+                <button onClick={() => dispatch(sendToCart(props, 1, item))}><FontAwesomeIcon icon={faCartPlus} />Add to Cart</button>
             </div>
         </div>
     )

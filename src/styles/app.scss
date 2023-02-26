@@ -77,6 +77,31 @@ body {
     background-color: #f5f5f5;
 }
 
+.error {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 20px;
+    width: 200px;
+    background-color: #ffffff;
+    height: 150px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: .5rem;
+    padding: 0 2rem;
+    border: 1px solid rgb(201, 79, 79);
+    .close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        svg {
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+        }
+    }
+}
+
 .flex {
     display: flex;
     align-items: center;
