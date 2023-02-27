@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import sendTotalData from "../actions/sendTotalData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
     const dispatch = useDispatch()
@@ -58,6 +59,7 @@ const CartPage = () => {
                         <p className="page-title"><FontAwesomeIcon icon={faCircleInfo} /> Empty, add something.</p>}
                 </section>
             </section>
+            <Link to="/order">Make an order</Link>
         </section>
     )
 }

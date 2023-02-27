@@ -1,0 +1,51 @@
+#orderPage {
+    max-width: 1024px;
+    margin: 5rem auto;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 
+    0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 
+    0px 1px 3px -1px;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 2rem;
+    h2 {
+        padding: 2rem;
+    }
+    table {
+        margin: 3rem;
+        border-collapse: collapse;
+        text-align: center;
+        td {
+            border-top: 1px solid #888;
+            padding: 1rem;
+            &:first-child {
+                text-align: left;
+            }
+        }
+        .totalPrice {
+            text-align: right;
+            padding: 2rem;
+            td:last-child {
+                font-weight: 600;
+            }
+        }
+    }
+    #orderStep {
+        justify-content: space-evenly;
+        width: 100%;
+        .step {
+            border-radius: 50%;
+            background-color: aquamarine;
+            height: 125px;
+            width: 125px;
+            color: #fff;
+            font-size: 1.25rem;
+        }
+    }
+}

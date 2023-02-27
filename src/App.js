@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import { Routes , Route, useLocation } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
-import ProductsPage from "./pages/ProductsPage";
+import OrderPage from "./pages/OrderPage";
 import CategoryPage from "./pages/CategoryPage";
 import CartPopup from "./components/CartPopup";
 import ProductPage from "./pages/ProductPage";
@@ -43,10 +43,11 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/my_account" element={<AccountPage />}></Route>
           <Route path="/" element={<HomePage />} ></Route>
-          <Route path="/product/:id" element={<ProductPage />} ></Route>
+          <Route path="/product/:id" element={<ProductPage />}></Route>
           <Route path="/cart" element={<CartPage />} ></Route>
           <Route path="/category/" element={<CategoryPage />}></Route>
           <Route path="/category/:id" element={<CategoryPage />}></Route>
+          <Route path="/order" element={<OrderPage />}></Route>
         </Routes>
     </div>
     </QueryClientProvider>
