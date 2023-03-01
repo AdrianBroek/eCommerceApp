@@ -10,6 +10,9 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import OrderPage from "./pages/OrderPage";
 import CategoryPage from "./pages/CategoryPage";
 import CartPopup from "./components/CartPopup";
+import Delivery from "./components/Delivery";
+import Summary from "./components/Summary";
+import OrderProducts from "./components/OrderProducts";
 import ProductPage from "./pages/ProductPage";
 import Login from "./pages/LoginPage";
 import Register from "./pages/RegisterPage";
@@ -47,7 +50,11 @@ function App() {
           <Route path="/cart" element={<CartPage />} ></Route>
           <Route path="/category/" element={<CategoryPage />}></Route>
           <Route path="/category/:id" element={<CategoryPage />}></Route>
-          <Route path="/order" element={<OrderPage />}></Route>
+          <Route path="/order/" element={<OrderPage />}>
+            <Route path="/order/delivery" element={ <Delivery />} />
+            <Route path="/order/products" element={ <OrderProducts />} />
+            <Route path="/order/summary" element={ <Summary />} />
+          </Route>
         </Routes>
     </div>
     </QueryClientProvider>

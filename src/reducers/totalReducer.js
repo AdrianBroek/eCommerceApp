@@ -1,6 +1,7 @@
 const initState = {
     totalPrice: 0,
     items: [],
+    edit: true
 }
 
 const totalReducer = (state=initState, action) => {
@@ -10,6 +11,11 @@ const totalReducer = (state=initState, action) => {
                 ...state,
                 totalPrice: action.payload.totalPrice,
                 items: action.payload.items
+            }
+        case "EDIT_TOTAL_DATA" : 
+            return {
+                ...state,
+                edit: action.payload
             }
         default:
             return {...state}

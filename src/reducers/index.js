@@ -7,6 +7,7 @@ import categoryProductsReducer from './categoryProductsReducer'
 import productReducer from './productReducer'
 import totalReducer from './totalReducer'
 import login from './loginReducer'
+import orderReducer from './orderReducer'
 
 const rootReducer = combineReducers({
     books: booksReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     categoryProducts: categoryProductsReducer,
     productData: productReducer,
     loggedStatus: login,
-    totalCart: totalReducer
+    totalCart: totalReducer,
+    order: orderReducer
 })
 
 export default rootReducer

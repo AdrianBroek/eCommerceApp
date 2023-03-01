@@ -1,41 +1,54 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, {useEffect, useState} from "react";
+import { useSelector } from "react-redux";
+import InCartItem from '../components/InCartItem'
+import { useDispatch } from "react-redux";
+import sendTotalData from "../actions/sendTotalData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo, faForwardStep, faPenToSquare, faStepBackward } from "@fortawesome/free-solid-svg-icons";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import stepAction from "../actions/stepAction";
+import nextStepAction from "../actions/nextStepAction";
+import prevStepAction from "../actions/prevStepAction";
 
 const OrderPage = () => {
+    const dispatch = useDispatch()
+    const {orderStep, nextStep, prevStep} = useSelector(state => state.order)
+    const {pathname} = useLocation()
 
-    const {totalPrice, items} = useSelector(state => state.totalCart)
+    useEffect(()=> {
+        const link = pathname.substring(pathname.lastIndexOf("/"))
+        const linkDone = link.replace("/", '')
+        dispatch(stepAction(linkDone))
+        
+        // console.log(orderStep)
+    }, [pathname])
 
+    useEffect(()=> {
+        dispatch(nextStepAction(orderStep))
+        console.log(nextStep)
+    }, [orderStep])
 
+    useEffect(()=> {
+        dispatch(prevStepAction(orderStep))
+        console.log(nextStep)
+    }, [orderStep])
 
     return (
         <section id="orderPage" className="flex">
-            <div id="orderStep" className="flex">
-                <p className="step st flex">
-                    Step: 1
-                </p>
-                <p className="step nd flex">
-                    Step: 2
-                </p>
-                <p className="step rd flex">
-                    Step: 3
-                </p>
-            </div>
-            <h2>Your order</h2>
-            <table>
-                {items && items.map((prod)=> (
-                    <tr>
-                        <td>{prod.product.title}</td>
-                        <td>{prod.quantity}</td>
-                        <td>{prod.product.price}</td>
-                    </tr>
-                    ))}
-                   <tr className="totalPrice">
-                    <td></td>
-                    <td>TotalPrice: </td>
-                    <td>{totalPrice}</td>
-                    </tr>
-            </table>
-            <button className="a">Next</button>
+            <section className="stepContainer flex">
+                <div className={orderStep === 'products' ? 'step flex st active' : 'step flex st'}>
+                    <p>Products</p>
+                </div>
+                <div className={orderStep === 'delivery' ? 'step flex nd active' : 'step flex nd'}>
+                    <p>Delivery</p>
+                </div>
+                <div className={orderStep === 'summary' ? 'step flex rd active' : 'step flex rd'}>
+                    <p>Summary</p>
+                </div>
+            </section>
+            <Outlet />
+            <Link to={nextStep} className="b abutton">Next <FontAwesomeIcon icon={faForwardStep}/></Link>
+            <Link to={prevStep} className="a abutton">Back <FontAwesomeIcon icon={faStepBackward}/></Link>
         </section>
     )
 }

@@ -4,13 +4,13 @@ import InCartItem from '../components/InCartItem'
 import { useDispatch } from "react-redux";
 import sendTotalData from "../actions/sendTotalData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo, faForwardStep, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const CartPage = () => {
+const OrderProducts = () => {
     const dispatch = useDispatch()
     const {item, open} = useSelector(state => state.cart)
-    const {totalPrice} = useSelector(state => state.totalCart)
+    const {totalPrice, edit} = useSelector(state => state.totalCart)
 
     function countSum(){
         let tablicaCen = []
@@ -30,10 +30,11 @@ const CartPage = () => {
         dispatch(sendTotalData(item, totalSum))
     }, [item])
 
+
     return (
-        <section id="cartPage">
+        <section>
             <div className="flex page-title">
-                <h1>Your cart</h1>
+                <h1>Your order</h1>
             </div>
             <section className="cartContainer">
                 <section id="products" className="flex">
@@ -47,21 +48,23 @@ const CartPage = () => {
                     {item.map((product)=> (
                         <InCartItem key={product.id} props={product}/>
                     ))}
-                    {item.length > 0 ? 
+                    {item.length > 0 ?
                         <div className="table">
-                            <div className="quantity"></div>
+                            <div className="quantity">
+                                <button onClick={()=> dispatch({type: "EDIT_TOTAL_DATA", payload: !edit})} className="a edit flex"><FontAwesomeIcon icon={faPenToSquare} /> Edit</button>
+                            </div>
                             <div className="image"></div>
-                            <div className="prodname"></div>
+                            <div style={{textAlign: 'right'}} className="prodname">Total price: </div>
                             <div className="price">{totalPrice} $</div>
                             <div className="delete"></div>
                         </div>
-                    :
-                        <p className="page-title"><FontAwesomeIcon icon={faCircleInfo} /> Empty, add something.</p>}
+                        :
+                        <p className="page-title"><FontAwesomeIcon icon={faCircleInfo} /> Empty, add something.</p>
+                    }
                 </section>
             </section>
-            <Link to="/order/products">Make an order</Link>
         </section>
     )
 }
 
-export default CartPage
+export default OrderProducts

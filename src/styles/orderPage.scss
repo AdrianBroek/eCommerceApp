@@ -1,51 +1,33 @@
 #orderPage {
-    max-width: 1024px;
-    margin: 5rem auto;
     flex-direction: column;
-    margin-bottom: 5rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 
-    0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 
-    0px 1px 3px -1px;
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    border-bottom-left-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
-    overflow: hidden;
-    background-color: #fff;
-    padding: 2rem;
-    h2 {
-        padding: 2rem;
-    }
-    table {
-        margin: 3rem;
-        border-collapse: collapse;
-        text-align: center;
-        td {
-            border-top: 1px solid #888;
-            padding: 1rem;
-            &:first-child {
-                text-align: left;
-            }
-        }
-        .totalPrice {
-            text-align: right;
-            padding: 2rem;
-            td:last-child {
-                font-weight: 600;
-            }
-        }
-    }
-    #orderStep {
+    .stepContainer {
+        min-width: 90%;
+        max-width: 1024px;
+        margin: 3rem auto auto;
+        box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px, rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        overflow: hidden;
+        background-color: #fff;
         justify-content: space-evenly;
-        width: 100%;
         .step {
             border-radius: 50%;
-            background-color: aquamarine;
-            height: 125px;
-            width: 125px;
-            color: #fff;
-            font-size: 1.25rem;
+            border: 1px solid #888;
+            width: 100px;
+            height: 100px;
+            margin: 2rem 0;
+            font-size: .8rem;
+            cursor: pointer;
+            &.active {
+                border: 1px solid orangered;
+                background-color: orange;
+                color: #fff;
+            }
         }
+    }
+    .next {
+        margin: auto;
     }
 }
