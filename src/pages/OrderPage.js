@@ -47,8 +47,10 @@ const OrderPage = () => {
                 </div>
             </section>
             <Outlet />
-            <Link to={nextStep} className="b abutton">Next <FontAwesomeIcon icon={faForwardStep}/></Link>
-            <Link to={prevStep} className="a abutton">Back <FontAwesomeIcon icon={faStepBackward}/></Link>
+            <div className="btnHandler flex">
+                <Link to={prevStep} className="a abutton">Back <FontAwesomeIcon icon={faStepBackward}/></Link>
+                <Link to={nextStep} className="b abutton">Next <FontAwesomeIcon icon={faForwardStep}/></Link>
+            </div>
         </section>
     )
 }

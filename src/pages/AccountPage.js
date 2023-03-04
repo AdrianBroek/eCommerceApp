@@ -21,7 +21,6 @@ const AccountPage = () => {
         confirm: false,
         valid: false
     })
-    const [info, setInfo] = useState()
     const [correctCheck, setCorrectCheck] = useState({
         name: false,
         email: false,
@@ -30,12 +29,8 @@ const AccountPage = () => {
     })
 
     useEffect(()=> {
-        // console.log(JSON.parse(localStorage.getItem('user')))
-    }, [data])
-
-    useEffect(()=> {
         if(correctCheck.name && correctCheck.email && correctCheck.address && correctCheck.password){
-            console.log('leci')
+            // console.log('leci')
             setActivePopup(prevState => ({
                 ...prevState,
                 valid: true
@@ -182,15 +177,6 @@ const AccountPage = () => {
                 }
 
         });
-        // if(correctCheck.name && correctCheck.email && correctCheck.address && correctCheck.password){
-        //     console.log('leci2')
-        //     console.log(activePopup)
-        //     setActivePopup(prevState => ({
-        //         ...prevState,
-        //         valid: true
-        //     }))
-        //     console.log(activePopup)
-        // }
     }
 
     // validate
@@ -205,10 +191,6 @@ const AccountPage = () => {
 
                 } else {
                     element.style.border="2px solid red"
-                    // element.classList.add('wrong')
-                    // setTimeout(()=> {
-                    //     element.classList.remove('wrong')
-                    // },[1000])
                 }
 
                 if (element.classList.contains("email")){
@@ -220,10 +202,6 @@ const AccountPage = () => {
                         element.style.border="2px solid green"
                     }else {
                         element.style.border="2px solid red"
-                        // element.classList.add('wrong')
-                        // setTimeout(()=> {
-                        //     element.classList.remove('wrong')
-                        // },[1000])
                     }
                 }
                 if (element.classList.contains("password")){
@@ -231,22 +209,13 @@ const AccountPage = () => {
 
                     // console.log(element.value)
                     if (checkPassw(element.value)){
-                        // element.classList.remove('wrong')
                         element.style.border="2px solid green"
                     } else {
                         element.style.border="2px solid red"
-                        // element.classList.add('wrong')
-                        // setTimeout(()=> {
-                        //     element.classList.remove('wrong')
-                        // },[1000])
                     }
                 }
             } else {
                     element.style.border="2px solid red"
-                    // element.classList.add('wrong')
-                    // setTimeout(()=> {
-                    //     element.classList.remove('wrong')
-                    // },[1000])
                 }
 
         });

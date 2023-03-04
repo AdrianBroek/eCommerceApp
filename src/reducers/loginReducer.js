@@ -7,6 +7,8 @@ const initState = {
     logged: false,
     userData: {
         username: '',
+        firstname: "",
+        lastname: "",
         id: '',
         email: '',
         address: '',
