@@ -23,6 +23,8 @@ const registerAction = (props) => async (dispatch) => {
         type: "USER_REGISTER",
         payload: {
             username: data.username,
+            lastname: data.lastname,
+            firstname: data.firstname,
             id: data.id,
             email: data.email,
             address: data.address,

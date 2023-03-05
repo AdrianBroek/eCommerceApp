@@ -2,7 +2,13 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import registerAction from "../actions/registerAction";
-import testAvatar from '../images/avatar/text_avatar.png'
+import testAvatar from '../images/avatar/text_avatar.png';
+import {
+    inputsValidate,
+    containsUppercase,
+    checkMail,
+    checkPassw
+} from '../components/inputValidate'
 
 const AccountPage = () => {
 
@@ -12,6 +18,8 @@ const AccountPage = () => {
     const [data, setData] = useState({
         username: userData ? userData.username : null,
         email: userData ? userData.email : null,
+        firstname: userData ? userData.firstname : null,
+        lastname: userData ? userData.lastname : null,
         password: userData ? userData.password : null,
         address: userData ? userData.address : null,
         id: userData.id
@@ -21,16 +29,22 @@ const AccountPage = () => {
         confirm: false,
         valid: false
     })
+    const [info, setInfo] = useState()
     const [correctCheck, setCorrectCheck] = useState({
-        name: false,
+        username: false,
+        firstname: false,
+        lastname: false,
         email: false,
         address: false,
         password: false,
     })
 
     useEffect(()=> {
-        if(correctCheck.name && correctCheck.email && correctCheck.address && correctCheck.password){
-            // console.log('leci')
+        // console.log(JSON.parse(localStorage.getItem('user')))
+    }, [data])
+
+    useEffect(()=> {
+        if(correctCheck.username && correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address && correctCheck.password){
             setActivePopup(prevState => ({
                 ...prevState,
                 valid: true
@@ -40,11 +54,16 @@ const AccountPage = () => {
     }, [correctCheck])
 
 
-
     function inputHandler(e){
         switch(e.target.id) {
-            case "name" :
+            case "username" :
                 setData((state) => ({...state, username: e.target.value}))
+                break;
+            case "firstname" :
+                setData((state) => ({...state, firstname: e.target.value}))
+                break;
+            case "lastname" :
+                setData((state) => ({...state, lastname: e.target.value}))
                 break;
             case "email" :
                 setData((state) => ({...state, email: e.target.value}))
@@ -58,26 +77,6 @@ const AccountPage = () => {
         }
     }
 
-    function containsUppercase(str) {
-        return /[A-Z]/.test(str);
-    }
-
-    function checkMail(str) {
-        if (/[@]/.test(str)){
-            return /[.]/.test(str)
-        }
-    }
-
-    function checkPassw(str) {
-        if (/[123456789]/.test(str)){
-            return /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(str)
-        }
-    }
-
-    useEffect(()=> {
-        console.log(correctCheck)
-    }, [correctCheck])
-
     function submitHandler (e){
         e.preventDefault();
 
@@ -89,12 +88,26 @@ const AccountPage = () => {
                 if (containsUppercase(element.value)){
                     // if has 1 uppercase letter
                     element.style.border="2px solid green"
-                    console.log(element.id)
+                    // console.log(element.id)
                     switch(element.id){
-                        case "name": {
+                        case "username": {
                             setCorrectCheck(prevState => ({
                                 ...prevState,         
-                                name: true,
+                                username: true,
+                            }))                            
+                            break
+                        }
+                        case "firstname": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                firstname: true,
+                            }))                            
+                            break
+                        }
+                        case "lastname": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                lastname: true,
                             }))                            
                             break
                         }
@@ -181,48 +194,11 @@ const AccountPage = () => {
 
     // validate
     useEffect(()=> {
-        const inputs = document.querySelectorAll('input')
-        inputs.forEach((element, index) => {
-            if (element.value.length >= 6){
-                // if has more than 5 letters - start
-                if (containsUppercase(element.value)){
-                    // if has 1 uppercase letter
-                    element.style.border="2px solid green"
-
-                } else {
-                    element.style.border="2px solid red"
-                }
-
-                if (element.classList.contains("email")){
-                    // check mail
-
-                    // console.log(element.value)
-                    if (checkMail(element.value)){
-                        element.classList.remove('wrong')
-                        element.style.border="2px solid green"
-                    }else {
-                        element.style.border="2px solid red"
-                    }
-                }
-                if (element.classList.contains("password")){
-                    // check passw
-
-                    // console.log(element.value)
-                    if (checkPassw(element.value)){
-                        element.style.border="2px solid green"
-                    } else {
-                        element.style.border="2px solid red"
-                    }
-                }
-            } else {
-                    element.style.border="2px solid red"
-                }
-
-        });
+        inputsValidate()
     }, [inputHandler])
 
     function confirm(){
-        console.log('confirm')
+        // console.log('confirm')
         setActivePopup(state => ({
             ...state,
             open: true
@@ -248,9 +224,17 @@ const AccountPage = () => {
                     <form onSubmit={submitHandler}>
                         <img src={testAvatar} />
                         <h2>My account</h2>
-                        <div className="name">
-                            <input id="name" name="name" onChange={inputHandler} type="text" value={data.username} />
-                            <label for="name">Name</label>
+                        <div className="username">
+                            <input id="username" name="username" onChange={inputHandler} type="text" value={data.username} />
+                            <label for="username">User name</label>
+                        </div>
+                        <div className="firstname">
+                            <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
+                            <label for="firstname">First name</label>
+                        </div>
+                        <div className="lastname">
+                            <input id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
+                            <label for="lastname">Last name</label>
                         </div>
                         <div className="email">
                             <input className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />

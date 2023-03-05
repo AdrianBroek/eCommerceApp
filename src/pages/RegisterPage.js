@@ -8,6 +8,8 @@ const RegisterPage = () => {
 
     const [input, setInput] = useState({
         username: '',
+        firstname: '',
+        lastname: '',
         email: '',
         password: '',
         id: uuid(),
@@ -22,6 +24,18 @@ const RegisterPage = () => {
         setInput(prevState => ({
             ...prevState,
             username: e.target.value
+        }))
+    }
+    function firstnameInputHandler(e){
+        setInput(prevState => ({
+            ...prevState,
+            firstname: e.target.value
+        }))
+    }
+    function lastnameInputHandler(e){
+        setInput(prevState => ({
+            ...prevState,
+            lastname: e.target.value
         }))
     }
     function passwordInputHandler(e){
@@ -58,6 +72,14 @@ const RegisterPage = () => {
                 <div className="name">
                     <input onChange={usernameInputHandler} type="text"/>
                     <label htmlFor="username">username</label>
+                </div>
+                <div className="name">
+                    <input onChange={firstnameInputHandler} type="text"/>
+                    <label htmlFor="firstname">firstname</label>
+                </div>
+                <div className="name">
+                    <input onChange={lastnameInputHandler} type="text"/>
+                    <label htmlFor="lastname">lastname</label>
                 </div>
                 <div className="password">
                     <input onChange={passwordInputHandler} type="text"/>

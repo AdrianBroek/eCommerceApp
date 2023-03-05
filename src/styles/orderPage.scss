@@ -35,3 +35,26 @@
         margin: auto;
     }
 }
+
+#delivery {
+    flex-direction: column;
+    .confirmation {
+        .close {
+            border: none;
+            background-color: #000;
+            width: fit-content;
+            border-bottom-left-radius: 2rem;
+            padding: 1rem;
+            color: #fff;
+            cursor: pointer;
+            position: absolute;
+            top: 0%;
+            right:0;
+            transition: .11s ease-out;
+            &:hover {
+                font-size: 1.3rem;
+                background-color: orange;
+            }
+        }
+    }
+}
