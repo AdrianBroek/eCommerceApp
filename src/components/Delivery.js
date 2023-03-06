@@ -9,6 +9,10 @@ import {
     checkMail,
     checkPassw
 } from '../components/inputValidate'
+import CustomInput from "./CustomInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBoxesStacked, faMoneyBill, faStore, faTruck, faTruckDroplet, faTruckFast, faTruckField, faTruckPickup } from "@fortawesome/free-solid-svg-icons";
+import { faApplePay, faCcMastercard, faCcVisa, faDhl, faFacebook, faGooglePay } from "@fortawesome/free-brands-svg-icons"
 
 const Delivery = () => {
 
@@ -39,6 +43,34 @@ const Delivery = () => {
         password: false,
     })
 
+    // delivery options
+    const {payment, courier, delivery} = useSelector(state => state.delivery)
+    const [active, setActive] = useState({
+        payment: null,
+        courier: null,
+        delivery: null,
+        agreement: false,
+    })
+
+    // update delivery options
+    useEffect(()=> {
+        dispatch({type: "CHANGE_DELIVERY_OPTION", payload: active.courier})
+    }, [active.courier])
+    useEffect(()=> {
+        // console.log(active.payment)
+        dispatch({type: "CHANGE_COURIER_OPTION", payload: active.payment})
+    }, [active.payment])
+    useEffect(()=> {
+        // console.log(active.payment)
+        dispatch({type: "CHANGE_PAYMENT_OPTION", payload: active.delivery})
+    }, [active.delivery])
+    useEffect(()=> {
+        // console.log(active.payment)
+        dispatch({type: "CHANGE_AGREEMENT_OPTION", payload: active.agreement})
+    }, [active.agreement])
+
+
+    // check json data
     useEffect(()=> {
         // console.log(JSON.parse(localStorage.getItem('user')))
     }, [data])
@@ -234,11 +266,6 @@ const Delivery = () => {
         });
     }
 
-    useEffect(()=> {
-        // setActivePopup(state => ({...state}))
-        // console.log(correctCheck)
-    }, [inputHandler])
-
     // validate
     useEffect(()=> {
         inputsValidate()
@@ -370,6 +397,40 @@ const Delivery = () => {
             ) : (
                 <></>
             )}
+            <section className="flex" id="delivery-options">
+                <div className="container">
+                <h2><FontAwesomeIcon icon={faTruck}/> Choose delivery option</h2>
+                <div>
+                    <h3>Payment method</h3>
+                    <div className="pay-method">
+                        <CustomInput name='VISA' value='visa' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faCcVisa}/>
+                        <CustomInput name='MasterCard' value='mastercard' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faCcMastercard}/>
+                        <CustomInput name='Google Pay' value='GPay' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faGooglePay}/>
+                        <CustomInput name='Apple Pay' value='APay' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faApplePay}/>
+                        <CustomInput name='Personal collection' value='p-collection' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faTruckFast}/>
+                        <CustomInput name='Payment on delivery' value='p-delivery' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faMoneyBill}/>
+                    </div>
+                </div>
+                <div>
+                    <h3>Courier type</h3>
+                    <div className="courier-method">
+                        <CustomInput name='DPD' value='dpd' active={active.courier} setActive={setActive}/><FontAwesomeIcon icon={faTruckField}/>
+                        <CustomInput name='DHL' value='dhl' active={active.courier} setActive={setActive}/><FontAwesomeIcon icon={faDhl}/>
+                    </div>
+                </div>
+                <div>
+                    <h3>Delivery method</h3>
+                    <div className="pickup-method">
+                        <CustomInput name='Collection point' value='collection_point' active={active.delivery} setActive={setActive}/><FontAwesomeIcon icon={faStore}/>
+                        <CustomInput name='BOX' value='box' active={active.delivery} setActive={setActive}/><FontAwesomeIcon icon={faBoxesStacked}/>
+                    </div>
+                </div>
+                
+                <div>
+                    <CustomInput name='Data processing agreement' value='agreement' active={active.agreement} setActive={setActive}/>
+                </div>
+                </div>
+            </section>
         </section>
     )
 }

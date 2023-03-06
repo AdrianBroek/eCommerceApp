@@ -58,3 +58,35 @@
         }
     }
 }
+
+#delivery-options {
+    .pay-method,
+    .pickup-method,
+    .courier-method {
+        margin-left: .85rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        place-items: start;
+        align-items: center;
+    }
+    
+    .container {
+        h2 {
+            margin-bottom: 1rem;
+        }
+        flex-direction: column;
+        min-width: 90%;
+        max-width: 1024px;
+        margin: auto;
+        box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px, rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        overflow: hidden;
+        background-color: #fff;
+        justify-content: space-evenly;
+        padding: 2rem;
+    }
+
+}

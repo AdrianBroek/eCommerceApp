@@ -253,3 +253,48 @@ body {
     }
 }
 
+.customInput {
+    position: relative;
+    display: flex;
+    margin: .5rem 0;
+    cursor: pointer;
+    input {
+        display: none;
+    }
+    p.check {
+        width: 100%;
+        position: relative;
+        // background-color: grey;
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            border: 1px solid #888;
+            width: 15px;
+            height: 15px;
+            border-radius: .2rem;
+        }
+        svg{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            max-height: 80%;
+        }
+        &:first-child {
+            width: 30px;
+        }
+    }
+    input[type="checkbox"]:checked ~ svg path {
+        stroke-dashoffset: 0;
+    }
+    svg path,svg path {
+        stroke-width: 15px;
+        fill: none;
+        transition: stroke-dashoffset 0.2s ease-in 0s;
+        pointer-events: none;
+    }
+}
