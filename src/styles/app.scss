@@ -27,6 +27,7 @@ button,
     border-radius: .25rem;
     border: none;
     text-decoration: none;
+    transition: .25 ease-in;
     a {
         height: 100%;
         width: 100%;
@@ -39,6 +40,10 @@ button,
     }
     &.b {
         background-color: orange;
+    }
+    &.off {
+        cursor: not-allowed;
+        opacity: .35;
     }
 }
 

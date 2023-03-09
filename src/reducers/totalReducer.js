@@ -1,7 +1,9 @@
 const initState = {
     totalPrice: 0,
     items: [],
-    edit: true
+    edit: true,
+    delivery: false,
+    personalData: false
 }
 
 const totalReducer = (state=initState, action) => {
@@ -16,6 +18,16 @@ const totalReducer = (state=initState, action) => {
             return {
                 ...state,
                 edit: action.payload
+            }
+        case "SET_DELIVERY_DATA" : 
+            return {
+                ...state,
+                delivery: action.payload
+            }
+        case "SET_PERSONAL_DATA" : 
+            return {
+                ...state,
+                personalData: action.payload
             }
         default:
             return {...state}

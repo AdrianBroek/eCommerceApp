@@ -1,7 +1,7 @@
 const initState = {
-    payment: null,
-    courier: null,
-    delivery: null,
+    payment: false,
+    courier: false,
+    delivery: false,
     agreement: false,
 }
 

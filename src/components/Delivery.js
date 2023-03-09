@@ -19,13 +19,14 @@ const Delivery = () => {
     const dispatch = useDispatch()
 
     const { logged, userData } = useSelector(state => state.loggedStatus)
+    const totalCart = useSelector(state => state.totalCart)
     const [data, setData] = useState({
-        username: userData ? userData.username : null,
-        email: userData ? userData.email : null,
-        firstname: userData ? userData.firstname : null,
-        lastname: userData ? userData.lastname : null,
-        password: userData ? userData.password : null,
-        address: userData ? userData.address : null,
+        username: userData ? userData.username : totalCart.personalData.username,
+        email: userData ? userData.email : totalCart.personalData.email,
+        firstname: userData ? userData.firstname : totalCart.personalData.firstname,
+        lastname: userData ? userData.lastname : totalCart.personalData.lastname,
+        password: userData ? userData.password : totalCart.personalData.password,
+        address: userData ? userData.address : totalCart.personalData.address,
         id: userData.id
     })
     const [activePopup, setActivePopup] = useState({
@@ -44,7 +45,7 @@ const Delivery = () => {
     })
 
     // delivery options
-    const {payment, courier, delivery} = useSelector(state => state.delivery)
+    const delivery = useSelector(state => state.delivery)
     const [active, setActive] = useState({
         payment: null,
         courier: null,
@@ -69,6 +70,15 @@ const Delivery = () => {
         dispatch({type: "CHANGE_AGREEMENT_OPTION", payload: active.agreement})
     }, [active.agreement])
 
+    // totalData delivery
+    useEffect(()=> {
+        if (delivery != null){
+            if (delivery.payment && delivery.courier && delivery.delivery && delivery.agreement){
+                dispatch({type: "SET_DELIVERY_DATA", payload: delivery})
+            }
+        }
+        
+    }, [active])
 
     // check json data
     useEffect(()=> {
@@ -78,6 +88,8 @@ const Delivery = () => {
     useEffect(()=> {
         if(logged){
             if(correctCheck.username && correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address){
+                // totalData delivery
+                dispatch({type: 'SET_PERSONAL_DATA', payload: data})
                 setActivePopup(prevState => ({
                     ...prevState,
                     valid: true
@@ -90,6 +102,8 @@ const Delivery = () => {
             }
         }else{
             if(correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address){
+                // totalData delivery
+                dispatch({type: 'SET_PERSONAL_DATA', payload: data})
                 setActivePopup(prevState => ({
                     ...prevState,
                     valid: true
@@ -225,14 +239,11 @@ const Delivery = () => {
                             break
                         }
                         case "firstname": {
-                            console.log('chuj')
                             
                             setCorrectCheck(prevState => ({
                                 ...prevState,         
                                 firstname: false,
-                            }))   
-                            console.log(correctCheck)                         
-                            console.log(activePopup)                         
+                            }))                          
                             break
                         }
                         case "lastname": {
@@ -354,19 +365,19 @@ const Delivery = () => {
                             <label for="username">User name</label>
                         </div> */}
                         <div className="firstname">
-                            <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
+                            <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={totalCart.personalData.firstname ? totalCart.personalData.firstname : data.firstname} />
                             <label for="firstname">First name</label>
                         </div>
                         <div className="lastname">
-                            <input id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
+                            <input id="lastname" name="lastname" onChange={inputHandler} type="text" value={totalCart.personalData.lastname ? totalCart.personalData.lastname : data.lastname} />
                             <label for="lastname">Last name</label>
                         </div>
                         <div className="email">
-                            <input className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
+                            <input className="email" id="email" name="email" onChange={inputHandler} type="text" value={totalCart.personalData.email ? totalCart.personalData.email : data.email} />
                             <label for="email">Email</label>
                         </div>
                         <div className="address">
-                            <input id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
+                            <input id="address" name="address" onChange={inputHandler} type="text" value={totalCart.personalData.address ? totalCart.personalData.address : data.address} />
                             <label for="address">Address</label>
                         </div>
                         {/* <div className="password">

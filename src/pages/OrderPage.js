@@ -13,24 +13,63 @@ import prevStepAction from "../actions/prevStepAction";
 const OrderPage = () => {
     const dispatch = useDispatch()
     const {orderStep, nextStep, prevStep} = useSelector(state => state.order)
+    const order = useSelector(state => state.order)
     const {pathname} = useLocation()
+    const totalCart = useSelector(state => state.totalCart)
+
+    const [activeBtn, setActiveBtn] = useState({
+        next: false,
+        prev: false
+    })
+
+    // if everything correct on delivery step
+    useEffect(()=> {
+        switch(order.orderStep){
+            case "delivery" :
+                if(totalCart.personalData && totalCart.delivery){
+                    setActiveBtn(state => ({
+                        prev: true,
+                        next: true,
+                    }))
+                }else {
+                    setActiveBtn(state => ({
+                        prev: true,
+                        next: false,
+                    }))
+                }
+                break
+            case "products" :
+                setActiveBtn(state => ({
+                    prev: false,
+                    next: true,
+                }))
+                break
+            case "summary" :
+                setActiveBtn(state => ({
+                    prev: true,
+                    next: true,
+                }))
+                break
+            case "default" :
+                return (state => ({...state}))
+        }
+    }, [totalCart, order, orderStep])
 
     useEffect(()=> {
         const link = pathname.substring(pathname.lastIndexOf("/"))
         const linkDone = link.replace("/", '')
-        dispatch(stepAction(linkDone))
-        
+        dispatch(stepAction(linkDone)) 
         // console.log(orderStep)
     }, [pathname])
 
+    // next
     useEffect(()=> {
         dispatch(nextStepAction(orderStep))
-        console.log(nextStep)
     }, [orderStep])
 
+    // prev
     useEffect(()=> {
         dispatch(prevStepAction(orderStep))
-        console.log(nextStep)
     }, [orderStep])
 
     return (
@@ -48,8 +87,17 @@ const OrderPage = () => {
             </section>
             <Outlet />
             <div className="btnHandler flex">
-                <Link to={prevStep} className="a abutton">Back <FontAwesomeIcon icon={faStepBackward}/></Link>
-                <Link to={nextStep} className="b abutton">Next <FontAwesomeIcon icon={faForwardStep}/></Link>
+                {activeBtn.prev ? 
+                    <Link to={prevStep} className="a abutton"><FontAwesomeIcon icon={faStepBackward}/> Back</Link>
+                :
+                    <button className="a off"><FontAwesomeIcon icon={faStepBackward}/> Back</button>
+                }
+                {activeBtn.next ? 
+                    <Link to={nextStep} className="b abutton">Next <FontAwesomeIcon icon={faForwardStep}/></Link>
+                    :
+                    <button className="b off">Next <FontAwesomeIcon icon={faForwardStep}/></button>
+                }
+                
             </div>
         </section>
     )
