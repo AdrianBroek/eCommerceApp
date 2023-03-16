@@ -15,6 +15,12 @@ const nextStepAction = (props) => async ( dispatch ) => {
                 payload: 
                     'summary'
             })
+        case "delivery":
+            return dispatch({
+                type: "SET_ORDER_NEXT_STEP",
+                payload: 
+                    'summary'
+            })
         default :
             return step     
     }
