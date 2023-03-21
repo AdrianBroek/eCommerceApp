@@ -24,14 +24,17 @@ function HomePage() {
   const {dataCat, isLoadingCat} = useSelector(state => state.categories)
   const {autor, tytuł} = useSelector(state => state.books)
 
+  // useEffect(()=>{
+  //   console.log(data)
+  // }, [data])
   return (
     <div className="HomePage">
         <section className="categories-list flex">
-          {/* <h2>Pick category:</h2> */}
           {!isLoadingCat && dataCat.map((el, index) => (
              <CategorySquare key={index} cat={el} />
           ))}
         </section>
+
         <section className="product-list">
           {!isLoading && data.map((el) => (
               <Products key={el.id} props={el}/>

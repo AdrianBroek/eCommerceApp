@@ -97,7 +97,6 @@ const OrderPage = () => {
                     :
                     <button className="b off">Next <FontAwesomeIcon icon={faForwardStep}/></button>
                 }
-                
             </div>
         </section>
     )

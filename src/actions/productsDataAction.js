@@ -6,15 +6,15 @@ import axios from 'axios'
 const productsDataAction = () => async (dispatch) => {
     const options = {
         method: 'GET',
-        url: 'https://fakestoreapi.com/products?limit=50',
+        url: 'https://dummyjson.com/products?limit=50',
     };
 
     const data = await axios.request(options)
-      
+    //   console.log(data)
     dispatch({
         type: "FETCH_PRODUCTS",
         payload: {
-          data: data.data,
+          data: data.data.products,
         }
     })
     

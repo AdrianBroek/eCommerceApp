@@ -5,7 +5,7 @@ const productAction = (id) => async (dispatch) => {
     dispatch({type: "PRODUCT_RESET"})
     const options = {
         method: "GET",
-        url: "https://fakestoreapi.com/products/"+id
+        url: "https://dummyjson.com/products/"+id
     }
 
     const data = await axios.request(options)

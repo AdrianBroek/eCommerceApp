@@ -4,11 +4,11 @@ import axios from "axios";
 const categoriesDataAction = () => async (dispatch) => {
     const options = {
         method: "GET",
-        url: 'https://fakestoreapi.com/products/categories'
+        url: 'https://dummyjson.com/products/categories'
     }
 
     const data = await axios.request(options);
-
+    // console.log(data)
     dispatch({
         type: "FETCH_CATEGORIES",
         payload: {

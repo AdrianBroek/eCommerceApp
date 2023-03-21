@@ -105,7 +105,7 @@ const InCartItem = ({props}) => {
                 {edit ? (<button onClick={ ()=> minusQuantity() } className="minus"><FontAwesomeIcon icon={faMinus} /></button>):""}
             </div>
             <div>
-                <img src={prodata.image} height='auto' width='60px'></img>
+                <img src={prodata.thumbnail} height='auto' width='60px'></img>
             </div>
             <div>
                 <Link className="link" to={link}>

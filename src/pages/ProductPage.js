@@ -69,12 +69,12 @@ const ProductPage = () => {
         {data && !isLoading && (
             <section id={'product'+data.id} className="productPage">
                 <div className="breadcrumbs">
-                    <p>{data.category}</p>
+                    <p>{data.brand}</p>
                 </div>
                 <div className="box">
                     <div className="left">
                         <div className="prod-image">
-                            <img src={data.image} />
+                            <img src={data.images[0]} />
                         </div>
                         {/* <p>{data.rating.count}</p>
                         <p>{data.rating.rate}</p> */}

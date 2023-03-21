@@ -56,6 +56,8 @@ const ProductsPage = () => {
     //     }))
     // })
 
+    console.log(data)
+
     return (
         <section>
             <section className="categories-list">
