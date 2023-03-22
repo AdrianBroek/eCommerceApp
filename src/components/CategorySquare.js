@@ -7,9 +7,9 @@ const CategorySquare = ({cat}) => {
     const {activeCategory} = useSelector(state => state.categories)
 
     return (
-        <div className="noselect category-square">
-            <Link draggable="false"
-            className={activeCategory === cat ? 'active' : ''}
+        <>
+        <div className={activeCategory === cat ? 'noselect category-square active' : 'noselect category-square'}>
+            <Link
             onClick={() => dispatch({
                 type: "SET_ACTIVE_CATEGORY", 
                 payload: cat
@@ -18,6 +18,8 @@ const CategorySquare = ({cat}) => {
             {cat}
             </Link>
         </div>
+        {/* <div className="separator"/> */}
+        </>
     )
 }
 
