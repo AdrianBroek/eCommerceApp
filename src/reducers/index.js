@@ -9,6 +9,7 @@ import totalReducer from './totalReducer'
 import login from './loginReducer'
 import orderReducer from './orderReducer'
 import deliveryReducer from './deliveryReducer'
+import orderUserDataReducer from './orderUserDataReducer'
 
 const rootReducer = combineReducers({
     books: booksReducer,
@@ -20,7 +21,9 @@ const rootReducer = combineReducers({
     loggedStatus: login,
     totalCart: totalReducer,
     order: orderReducer,
-    delivery: deliveryReducer
+    orderUserData: orderUserDataReducer,
+    delivery: deliveryReducer,
+
 })
 
 export default rootReducer

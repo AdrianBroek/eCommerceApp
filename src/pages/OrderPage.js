@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import sendTotalData from "../actions/sendTotalData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faForwardStep, faPenToSquare, faStepBackward } from "@fortawesome/free-solid-svg-icons";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useOutletContext , useLocation } from "react-router-dom";
 import stepAction from "../actions/stepAction";
 import nextStepAction from "../actions/nextStepAction";
 import prevStepAction from "../actions/prevStepAction";
@@ -21,6 +21,20 @@ const OrderPage = () => {
         next: false,
         prev: false
     })
+
+    /////
+    const { logged, userData } = useSelector(state => state.loggedStatus)
+    const [data, setData] = useState({
+        username: userData ? userData.username : totalCart.personalData.username,
+        email: userData ? userData.email : totalCart.personalData.email,
+        firstname: userData ? userData.firstname : totalCart.personalData.firstname,
+        lastname: userData ? userData.lastname : totalCart.personalData.lastname,
+        password: userData ? userData.password : totalCart.personalData.password,
+        address: userData ? userData.address : totalCart.personalData.address,
+        id: userData.id
+    })
+        
+    /////
 
     // if everything correct on delivery step
     useEffect(()=> {
@@ -85,7 +99,7 @@ const OrderPage = () => {
                     <p>Summary</p>
                 </div>
             </section>
-            <Outlet />
+            <Outlet context={[data, setData]}/>
             <div className="btnHandler flex">
                 {activeBtn.prev ? 
                     <Link to={prevStep} className="a abutton"><FontAwesomeIcon icon={faStepBackward}/> Back</Link>

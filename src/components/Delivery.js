@@ -13,22 +13,26 @@ import CustomInput from "./CustomInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesStacked, faMoneyBill, faStore, faTruck, faTruckDroplet, faTruckFast, faTruckField, faTruckPickup } from "@fortawesome/free-solid-svg-icons";
 import { faApplePay, faCcMastercard, faCcVisa, faDhl, faFacebook, faGooglePay } from "@fortawesome/free-brands-svg-icons"
+import { useOutletContext } from "react-router-dom";
 
 const Delivery = () => {
 
     const dispatch = useDispatch()
-
+    
     const { logged, userData } = useSelector(state => state.loggedStatus)
     const totalCart = useSelector(state => state.totalCart)
-    const [data, setData] = useState({
-        username: userData ? userData.username : totalCart.personalData.username,
-        email: userData ? userData.email : totalCart.personalData.email,
-        firstname: userData ? userData.firstname : totalCart.personalData.firstname,
-        lastname: userData ? userData.lastname : totalCart.personalData.lastname,
-        password: userData ? userData.password : totalCart.personalData.password,
-        address: userData ? userData.address : totalCart.personalData.address,
-        id: userData.id
-    })
+    //here
+    const [data, setData] = useOutletContext();
+    console.log(data)
+    // const [data, setData] = useState({
+    //     username: userData ? userData.username : totalCart.personalData.username,
+    //     email: userData ? userData.email : totalCart.personalData.email,
+    //     firstname: userData ? userData.firstname : totalCart.personalData.firstname,
+    //     lastname: userData ? userData.lastname : totalCart.personalData.lastname,
+    //     password: userData ? userData.password : totalCart.personalData.password,
+    //     address: userData ? userData.address : totalCart.personalData.address,
+    //     id: userData.id
+    // })
     const [activePopup, setActivePopup] = useState({
         open: false,
         confirm: false,
@@ -119,7 +123,7 @@ const Delivery = () => {
 
     }, [correctCheck])
 
-
+    // here
     function inputHandler(e){
         switch(e.target.id) {
             case "username" :
@@ -140,8 +144,19 @@ const Delivery = () => {
             case "password" :
                 setData(state => ({...state, password: e.target.value}))
                 break;
+            default : return setData(state => ({...state, password: e.target.value}))
         }
     }
+
+    useEffect(()=> {
+        if(totalCart.personalData){
+            dispatch({
+                type: 'SET_PERSONAL_DATA',
+                payload: data
+            })
+        }
+        console.log(data)
+    }, [data])
 
     function submitHandler (e){
         e.preventDefault();
@@ -290,6 +305,10 @@ const Delivery = () => {
         }))
     }
 
+    useEffect(()=>{
+        console.log(activePopup)
+    }, [activePopup])
+
     useEffect(()=> {
         if(activePopup.confirm === true && activePopup.open === false && activePopup.valid === true) {
             (setActivePopup(prevState => ({
@@ -364,6 +383,7 @@ const Delivery = () => {
                             <input id="username" name="username" onChange={inputHandler} type="text" value={data.username} />
                             <label for="username">User name</label>
                         </div> */}
+                        {/* here */}
                         <div className="firstname">
                             <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={totalCart.personalData.firstname ? totalCart.personalData.firstname : data.firstname} />
                             <label for="firstname">First name</label>
