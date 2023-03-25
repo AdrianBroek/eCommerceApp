@@ -22,25 +22,30 @@ const OrderPage = () => {
         prev: false
     })
 
-    /////
+    // data stored in inputs on deliveryPage
     const { logged, userData } = useSelector(state => state.loggedStatus)
     const [data, setData] = useState({
-        username: userData ? userData.username : totalCart.personalData.username,
-        email: userData ? userData.email : totalCart.personalData.email,
-        firstname: userData ? userData.firstname : totalCart.personalData.firstname,
-        lastname: userData ? userData.lastname : totalCart.personalData.lastname,
-        password: userData ? userData.password : totalCart.personalData.password,
-        address: userData ? userData.address : totalCart.personalData.address,
+        username: logged ? userData.username : totalCart.personalData.username,
+        email: logged ? userData.email : totalCart.personalData.email,
+        firstname: logged ? userData.firstname : totalCart.personalData.firstname,
+        lastname: logged ? userData.lastname : totalCart.personalData.lastname,
+        password: logged ? userData.password : totalCart.personalData.password,
+        address: logged ? userData.address : totalCart.personalData.address,
         id: userData.id
     })
-        
-    /////
+
+
+    useEffect(()=> {
+        if(totalCart.delivery.isSet != null){
+            console.log('tak')
+        }
+    }, [totalCart.delivery])
 
     // if everything correct on delivery step
     useEffect(()=> {
         switch(order.orderStep){
             case "delivery" :
-                if(totalCart.personalData && totalCart.delivery){
+                if(totalCart.personalData && totalCart.delivery.isSet){
                     setActiveBtn(state => ({
                         prev: true,
                         next: true,

@@ -21,18 +21,7 @@ const Delivery = () => {
     
     const { logged, userData } = useSelector(state => state.loggedStatus)
     const totalCart = useSelector(state => state.totalCart)
-    //here
     const [data, setData] = useOutletContext();
-    console.log(data)
-    // const [data, setData] = useState({
-    //     username: userData ? userData.username : totalCart.personalData.username,
-    //     email: userData ? userData.email : totalCart.personalData.email,
-    //     firstname: userData ? userData.firstname : totalCart.personalData.firstname,
-    //     lastname: userData ? userData.lastname : totalCart.personalData.lastname,
-    //     password: userData ? userData.password : totalCart.personalData.password,
-    //     address: userData ? userData.address : totalCart.personalData.address,
-    //     id: userData.id
-    // })
     const [activePopup, setActivePopup] = useState({
         open: false,
         confirm: false,
@@ -50,11 +39,15 @@ const Delivery = () => {
 
     // delivery options
     const delivery = useSelector(state => state.delivery)
+    // deliveryData set or not
+    const [deliveryOption, setDeliveryOption] = useState(false)
+    // active delivery input detect
     const [active, setActive] = useState({
         payment: null,
         courier: null,
         delivery: null,
         agreement: false,
+        isSet: false
     })
 
     // update delivery options
@@ -76,18 +69,16 @@ const Delivery = () => {
 
     // totalData delivery
     useEffect(()=> {
-        if (delivery != null){
-            if (delivery.payment && delivery.courier && delivery.delivery && delivery.agreement){
-                dispatch({type: "SET_DELIVERY_DATA", payload: delivery})
-            }
-        }
-        
-    }, [active])
+        dispatch({type: "SET_DELIVERY_DATA", payload: delivery})
+        dispatch({type: 'ORDER_DELIVERY_SET', payload: true})
+    }, [deliveryOption])
 
-    // check json data
     useEffect(()=> {
-        // console.log(JSON.parse(localStorage.getItem('user')))
-    }, [data])
+        if (delivery.payment && delivery.courier && delivery.delivery && delivery.agreement){
+            console.log('yes')
+            setDeliveryOption(true)
+        }
+    }, [delivery])
 
     useEffect(()=> {
         if(logged){
@@ -147,16 +138,6 @@ const Delivery = () => {
             default : return setData(state => ({...state, password: e.target.value}))
         }
     }
-
-    useEffect(()=> {
-        if(totalCart.personalData){
-            dispatch({
-                type: 'SET_PERSONAL_DATA',
-                payload: data
-            })
-        }
-        console.log(data)
-    }, [data])
 
     function submitHandler (e){
         e.preventDefault();
@@ -306,7 +287,7 @@ const Delivery = () => {
     }
 
     useEffect(()=>{
-        console.log(activePopup)
+        // console.log(activePopup)
     }, [activePopup])
 
     useEffect(()=> {
@@ -385,19 +366,19 @@ const Delivery = () => {
                         </div> */}
                         {/* here */}
                         <div className="firstname">
-                            <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={totalCart.personalData.firstname ? totalCart.personalData.firstname : data.firstname} />
+                            <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
                             <label for="firstname">First name</label>
                         </div>
                         <div className="lastname">
-                            <input id="lastname" name="lastname" onChange={inputHandler} type="text" value={totalCart.personalData.lastname ? totalCart.personalData.lastname : data.lastname} />
+                            <input id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
                             <label for="lastname">Last name</label>
                         </div>
                         <div className="email">
-                            <input className="email" id="email" name="email" onChange={inputHandler} type="text" value={totalCart.personalData.email ? totalCart.personalData.email : data.email} />
+                            <input className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
                             <label for="email">Email</label>
                         </div>
                         <div className="address">
-                            <input id="address" name="address" onChange={inputHandler} type="text" value={totalCart.personalData.address ? totalCart.personalData.address : data.address} />
+                            <input id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
                             <label for="address">Address</label>
                         </div>
                         {/* <div className="password">
@@ -434,26 +415,26 @@ const Delivery = () => {
                 <div>
                     <h3>Payment method</h3>
                     <div className="pay-method">
-                        <CustomInput name='VISA' value='visa' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faCcVisa}/>
-                        <CustomInput name='MasterCard' value='mastercard' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faCcMastercard}/>
-                        <CustomInput name='Google Pay' value='GPay' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faGooglePay}/>
-                        <CustomInput name='Apple Pay' value='APay' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faApplePay}/>
-                        <CustomInput name='Personal collection' value='p-collection' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faTruckFast}/>
-                        <CustomInput name='Payment on delivery' value='p-delivery' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faMoneyBill}/>
+                        <CustomInput name='VISA' value='VISA' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faCcVisa}/>
+                        <CustomInput name='MasterCard' value='MasterCard' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faCcMastercard}/>
+                        <CustomInput name='Google Pay' value='GooglePay' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faGooglePay}/>
+                        <CustomInput name='Apple Pay' value='ApplePay' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faApplePay}/>
+                        <CustomInput name='Personal collection' value='Personal collection' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faTruckFast}/>
+                        <CustomInput name='Payment on delivery' value='Payment on delivery' active={active.payment} setActive={setActive}/><FontAwesomeIcon icon={faMoneyBill}/>
                     </div>
                 </div>
                 <div>
                     <h3>Courier type</h3>
                     <div className="courier-method">
-                        <CustomInput name='DPD' value='dpd' active={active.courier} setActive={setActive}/><FontAwesomeIcon icon={faTruckField}/>
-                        <CustomInput name='DHL' value='dhl' active={active.courier} setActive={setActive}/><FontAwesomeIcon icon={faDhl}/>
+                        <CustomInput name='DPD' value='DPD' active={active.courier} setActive={setActive}/><FontAwesomeIcon icon={faTruckField}/>
+                        <CustomInput name='DHL' value='DHL' active={active.courier} setActive={setActive}/><FontAwesomeIcon icon={faDhl}/>
                     </div>
                 </div>
                 <div>
                     <h3>Delivery method</h3>
                     <div className="pickup-method">
-                        <CustomInput name='Collection point' value='collection_point' active={active.delivery} setActive={setActive}/><FontAwesomeIcon icon={faStore}/>
-                        <CustomInput name='BOX' value='box' active={active.delivery} setActive={setActive}/><FontAwesomeIcon icon={faBoxesStacked}/>
+                        <CustomInput name='Collection point' value='Collection point' active={active.delivery} setActive={setActive}/><FontAwesomeIcon icon={faStore}/>
+                        <CustomInput name='BOX' value='BOX' active={active.delivery} setActive={setActive}/><FontAwesomeIcon icon={faBoxesStacked}/>
                     </div>
                 </div>
                 

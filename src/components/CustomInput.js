@@ -1,70 +1,82 @@
+import { faL } from "@fortawesome/free-solid-svg-icons";
 import React, {useEffect, useRef} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CustomInput = ({name, value, active, setActive}) => {
     const ref = useRef()
 
+
+    const {delivery} = useSelector(state => state.totalCart)
+    console.log(delivery)
+
+    function checkboxHandler(){
+        if(active == value){
+            return true 
+        }
+
+    }
+
     function clickHandler(e){
 
         switch(ref.current.value){
-            case "visa" :
+            case "VISA" :
                 setActive(state => ({
                     ...state,
-                    payment: 'visa'
+                    payment: 'VISA'
                 }))
                 break;
-            case "mastercard" :
+            case "MasterCard" :
                 setActive(state => ({
                     ...state,
-                    payment: 'mastercard'
+                    payment: 'MasterCard'
                 }))
                 break;
-            case "GPay" :
+            case "GooglePay" :
                 setActive(state => ({
                     ...state,
-                    payment: 'GPay'
+                    payment: 'GooglePay'
                 }))
                 break;
-            case "APay" :
+            case "ApplePay" :
                 setActive(state => ({
                     ...state,
-                    payment: 'APay'
+                    payment: 'ApplePay'
                 }))
                 break;
-            case "p-collection" :
+            case "Personal collection" :
                 setActive(state => ({
                     ...state,
-                    payment: 'p-collection'
+                    payment: 'Personal collection'
                 }))
                 break;
-            case "p-delivery" :
+            case "Payment on delivery" :
                 setActive(state => ({
                     ...state,
-                    payment: 'p-delivery'
+                    payment: 'Payment on delivery'
                 }))
                 break;
-            case "dpd" :
+            case "DPD" :
                 setActive(state => ({
                     ...state,
-                    courier: 'dpd'
+                    courier: 'DPD'
                 }))
                 break;
-            case "dhl" :
+            case "DHL" :
                 setActive(state => ({
                     ...state,
-                    courier: 'dhl'
+                    courier: 'DHL'
                 }))
                 break;
-            case "box" :
+            case "BOX" :
                 setActive(state => ({
                     ...state,
-                    delivery: 'box'
+                    delivery: 'BOX'
                 }))
                 break;
-            case "collection_point" :
+            case "Collection point" :
                 setActive(state => ({
                     ...state,
-                    delivery: 'collection_point'
+                    delivery: 'Collection point'
                 }))
                 break;
             case "agreement" :
@@ -85,7 +97,7 @@ const CustomInput = ({name, value, active, setActive}) => {
     return (
         <div onClick={(e)=>clickHandler(e)} className={'customInput '+value}>
             <p className="check">
-                <input defaultChecked="false" ref={ref} type="checkbox" checked={active==value ? true : false} value={value}/>
+                <input defaultChecked="false" ref={ref} type="checkbox" checked={checkboxHandler()} value={value}/>
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <path d="M 10 50 L 40 86 L 90 10" stroke="#AEF359" stroke-dasharray="140" stroke-dashoffset="140"></path>
                 </svg>

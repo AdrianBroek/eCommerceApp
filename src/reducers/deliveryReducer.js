@@ -3,6 +3,7 @@ const initState = {
     courier: false,
     delivery: false,
     agreement: false,
+    isSet: false
 }
 
 const deliveryReducer = (state=initState, action) => {
@@ -26,6 +27,11 @@ const deliveryReducer = (state=initState, action) => {
             return {
                 ...state,
                 agreement: action.payload,
+            }
+        case "ORDER_DELIVERY_SET" : 
+            return {
+                ...state,
+                isSet: action.payload,
             }
         default:
             return {...state}
