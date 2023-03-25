@@ -15,7 +15,7 @@ const Summary = () => {
     return (
         <section id="summaryOrder" className="flex">
             <form>
-                <h2>Personal data</h2>
+                <h2>Personal informations</h2>
                 {logged ? (
                     <div className="username">
                         <input className="off"  id="username" name="username" type="text" value={personalData.username} />
@@ -40,14 +40,12 @@ const Summary = () => {
                     <input id="address" name="address" className="off"  type="text" value={personalData.address} />
                     <label for="address">Address</label>
                 </div>
-                <h2>Delivery data</h2>
+                <h2>Delivery method</h2>
                 <div className="deliveryTable">
-                    <div>
-                        <p>{delivery.courier}</p>
-                        <p>{delivery.delivery}</p>
-                        <p>{delivery.agreement}</p>
-                        <p>{delivery.payment}</p>
-                    </div>
+                    <p>Courier method: <span>{delivery.courier}</span></p>
+                    <p>Delivery method: <span>{delivery.delivery}</span></p>
+                    {/* <p>Courier method:{delivery.agreement}</p> */}
+                    <p>Payment method:<span>{delivery.payment}</span></p>
                 </div>
                 <h2>Ordered items</h2>
                 <section className="productsTable flex">

@@ -7,14 +7,9 @@ const CustomInput = ({name, value, active, setActive}) => {
 
 
     const {delivery} = useSelector(state => state.totalCart)
-    console.log(delivery)
 
-    function checkboxHandler(){
-        if(active == value){
-            return true 
-        }
-
-    }
+    // console.log(active)
+    // console.log(value)
 
     function clickHandler(e){
 
@@ -97,7 +92,7 @@ const CustomInput = ({name, value, active, setActive}) => {
     return (
         <div onClick={(e)=>clickHandler(e)} className={'customInput '+value}>
             <p className="check">
-                <input defaultChecked="false" ref={ref} type="checkbox" checked={checkboxHandler()} value={value}/>
+                <input defaultChecked="false" ref={ref} type="checkbox" checked={active == value ? true : false} value={value}/>
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <path d="M 10 50 L 40 86 L 90 10" stroke="#AEF359" stroke-dasharray="140" stroke-dashoffset="140"></path>
                 </svg>

@@ -37,7 +37,7 @@ const OrderPage = () => {
 
     useEffect(()=> {
         if(totalCart.delivery.isSet != null){
-            console.log('tak')
+            // console.log('tak')
         }
     }, [totalCart.delivery])
 

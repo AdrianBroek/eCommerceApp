@@ -150,3 +150,14 @@
         
     }
 }
+
+.deliveryTable {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    p { 
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        border-bottom: 1px solid #ebebeb;
+    }
+}

@@ -43,25 +43,32 @@ const Delivery = () => {
     const [deliveryOption, setDeliveryOption] = useState(false)
     // active delivery input detect
     const [active, setActive] = useState({
-        payment: null,
-        courier: null,
-        delivery: null,
-        agreement: false,
+        payment: delivery.payment ? delivery.payment : null,
+        courier: delivery.courier ? delivery.courier : null,
+        delivery: delivery.delivery ? delivery.delivery : null,
+        agreement: delivery.agreement ? delivery.agreement : false,
         isSet: false
     })
 
+    useEffect(()=> {
+        // console.log(delivery.payment)
+    }, [active, delivery])
+
     // update delivery options
     useEffect(()=> {
-        dispatch({type: "CHANGE_DELIVERY_OPTION", payload: active.courier})
+        dispatch({type: "CHANGE_COURIER_OPTION", payload: active.courier})
     }, [active.courier])
+
     useEffect(()=> {
         // console.log(active.payment)
-        dispatch({type: "CHANGE_COURIER_OPTION", payload: active.payment})
+        dispatch({type: "CHANGE_PAYMENT_OPTION", payload: active.payment})
     }, [active.payment])
+
     useEffect(()=> {
         // console.log(active.payment)
-        dispatch({type: "CHANGE_PAYMENT_OPTION", payload: active.delivery})
+        dispatch({type: "CHANGE_DELIVERY_OPTION", payload: active.delivery})
     }, [active.delivery])
+
     useEffect(()=> {
         // console.log(active.payment)
         dispatch({type: "CHANGE_AGREEMENT_OPTION", payload: active.agreement})
@@ -74,11 +81,22 @@ const Delivery = () => {
     }, [deliveryOption])
 
     useEffect(()=> {
+        // if (delivery.isSet){
+        //     dispatch({type: "SET_DELIVERY_DATA", payload: delivery})
+        // } 
+        console.log(delivery)
+
+    }, [deliveryOption])
+
+    useEffect(()=> {
         if (delivery.payment && delivery.courier && delivery.delivery && delivery.agreement){
-            console.log('yes')
             setDeliveryOption(true)
+            
         }
+        // setDeliveryOption(false)
     }, [delivery])
+
+    //////////////
 
     useEffect(()=> {
         if(logged){
@@ -114,7 +132,7 @@ const Delivery = () => {
 
     }, [correctCheck])
 
-    // here
+
     function inputHandler(e){
         switch(e.target.id) {
             case "username" :
