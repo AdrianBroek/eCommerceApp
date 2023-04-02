@@ -2,7 +2,7 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 import React, {useEffect, useRef} from "react";
 import { useSelector } from "react-redux";
 
-const CustomInput = ({name, value, active, setActive}) => {
+const CustomInput = ({name, value, active, setActive, cost}) => {
     const ref = useRef()
 
 
@@ -12,72 +12,95 @@ const CustomInput = ({name, value, active, setActive}) => {
     // console.log(value)
 
     function clickHandler(e){
-
         switch(ref.current.value){
             case "VISA" :
                 setActive(state => ({
                     ...state,
-                    payment: 'VISA'
+                    payment: {
+                        type: "VISA"
+                    }
                 }))
                 break;
             case "MasterCard" :
                 setActive(state => ({
                     ...state,
-                    payment: 'MasterCard'
+                    payment: {
+                        type: "MasterCard"
+                    }
                 }))
                 break;
             case "GooglePay" :
                 setActive(state => ({
                     ...state,
-                    payment: 'GooglePay'
+                    payment:  {
+                        type: "GooglePay"
+                    }
                 }))
                 break;
             case "ApplePay" :
                 setActive(state => ({
                     ...state,
-                    payment: 'ApplePay'
+                    payment: {
+                        type: "ApplePay"
+                    }
                 }))
                 break;
             case "Personal collection" :
                 setActive(state => ({
                     ...state,
-                    payment: 'Personal collection'
+                    payment: {
+                        type: "Personal collection"
+                    }
                 }))
                 break;
             case "Payment on delivery" :
                 setActive(state => ({
                     ...state,
-                    payment: 'Payment on delivery'
+                    payment: {
+                        type: "Payment on delivery"
+                    }
                 }))
                 break;
             case "DPD" :
                 setActive(state => ({
                     ...state,
-                    courier: 'DPD'
+                    courier: {
+                        type: "DPD"
+                    }
                 }))
                 break;
             case "DHL" :
                 setActive(state => ({
                     ...state,
-                    courier: 'DHL'
+                    courier: {
+                        type: "DHL"
+                    }
                 }))
                 break;
             case "BOX" :
                 setActive(state => ({
                     ...state,
-                    delivery: 'BOX'
+                    delivery: {
+                        type: "BOX",
+                        cost: cost
+                    }
                 }))
                 break;
             case "Collection point" :
                 setActive(state => ({
                     ...state,
-                    delivery: 'Collection point'
+                    delivery: {
+                        type: "Collection point",
+                        cost: cost
+                    }
                 }))
                 break;
             case "agreement" :
                 setActive(state => ({
                     ...state,
-                    agreement: 'agreement'
+                    agreement: {
+                        type: "agreement"
+                    }
                 }))
                 break;
             default : return (state => ({...state}))
@@ -86,13 +109,13 @@ const CustomInput = ({name, value, active, setActive}) => {
     }
 
     useEffect(()=> {
-
+        // console.log(active)
     }, [active])
 
     return (
         <div onClick={(e)=>clickHandler(e)} className={'customInput '+value}>
             <p className="check">
-                <input defaultChecked="false" ref={ref} type="checkbox" checked={active == value ? true : false} value={value}/>
+                <input defaultChecked="false" ref={ref} type="checkbox" checked={active.type == value ? true : false} value={value}/>
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <path d="M 10 50 L 40 86 L 90 10" stroke="#AEF359" stroke-dasharray="140" stroke-dashoffset="140"></path>
                 </svg>

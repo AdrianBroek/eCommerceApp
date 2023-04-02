@@ -1,8 +1,18 @@
 const initState = {
-    payment: false,
-    courier: false,
-    delivery: false,
-    agreement: false,
+    payment: {
+        cost: false,
+        type: false
+    },
+    courier: {
+        type: false
+    },
+    delivery: {
+        cost: false,
+        type: false
+    },
+    agreement: {
+        type: false
+    },
     isSet: false
 }
 

@@ -51,8 +51,8 @@ const Delivery = () => {
     })
 
     useEffect(()=> {
-        // console.log(delivery.payment)
-    }, [active, delivery])
+        console.log(active)
+    }, [active])
 
     // update delivery options
     useEffect(()=> {
@@ -66,7 +66,13 @@ const Delivery = () => {
 
     useEffect(()=> {
         // console.log(active.payment)
-        dispatch({type: "CHANGE_DELIVERY_OPTION", payload: active.delivery})
+        dispatch({
+            type: "CHANGE_DELIVERY_OPTION",
+            payload: {
+                type: active.delivery.type,
+                cost: active.delivery.cost,
+            }
+        })
     }, [active.delivery])
 
     useEffect(()=> {
@@ -451,8 +457,8 @@ const Delivery = () => {
                 <div>
                     <h3>Delivery method</h3>
                     <div className="pickup-method">
-                        <CustomInput name='Collection point' value='Collection point' active={active.delivery} setActive={setActive}/><FontAwesomeIcon icon={faStore}/>
-                        <CustomInput name='BOX' value='BOX' active={active.delivery} setActive={setActive}/><FontAwesomeIcon icon={faBoxesStacked}/>
+                        <CustomInput name='Collection point' value='Collection point' active={active.delivery} setActive={setActive} cost='25'/><FontAwesomeIcon icon={faStore}/>
+                        <CustomInput name='BOX' value='BOX' active={active.delivery} setActive={setActive} cost='20'/><FontAwesomeIcon icon={faBoxesStacked}/>
                     </div>
                 </div>
                 
