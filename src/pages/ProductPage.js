@@ -14,6 +14,8 @@ const ProductPage = () => {
     const {item} = useSelector(state => state.cart)
     const [prodCount, setProdCount] = useState(1)
     const [error, setError] = useState(false)
+    //main image src
+    const [imgSrc, setImgSrc] = useState(false)
 
     useEffect(()=>{
         const link = pathname.substring(pathname.lastIndexOf("/"))
@@ -43,6 +45,12 @@ const ProductPage = () => {
         }
     }
 
+    function changeImage(src){
+        setImgSrc(src)
+        console.log(src)
+        console.log('src')
+    }
+
     return (
         <>
         {isLoading && (
@@ -69,19 +77,28 @@ const ProductPage = () => {
         {data && !isLoading && (
             <section id={'product'+data.id} className="productPage">
                 <div className="breadcrumbs">
-                    <p>{data.brand}</p>
+                    <p>{data.category}</p>
                 </div>
                 <div className="box">
                     <div className="left">
                         <div className="prod-image">
-                            <img src={data.images[0]} />
+                            <img src={imgSrc ? imgSrc : data.images[0]} />
+                        </div>
+                        <div className="images flex">
+                            {data.images.map((src)=> (
+                                <div onClick={(e) => changeImage(src)}>
+                                    <img width="70px" src={src} />
+                                </div>
+                            ))}
                         </div>
                         {/* <p>{data.rating.count}</p>
                         <p>{data.rating.rate}</p> */}
                     </div>
                     <div className="right">
                         <p>{data.title}</p>
+                        <p>Brand: {data.brand}</p>
                         <p className="price">{data.price} $</p>
+                        <p>Rating: {data.rating}</p>
                         <div className="prodCount">
                             <input maxLength={1} value={prodCount} type="number" />
                             <div className="buttonHolder">
