@@ -91,7 +91,7 @@ const Summary = () => {
                         '' 
                 }
                 {delivery.delivery.cost && totalPrice.length > 0 && (
-                <p>To pay: <span>{sumPay(delivery.delivery.cost, totalPrice)} $</span></p>
+                <p><strong>To pay: </strong><span><strong>{sumPay(delivery.delivery.cost, totalPrice)} $</strong></span></p>
 
                 )}
                 </section>

@@ -2,7 +2,6 @@ const initState = {
     totalPrice: 0,
     items: [],
     edit: true,
-    delivery: false,
     personalData: false
 }
 

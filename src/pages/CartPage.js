@@ -26,7 +26,6 @@ const CartPage = () => {
     const totalSum = sumData.reduce((prevNm, nm) => prevNm + nm, 0)
 
     useEffect(()=> {
-        console.log('change')
         dispatch(sendTotalData(item, totalSum))
     }, [item])
 
@@ -59,7 +58,12 @@ const CartPage = () => {
                         <p className="page-title"><FontAwesomeIcon icon={faCircleInfo} /> Empty, add something.</p>}
                 </section>
             </section>
-            <Link to="/order/products">Make an order</Link>
+            {item.length > 0 ? 
+            <Link className="abutton b" to="/order/products">Make an order</Link>
+            :
+            <Link className="abutton b off" to="/order/products">Make an order</Link>
+
+            }
         </section>
     )
 }

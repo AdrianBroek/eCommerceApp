@@ -16,6 +16,7 @@ const OrderPage = () => {
     const order = useSelector(state => state.order)
     const {pathname} = useLocation()
     const totalCart = useSelector(state => state.totalCart)
+    const delivery = useSelector(state => state.delivery)
 
     const [activeBtn, setActiveBtn] = useState({
         next: false,
@@ -34,18 +35,11 @@ const OrderPage = () => {
         id: userData.id
     })
 
-
-    useEffect(()=> {
-        if(totalCart.delivery.isSet != null){
-            // console.log('tak')
-        }
-    }, [totalCart.delivery])
-
     // if everything correct on delivery step
     useEffect(()=> {
         switch(order.orderStep){
             case "delivery" :
-                if(totalCart.personalData && totalCart.delivery.isSet){
+                if(totalCart.personalData && delivery.isSet){
                     setActiveBtn(state => ({
                         prev: true,
                         next: true,
@@ -62,12 +56,24 @@ const OrderPage = () => {
                     prev: false,
                     next: true,
                 }))
+                if(!totalCart.items.length > 0){
+                    setActiveBtn(state => ({
+                        prev: false,
+                        next: false,
+                    }))
+                }
                 break
             case "summary" :
                 setActiveBtn(state => ({
                     prev: true,
-                    next: true,
+                    next: false,
                 }))
+                if(totalCart.personalData && delivery.isSet && totalCart.items.length > 0){
+                    setActiveBtn(state => ({
+                        prev: true,
+                        next: true,
+                    }))
+                }
                 break
             case "default" :
                 return (state => ({...state}))
@@ -91,6 +97,11 @@ const OrderPage = () => {
         dispatch(prevStepAction(orderStep))
     }, [orderStep])
 
+    // prev
+    useEffect(()=> {
+        console.log(activeBtn)
+    }, [orderStep])
+
     return (
         <section id="orderPage" className="flex">
             <section className="stepContainer flex">
@@ -112,9 +123,9 @@ const OrderPage = () => {
                     <button className="a off"><FontAwesomeIcon icon={faStepBackward}/> Back</button>
                 }
                 {activeBtn.next ? 
-                    <Link to={nextStep} className="b abutton">Next <FontAwesomeIcon icon={faForwardStep}/></Link>
+                    <Link to={nextStep} className="b abutton">{nextStep == 'pay' ? 'Pay ' : 'Next '}<FontAwesomeIcon icon={faForwardStep}/></Link>
                     :
-                    <button className="b off">Next <FontAwesomeIcon icon={faForwardStep}/></button>
+                    <button className="b off">{nextStep == 'pay' ? 'Pay ' : 'Next '}<FontAwesomeIcon icon={faForwardStep}/></button>
                 }
             </div>
         </section>

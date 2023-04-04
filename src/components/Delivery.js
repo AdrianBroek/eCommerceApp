@@ -20,7 +20,7 @@ const Delivery = () => {
     const dispatch = useDispatch()
     
     const { logged, userData } = useSelector(state => state.loggedStatus)
-    const totalCart = useSelector(state => state.totalCart)
+
     const [data, setData] = useOutletContext();
     const [activePopup, setActivePopup] = useState({
         open: false,
