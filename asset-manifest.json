@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/eCommerceApp/static/css/main.fd59a6e6.css",
-    "main.js": "/eCommerceApp/static/js/main.7efb129f.js",
+    "main.css": "/eCommerceApp/static/css/main.6fd2fd0c.css",
+    "main.js": "/eCommerceApp/static/js/main.c291bc67.js",
     "static/media/text_avatar.png": "/eCommerceApp/static/media/text_avatar.626de38d8be84902941e.png",
     "static/media/walmartLogo.svg": "/eCommerceApp/static/media/walmartLogo.d6ea228a23740ffc7649a5fd061c0a48.svg",
     "index.html": "/eCommerceApp/index.html",
-    "main.fd59a6e6.css.map": "/eCommerceApp/static/css/main.fd59a6e6.css.map",
-    "main.7efb129f.js.map": "/eCommerceApp/static/js/main.7efb129f.js.map"
+    "main.6fd2fd0c.css.map": "/eCommerceApp/static/css/main.6fd2fd0c.css.map",
+    "main.c291bc67.js.map": "/eCommerceApp/static/js/main.c291bc67.js.map"
   },
   "entrypoints": [
-    "static/css/main.fd59a6e6.css",
-    "static/js/main.7efb129f.js"
+    "static/css/main.6fd2fd0c.css",
+    "static/js/main.c291bc67.js"
   ]
 }
