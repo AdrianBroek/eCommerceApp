@@ -8,12 +8,22 @@
 @import './accPage';
 @import './registerPage';
 @import './orderPage';
+@import './productGrid';
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #00000079;
+    top: 0;
+    z-index: 1;
 }
 
 button,
@@ -141,122 +151,6 @@ body {
     margin: 5rem;
 }
 
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    column-gap: 1.75rem;
-    row-gap: 1.75rem;
-    .product {
-        background-color: #fff;
-        padding: 1rem;
-        border-radius: .5rem;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        height: 90vh;
-        .imageContent {
-            position: relative;
-            height: 50%;
-            max-height: 300px;
-            img {
-                display: block;
-                width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-            }
-        }
-        .title,.description,.imageContent, .rating, .price, .addToCart{
-            position: relative;
-        }
-        .title {
-            min-height: 15%;
-            max-height: 15%;
-            padding-top: .25rem;
-            a {
-                text-decoration: none;
-                color: #000;
-            }
-        }
-        .description {
-            min-height: 20%;
-            max-height: 20%;
-            overflow-Y: auto;
-            &::-webkit-scrollbar {
-                width: 5px;
-            }
-            &::-webkit-scrollbar-thumb {
-                background-color: orange;
-            }
-            &::-webkit-scrollbar-track {
-                background: #eee8e8;
-            }
-        }
-        .items {
-            margin: 1rem 0;
-            display: flex;
-            justify-content: space-between;
-            p {
-                font-weight: 300;
-                &.brand {
-                    &:after {
-                        content: "®";
-                        display: inline-block;
-                        height: 100%;
-                    }
-                }
-                &.department {
-                    color: orange;
-                    font-weight: 600;
-                }
-            }
-        }
-        .rating {
-            text-align: center;
-            padding: .25rem 1rem;
-            width: fit-content;
-            margin: auto;
-            background: #35c4d7;
-            color: #fff;
-            border-radius: 1rem;
-            font-weight: 400;
-            position: absolute;
-            top: 89%;
-            right: 0%;
-            opacity: .75;
-            &:before {
-                content: "⭐";
-                display: inline-block;
-                width: 25px;
-                height: 100%;
-            }
-        }
-        .price {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            p { 
-                font-weight: 600;
-                font-size: 2rem;
-                span {
-                    font-size: 1rem;
-                    font-weight: 400;
-                }
-            }
-        }
-        .addToCart {
-            button{ 
-                margin: auto;
-                padding: .5rem 2rem;
-                border-radius: .2rem;
-                border: none;
-                display: block;
-                font-weight: 600;
-                font-size: 1.2rem;
-                background-color: orange;
-                color: #fff;
-                cursor: pointer;
-            }
-        }
-    }
-}
 
 .customInput {
     position: relative;

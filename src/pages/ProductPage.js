@@ -98,7 +98,7 @@ const ProductPage = () => {
                         <p>{data.title}</p>
                         <p>Brand: {data.brand}</p>
                         <p className="price">{data.price} $</p>
-                        <p>Rating: {data.rating}</p>
+                        <p className="rating">Rating: {data.rating}</p>
                         <div className="prodCount">
                             <input maxLength={1} value={prodCount} type="number" />
                             <div className="buttonHolder">

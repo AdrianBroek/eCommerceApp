@@ -17,6 +17,7 @@ import ProductPage from "./pages/ProductPage";
 import Login from "./pages/LoginPage";
 import Register from "./pages/RegisterPage";
 import AccountPage from "./pages/AccountPage";
+import Overlay from "./components/Overlay";
 
 function App() {
   const queryClient = new QueryClient()
@@ -40,6 +41,7 @@ function App() {
     <div className="App">
         <Cart />
         <Navbar />
+        <Overlay />
         {popup.op ? <CartPopup props={popup.prop}/> : console.log()}
         <Routes location={location} key={location.pathname}>
           <Route path="/register" element={<Register />}></Route>
