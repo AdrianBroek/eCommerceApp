@@ -50,8 +50,9 @@ function App() {
           <Route path="/" element={<HomePage />} ></Route>
           <Route path="/product/:id" element={<ProductPage />}></Route>
           <Route path="/cart" element={<CartPage />} ></Route>
-          <Route path="/category/" element={<CategoryPage />}></Route>
-          <Route path="/category/:id" element={<CategoryPage />}></Route>
+          <Route path="/category/" element={<CategoryPage />}>
+            <Route path="/category/:id" element={<CategoryPage />} />
+          </Route>
           <Route path="/order/" element={<OrderPage />}>
             <Route path="/order/delivery" element={ <Delivery />} />
             <Route path="/order/products" element={ <OrderProducts />} />

@@ -8,7 +8,7 @@ import categoriesDataAction from '../actions/categoriesDataAction'
 import Products from '../components/Products'
 import CategorySquare from '../components/CategorySquare'
 import '../styles/app.scss'
-import { Routes , Route, useLocation } from "react-router-dom";
+import { Routes , Route, useLocation, Link } from "react-router-dom";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -29,17 +29,19 @@ function HomePage() {
   // }, [data])
   return (
     <div className="HomePage">
-        <section className="categories-list flex">
+        {/* <section className="categories-list flex">
           {!isLoadingCat && dataCat.map((el, index) => (
              <CategorySquare key={index} cat={el} />
           ))}
-        </section>
+        </section> */}
 
-        <section className="product-list">
+        {/* <section className="product-list">
           {!isLoading && data.map((el) => (
               <Products key={el.id} props={el}/>
           ))}
-        </section>
+        </section> */}
+
+        <Link to="category">Choose something!</Link>
 
         <h3>{autor}</h3>
     </div>

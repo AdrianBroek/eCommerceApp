@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import productAction from "../actions/productAction";
 import { useLocation } from "react-router-dom";
@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faPlus, faMinus, faCircleXmark } from "@fortawesome/free-solid-svg-icons"
 import sendToCart from '../actions/sendToCart'
 import Loader from '../components/Loader'
+// slider
+import Slider from "react-slick";
 
 const ProductPage = () => {
     const {pathname} = useLocation()
@@ -16,6 +18,18 @@ const ProductPage = () => {
     const [error, setError] = useState(false)
     //main image src
     const [imgSrc, setImgSrc] = useState(false)
+
+    //slider options
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        touchMove: true,
+        variableWidth: true,
+    }
 
     useEffect(()=>{
         const link = pathname.substring(pathname.lastIndexOf("/"))
@@ -47,9 +61,10 @@ const ProductPage = () => {
 
     function changeImage(src){
         setImgSrc(src)
-        console.log(src)
-        console.log('src')
     }
+
+    // slider
+    const sliderRef = useRef();
 
     return (
         <>
@@ -84,12 +99,18 @@ const ProductPage = () => {
                         <div className="prod-image">
                             <img src={imgSrc ? imgSrc : data.images[0]} />
                         </div>
-                        <div className="images flex">
-                            {data.images.map((src)=> (
-                                <div onClick={(e) => changeImage(src)}>
-                                    <img width="70px" src={src} />
-                                </div>
-                            ))}
+                        <div className="images">
+                            <Slider {...settings} ref={sliderRef}>
+                                {data.images.map((src)=> (
+                                    <div 
+                                    className={src == imgSrc ? 'active imageContainer' : 'imageContainer'}
+                                    onClick={(e) => changeImage(src)}
+                                    >
+                                        <img 
+                                        width="70px" src={src} />
+                                    </div>
+                                ))}
+                            </Slider>
                         </div>
                         {/* <p>{data.rating.count}</p>
                         <p>{data.rating.rate}</p> */}
