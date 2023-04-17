@@ -28,7 +28,7 @@ root.render(
 
     <Provider store={store}>
     <ApolloProvider client={client}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
           <App />
       </BrowserRouter>
       </ApolloProvider>
