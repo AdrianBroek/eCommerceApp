@@ -19,16 +19,39 @@ const ProductPage = () => {
     //main image src
     const [imgSrc, setImgSrc] = useState(false)
 
-    //slider options
+    // slider
+    const sliderRef = useRef();
+    const sliderRef2 = useRef();
+
+    //slider nav options 
     const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
+        // dots: true,
+        // infinite: true,
+        // speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
-        arrows: true,
-        touchMove: true,
-        variableWidth: true,
+        // arrows: true,
+        // touchMove: true,
+        // variableWidth: true,
+        draggable: true,
+        centerMode: true,
+        asNavFor: sliderRef2.current,
+        focusOnSelect: true
+    }
+
+    //slider main options
+    const settings2 = {
+        // dots: false,
+        // infinite: true,
+        // speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        focusOnSelect: true,
+        asNavFor: sliderRef.current
+        // arrows: true,
+        // touchMove: true,
+        // variableWidth: true,
+        
     }
 
     useEffect(()=>{
@@ -63,9 +86,6 @@ const ProductPage = () => {
         setImgSrc(src)
     }
 
-    // slider
-    const sliderRef = useRef();
-
     return (
         <>
         {isLoading && (
@@ -97,17 +117,27 @@ const ProductPage = () => {
                 <div className="box">
                     <div className="left">
                         <div className="prod-image">
-                            <img src={imgSrc ? imgSrc : data.images[0]} />
+                            {/* <img src={imgSrc ? imgSrc : data.images[0]} /> */}
+                            <Slider {...settings2} ref={sliderRef2} >
+                                {data.images.map((src)=> (
+                                    <div>
+                                        <img 
+                                        width="300px"
+                                        src={src} />
+                                    </div>
+                                ))}
+                            </Slider>
                         </div>
                         <div className="images">
                             <Slider {...settings} ref={sliderRef}>
                                 {data.images.map((src)=> (
                                     <div 
                                     className={src == imgSrc ? 'active imageContainer' : 'imageContainer'}
-                                    onClick={(e) => changeImage(src)}
+                                    // onClick={(e) => changeImage(src)}
                                     >
                                         <img 
-                                        width="70px" src={src} />
+                                        width="70px" 
+                                        src={src} />
                                     </div>
                                 ))}
                             </Slider>

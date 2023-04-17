@@ -22,7 +22,7 @@ const ProductsPage = () => {
         dots: true,
         speed: 500,
         slidesToShow: 9,
-        slidesToScroll: 1,
+        slidesToScroll: 4,
         arrows: true,
         touchMove: true,
         centerMode: true,
