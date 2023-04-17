@@ -18,7 +18,6 @@ import Login from "./pages/LoginPage";
 import Register from "./pages/RegisterPage";
 import AccountPage from "./pages/AccountPage";
 import Overlay from "./components/Overlay";
-import BrowserRouter from 'react-router-dom/BrowserRouter'
 
 function App() {
   const queryClient = new QueryClient()
