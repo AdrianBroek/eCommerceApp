@@ -10,12 +10,6 @@ const Cart = () => {
     const {item, open} = useSelector(state => state.cart)
     const overlay = useSelector(state => state.overlay)
 
-    useEffect(()=> {
-        if(overlay.open) {
-            // dispatch({type: "OPEN_CART"})
-        }
-    }, [overlay])
-
     return (
         <section id='cart'>
             <FontAwesomeIcon onClick={() => dispatch({type: "OPEN_CART"})} icon={faCartShopping} />

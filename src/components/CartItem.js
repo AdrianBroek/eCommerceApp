@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons"
-
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartItem = ({props}) => {
@@ -23,7 +23,7 @@ const CartItem = ({props}) => {
     return (
         <div className="product-cart">
             <img src={prodata.thumbnail}></img>
-            <p>{prodata.title}</p>
+            <Link to={'/product/'+prodata.id}>{prodata.title}</Link>
             <button className="abutton" onClick={()=> deleteItem()}>
                 <FontAwesomeIcon icon={faTrash} />
             </button>
