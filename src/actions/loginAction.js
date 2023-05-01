@@ -13,7 +13,7 @@ const loginAction = (props) => async (dispatch) => {
 
     if(data) {
         const usedUser = userData.filter(item => item.id == data.id)[0]
-        console.log(usedUser)
+        // console.log(usedUser)
         dispatch({
             type: "USER_REGISTER",
             payload: {

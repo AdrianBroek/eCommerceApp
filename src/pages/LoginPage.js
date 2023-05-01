@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import loginAction from "../actions/loginAction";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faWrench } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -14,8 +14,12 @@ const Login = () => {
         password: "",
         id: ""
     })
+    const [er,setEr] = useState({
+        active: false,
+    })
 
     useEffect(()=> {
+        console.log(data.id)
         if (data.id){
             dispatch(loginAction(data))
         }
@@ -46,14 +50,20 @@ const Login = () => {
             &&
             item.email == data.mail
         )
+        console.log(loggedUser)
         if (loggedUser.length > 0) {
             setData(prevState => ({
                 ...prevState,
                 id: loggedUser[0].id
-                
             }))
+        }else {
+            setEr({active : true})
         }
     }
+
+    useEffect(()=> {
+        console.log(er)
+    }, [er])
 
     function submitHandler(e){
         e.preventDefault()
@@ -62,19 +72,19 @@ const Login = () => {
 
     return (
         <section id="loginPage">
-        <form  onSubmit={(e)=>submitHandler(e)}>
+        <form onSubmit={(e)=>submitHandler(e)}>
             <h2>Login to your Walmart account!</h2>
             <div className="email">
-                <input type="text" onChange={mailCheck}/>
+                <input className={er.active ? 'er' : ''} type="text" onChange={mailCheck}/>
                 <label for="email">Email</label>
             </div>
             <div className="password">
-                <input type="text" onChange={passCheck}/>
+                <input className={er.active ? 'er' : ''} type="text" onChange={passCheck}/>
                 <label for="password">Password</label>
             </div>
             <button className="a" type="submit">Login</button>
             <button className="abutton b">
-                <Link to="/register">Sign in</Link>
+                <Link to="/register">Register</Link>
             </button>
         </form>
         {logged && (
@@ -86,8 +96,25 @@ const Login = () => {
                 <Link className="abutton a" to='/my_account'>Got it!</Link>
             </div>
         )}
+        {er.active ? (
+            <div className="popup">
+                <p>
+                    <FontAwesomeIcon icon={faWrench} />
+                </p>
+                <p>User not found.<br /> Correct wrong inputs.</p>
+                <button onClick={()=>setEr({active: false})} className="abutton a">Got it!</button>
+            </div>
+        )
+        :
+        ""
+        }
         </section>
     )
 }
 
 export default Login
+
+
+
+// po wpisaniu i zatwierdzeniu błędnytch danych do formularza
+// aby wyskoczył komunikat o błędnych danych
