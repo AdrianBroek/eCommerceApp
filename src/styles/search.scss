@@ -1,0 +1,51 @@
+#search {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: .5rem;
+    width: 80px;
+    background-color: #fff;
+    transition: .35s ease-in-out;
+    overflow: hidden;
+    &.active {
+        width: 90vw;
+    }
+    input {
+        padding: .5rem;
+        outline: none;
+        border: none;
+        position: relative;
+        width: 90%;
+    }
+    .icon {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+    .searchResultProducts {
+        flex-direction: column;
+        row-gap: 1rem;
+        background-color: #fff;
+        border-radius: .5rem;
+        padding: 1rem;
+        // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        .sProduct {
+            width: 100%;
+            justify-content: flex-start;
+            gap: .5rem;
+            text-decoration: none;
+            color: inherit;
+            &:hover {
+                background-color: #f5f5f5;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #search.active {
+        width: 700px;
+    }
+}

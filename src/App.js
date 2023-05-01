@@ -18,6 +18,7 @@ import Login from "./pages/LoginPage";
 import Register from "./pages/RegisterPage";
 import AccountPage from "./pages/AccountPage";
 import Overlay from "./components/Overlay";
+import Search from "./components/Search";
 
 function App() {
   const queryClient = new QueryClient()
@@ -60,6 +61,7 @@ function App() {
             <Route path="/order/summary" element={ <Summary />} />
           </Route>
         </Routes>
+        <Search />
     </div>
     </QueryClientProvider>
   );
