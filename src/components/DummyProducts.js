@@ -20,6 +20,7 @@ const DummyProducts = () => {
                 {/* <p><Loader /></p> */}
             </div>
             <div className='addToCart'>
+                <Loader />
             </div>
         </div>
     )
