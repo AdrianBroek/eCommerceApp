@@ -6,9 +6,9 @@
     border-radius: .5rem;
     width: 80px;
     background-color: #fff;
-    transition: .35s ease-in-out;
+    z-index: 10;
     overflow: hidden;
-    &.active {
+    &.search-active {
         width: 90vw;
     }
     input {
@@ -29,6 +29,7 @@
         background-color: #fff;
         border-radius: .5rem;
         padding: 1rem;
+        border-top: 1px solid #ebebeb;
         // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         .sProduct {
             width: 100%;

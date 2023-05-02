@@ -1,10 +1,12 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import searchAction from "../actions/searchAction";
 
 const Overlay = () => {
     const dispatch = useDispatch()
     const overlay = useSelector(state => state.overlay)
     const {open, popup} = useSelector(state => state.cart)
+    const {searchResult} = useSelector(state => state.search)
 
     // cart open
     useEffect(()=> {
@@ -19,11 +21,16 @@ const Overlay = () => {
 
     function clickHandler(){
        if(open){
-            dispatch({type: "OPEN_CART"})}
+            dispatch({type: "OPEN_CART"})
+        }
+        if(overlay.open && searchResult.length > 0){
+            console.log('sko')
+            dispatch({
+                type: "CLEAR_SEARCH_RESULT",
+                payload: []
+            })
        }
-    //    if(popup.op){
-    //         dispatch({type: 'OVERLAY_OFF'})
-    //    }
+       }
 
     return (
         <>

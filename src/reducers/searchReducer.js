@@ -9,6 +9,11 @@ const searchReducer = (state=initState, action) => {
                 ...state,
                 searchResult: action.payload
             }
+        case "CLEAR_SEARCH_RESULT":
+            return {
+                ...state,
+                searchResult: action.payload
+            }
         default :
             return {...state}
     }

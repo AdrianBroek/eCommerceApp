@@ -8,16 +8,21 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const Search = () => {
     const dispatch = useDispatch()
     const {searchResult} = useSelector(state => state.search)
+    const {open} = useSelector(state => state.overlay)
 
     const inputSearch = useRef()
 
-    function inputHandler(){
+    function inputHandler(e){
         dispatch(searchAction(inputSearch.current.value))
     }
 
     useEffect(()=> {
-        // console.log(searchResult)
-    }, [inputHandler])
+        inputSearch.current.parentNode.classList.contains('search-active') ? dispatch({type: 'OVERLAY_ON'}) : dispatch({type: 'OVERLAY_OFF'})
+    }, [searchResult])
+
+    function clickHandler(e){
+        console.log(e.target)
+    }
 
     function clear(){
         dispatch(searchAction(inputSearch.current.value))
@@ -25,7 +30,7 @@ const Search = () => {
     }
 
     return (
-        <section id='search' className={searchResult.length > 1 && inputSearch.current.value ? 'active' : ''}>
+        <section id='search' onClick={(e)=>clickHandler(e)} className={searchResult.length > 1 && inputSearch.current.value ? 'search-active' : ''}>
             <input type="text" ref={inputSearch} onChange={inputHandler}>
                 
             </input>
