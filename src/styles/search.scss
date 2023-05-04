@@ -4,6 +4,7 @@
     left: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     border-radius: .5rem;
+    max-width: 500px;
     width: 80px;
     background-color: #fff;
     z-index: 10;
@@ -17,6 +18,7 @@
         border: none !important;
         position: relative;
         width: 90%;
+
     }
     .icon {
         position: absolute;
@@ -37,7 +39,7 @@
         // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         .sProduct {
             width: 100%;
-            justify-content: flex-start;
+            justify-content: space-between;
             gap: .5rem;
             text-decoration: none;
             color: inherit;

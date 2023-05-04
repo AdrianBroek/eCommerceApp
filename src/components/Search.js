@@ -27,6 +27,7 @@ const Search = () => {
     function clear(){
         dispatch(searchAction(text.length > 0))
         inputSearch.current.value = ''
+        setText('')
     }
 
     //input focus detect then add class and overlay
@@ -66,7 +67,7 @@ const Search = () => {
                                     <p>{item.title}</p>
                                 </div>
                                 <div className="price">
-                                    <p>{item.price}</p>
+                                    <p>{item.price} $</p>
                                 </div>
                             </Link>
                         )

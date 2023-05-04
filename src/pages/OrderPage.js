@@ -106,13 +106,22 @@ const OrderPage = () => {
         <section id="orderPage" className="flex">
             <section className="stepContainer flex">
                 <div className={orderStep === 'products' ? 'step flex st active' : 'step flex st'}>
-                    <p>Products</p>
+                    <div class="animated-border-box-glow"></div>
+                        <div class="animated-border-box flex">
+                            <p>Products</p>
+                        </div>
                 </div>
                 <div className={orderStep === 'delivery' ? 'step flex nd active' : 'step flex nd'}>
-                    <p>Delivery</p>
+                    <div class="animated-border-box-glow"></div>
+                        <div class="animated-border-box flex">
+                            <p>Delivery</p>
+                        </div>
                 </div>
                 <div className={orderStep === 'summary' ? 'step flex rd active' : 'step flex rd'}>
-                    <p>Summary</p>
+                    <div class="animated-border-box-glow"></div>
+                        <div class="animated-border-box flex">
+                            <p>Summary</p>
+                        </div>
                 </div>
             </section>
             <Outlet context={[data, setData]}/>
