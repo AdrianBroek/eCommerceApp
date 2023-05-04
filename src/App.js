@@ -45,6 +45,7 @@ function App() {
         <Navbar />
         <Overlay />
         {popup.op ? <CartPopup props={popup.prop}/> : console.log()}
+        <section className="content">
         <Routes location={location} key={location.pathname}>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
@@ -61,6 +62,7 @@ function App() {
             <Route path="/order/summary" element={ <Summary />} />
           </Route>
         </Routes>
+        </section>
         <Search />
     </div>
     </QueryClientProvider>

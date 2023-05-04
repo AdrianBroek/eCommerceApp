@@ -20,15 +20,19 @@ const Overlay = () => {
     }, [popup])
 
     function clickHandler(){
+        // cart options
        if(open){
             dispatch({type: "OPEN_CART"})
         }
-        if(overlay.open && searchResult.length > 0){
-            console.log('sko')
+        // search options
+        if(overlay.open && document.getElementById('search').classList.contains('search-active')){
             dispatch({
                 type: "CLEAR_SEARCH_RESULT",
                 payload: []
             })
+            document.getElementById('search').classList.remove('search-active')
+       }else if(document.getElementById('search').classList.contains('search-active') && !searchResult){
+            document.getElementById('search').classList.remove('search-active')
        }
        }
 
