@@ -10,7 +10,7 @@
     z-index: 10;
     overflow: hidden;
     &.search-active {
-        width: 90vw;
+        width: calc(100% - 100px);
     }
     input {
         padding: .5rem;
@@ -47,6 +47,26 @@
                 color: orange;
                 cursor: pointer;
             }
+        }
+    }
+}
+
+#searchPage {
+    .noSearchResults {
+        margin: 5rem 2rem;
+        background: #fff;
+        flex-direction: column;
+        border-radius: 2rem;
+        padding: 5rem 1rem;
+        div {
+            width: 350px;
+            max-width: 60vw;
+            img {
+                max-width: 100%;
+            }
+        }
+        p,h2 {
+            text-align: center;
         }
     }
 }

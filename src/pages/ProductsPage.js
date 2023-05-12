@@ -10,7 +10,7 @@ const ProductsPage = () => {
         dispatch(productsDataAction())
     },[])
 
-    const {data, isLoading} = useSelector(state => state.items)
+    const {data, isLoading} = useScdxelector(state => state.items)
 
     return (
         <section>
@@ -22,7 +22,6 @@ const ProductsPage = () => {
                     <Products key={el.id} props={el}/>
                 ))}
             </section>
-            
         </section>
     )
 }

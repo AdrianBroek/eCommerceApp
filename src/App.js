@@ -19,6 +19,8 @@ import Register from "./pages/RegisterPage";
 import AccountPage from "./pages/AccountPage";
 import Overlay from "./components/Overlay";
 import Search from "./components/Search";
+import SearchPage from "./pages/SearchPage";
+
 
 function App() {
   const queryClient = new QueryClient()
@@ -61,6 +63,7 @@ function App() {
             <Route path="/order/products" element={ <OrderProducts />} />
             <Route path="/order/summary" element={ <Summary />} />
           </Route>
+          <Route path="/search" element={<SearchPage />} ></Route>
         </Routes>
         </section>
         <Search />

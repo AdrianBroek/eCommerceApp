@@ -21,6 +21,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+:focus-visible {
+    outline: none;
+}
+
 #overlay {
     position: fixed;
     width: 100%;

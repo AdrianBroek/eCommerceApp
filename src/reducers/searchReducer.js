@@ -1,5 +1,8 @@
 const initState = {
-    searchResult: []
+    searchResult: [],
+    searchPageResults: [],
+    isLoading: true,
+    text: null
 }
 
 const searchReducer = (state=initState, action) => {
@@ -7,12 +10,23 @@ const searchReducer = (state=initState, action) => {
         case "GET_SEARCH_RESULT":
             return {
                 ...state,
-                searchResult: action.payload
+                searchResult: action.payload,
             }
         case "CLEAR_SEARCH_RESULT":
             return {
                 ...state,
                 searchResult: action.payload
+            }
+        case "PUT_SEARCHPAGE_RESULT":
+            return {
+                ...state,
+                searchPageResults: action.payload,
+                isLoading: false
+            }
+        case "LOADED_SEARCH_RESULT":
+            return {
+                ...state, 
+                isLoading: true
             }
         default :
             return {...state}
