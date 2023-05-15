@@ -8,7 +8,7 @@ import dummyData from '../dummyProductsData'
 import DummyProducts from '../components/DummyProducts'
 
 const SearchPage = () => {
-    const {searchPageResults, isLoading} = useSelector(state => state.search)
+    const {searchPageResults, isLoading, query} = useSelector(state => state.search)
     const [imgLoad, setImgLoad] = useState(false)
 
     function loadImgHandler(){
@@ -17,7 +17,11 @@ const SearchPage = () => {
 
     return (
         <section id="searchPage">
-            <div class="flex page-title"><h1>Search results:</h1></div>
+            <div class="flex page-title">
+                <h1>Search results</h1>
+                <p>for "{query}"</p>
+            </div>
+           
             {searchPageResults.length > 0 ? (
                 <div className="product-list">
                     {isLoading ? dummyData.map((el)=> (<DummyProducts key={el.id} props={el}/>)) : ""}

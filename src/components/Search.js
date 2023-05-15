@@ -23,7 +23,6 @@ const Search = () => {
         dispatch(searchAction(text))
     }
     
-
     //something in redux store with api from search ? add class
     useEffect(()=> {
         inputSearch.current.parentNode.classList.contains('search-active') ? dispatch({type: 'OVERLAY_ON'}) : dispatch({type: 'OVERLAY_OFF'})
@@ -57,6 +56,9 @@ const Search = () => {
         if (e.key === 'Enter'){
             navigate("/search")
             dispatch(searchPageAction(inputSearch.current.value))
+            // e.target.parentNode.classList.remove('search-active')
+            dispatch({type: 'OVERLAY_OFF'})
+            clear()
         }
     }
 

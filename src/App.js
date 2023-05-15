@@ -66,7 +66,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} ></Route>
         </Routes>
         </section>
-        <Search />
+        {/* <Search /> */}
     </div>
     </QueryClientProvider>
   );

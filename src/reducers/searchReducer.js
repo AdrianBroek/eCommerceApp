@@ -2,7 +2,7 @@ const initState = {
     searchResult: [],
     searchPageResults: [],
     isLoading: true,
-    text: null
+    query: null
 }
 
 const searchReducer = (state=initState, action) => {
@@ -21,7 +21,8 @@ const searchReducer = (state=initState, action) => {
             return {
                 ...state,
                 searchPageResults: action.payload,
-                isLoading: false
+                isLoading: false,
+                query: action.query
             }
         case "LOADED_SEARCH_RESULT":
             return {

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faUser, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
+import Search from "./Search";
 
 const Navbar = () => {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ const Navbar = () => {
                         </div>
                     </>
                 )}
-
+            <Search /> 
             </div>
             
         </header>
