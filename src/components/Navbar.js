@@ -13,25 +13,30 @@ const Navbar = () => {
 
     return (
         <header id='navbar'>
-            <div className="logoContainer">
+            <div className="container">
+                <div className="searchContainer">
+                    <Search /> 
+                </div>
                 <Link to='/'>
                     <img src={logo} />
                 </Link>
-                {!logged ? (
-                    <Link className="register" to='/register'>
-                        <FontAwesomeIcon color="white" icon={faUserPlus} />
-                    </Link>
-                ): (
-                    <>
-                        <Link className="my_account" to='/my_account'>
-                            <FontAwesomeIcon color="white" icon={faUser} />
+                <div className="userDiv flex">
+                    {!logged ? (
+                        <Link className="register" to='/register'>
+                            <FontAwesomeIcon color="white" icon={faUserPlus} />
                         </Link>
-                        <div className="logout" onClick={()=> dispatch({type: "USER_LOGOUT"})}>
-                            <FontAwesomeIcon color="white" icon={faSignOut} />
-                        </div>
-                    </>
-                )}
-            <Search /> 
+                    ): (
+                        <>
+                            <Link className="my_account" to='/my_account'>
+                                <FontAwesomeIcon color="white" icon={faUser} />
+                            </Link>
+                            <div className="logout" onClick={()=> dispatch({type: "USER_LOGOUT"})}>
+                                <FontAwesomeIcon color="white" icon={faSignOut} />
+                            </div>
+                        </>
+                    )}
+                </div>
+            <div className="empty"></div>
             </div>
             
         </header>

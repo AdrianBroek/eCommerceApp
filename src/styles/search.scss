@@ -1,18 +1,12 @@
 #search {
-    position: fixed;
-    top: 20px;
-    left: 10px;
+    position: relative;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    border-radius: .5rem;
-    max-width: 500px;
-    width: 80px;
+    width: 90%;
     background-color: #fff;
     z-index: 10;
-    overflow: hidden;
-    &.search-active {
-        width: calc(100% - 100px);
-    }
+    border-radius: .5rem;
     input {
+        border-radius: .5rem;
         padding: .5rem;
         outline: none;
         border: none !important;
@@ -22,9 +16,10 @@
     }
     .icon {
         position: absolute;
+        height: 100%;
         right: 5px;
-        top: 5px;
-        column-gap: .25rem;
+        top: 0;
+        column-gap: 0.25rem;
         background: #fff;
         .clearIcon {
             cursor: pointer;
@@ -36,10 +31,14 @@
         }
     }
     .searchResultProducts {
+        position: absolute;
+        top: 84%;
+        width: 100%;
         flex-direction: column;
         row-gap: 1rem;
         background-color: #fff;
-        border-radius: .5rem;
+        border-bottom-left-radius: .5rem;
+        border-bottom-right-radius: .5rem;
         padding: 1rem;
         border-top: 1px solid #ebebeb;
         // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -57,28 +56,20 @@
     }
 }
 
-#searchPage {
-    .noSearchResults {
-        margin: 5rem 2rem;
-        background: #fff;
-        flex-direction: column;
-        border-radius: 2rem;
-        padding: 5rem 1rem;
-        div {
-            width: 350px;
-            max-width: 60vw;
-            img {
-                max-width: 100%;
-            }
+@media screen and (min-width: 500px) {
+    #search {
+        max-width: 250px;
+        &.search-active {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            max-width: calc(100vw - 115px);
         }
-        p,h2 {
-            text-align: center;
-        }
-    }
-    .page-title {
-        flex-direction: column;
     }
 }
+
 
 @media screen and (min-width: 768px) {
     #search.active {
