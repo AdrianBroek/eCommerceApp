@@ -11,6 +11,7 @@ import orderReducer from './orderReducer'
 import deliveryReducer from './deliveryReducer'
 import overlayReducer from './overlayReducer'
 import searchReducer from './searchReducer'
+import blogReducer from './blogReducer'
 
 const rootReducer = combineReducers({
     books: booksReducer,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     delivery: deliveryReducer,
     overlay: overlayReducer,
     search: searchReducer,
+    blog: blogReducer
 })
 
 export default rootReducer

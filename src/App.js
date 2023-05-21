@@ -20,6 +20,8 @@ import AccountPage from "./pages/AccountPage";
 import Overlay from "./components/Overlay";
 import Search from "./components/Search";
 import SearchPage from "./pages/SearchPage";
+import BlogPage from "./pages/BlogPage";
+import Post from "./components/Post";
 
 
 function App() {
@@ -64,6 +66,9 @@ function App() {
             <Route path="/order/summary" element={ <Summary />} />
           </Route>
           <Route path="/search" element={<SearchPage />} ></Route>
+          <Route path="/blog" element={<BlogPage />} >
+              <Route path="/blog/:id" element={<Post />}></Route>
+          </Route>
         </Routes>
         </section>
         {/* <Search /> */}

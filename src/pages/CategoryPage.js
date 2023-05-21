@@ -43,6 +43,7 @@ const ProductsPage = () => {
               breakpoint: 400,
               settings: {
                 slidesToShow: 1,
+                rows: 1
               }
             }
           ]

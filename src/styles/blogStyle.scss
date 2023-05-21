@@ -1,0 +1,17 @@
+#blog-page {
+    flex-direction: column;
+}
+
+#post {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80%;
+    background-color: white;
+    border-radius: 2rem;
+    padding: 1rem;
+    flex-direction: column;
+    max-width: 500px;
+}
