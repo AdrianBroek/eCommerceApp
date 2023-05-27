@@ -12,7 +12,8 @@ const initState = {
         id: '',
         email: '',
         address: '',
-        password:''
+        password:'',
+        avatar: ''
     }
 }
 

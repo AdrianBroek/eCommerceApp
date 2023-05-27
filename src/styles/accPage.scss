@@ -15,17 +15,59 @@
         justify-content: center;
         max-width: 500px;
         position: relative;
-        img {
-            max-width: 100%;
-            border-radius: 50%;
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            height: 25vh;
-            margin: auto;
-            object-fit: contain;
-        }
-        img, h2 {
+        
+        .avatar-container, h2 {
             grid-column-start: 1;
             grid-column-end: 3;
+        }
+        img {
+            max-width: 100%;
+            object-fit: cover;
+        }
+        .avatar-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            height: 25vh;
+            margin: auto;
+            width: 50%;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            img {
+                max-width: 100%;
+                object-fit: cover;
+            }
+            .input-file-avatar {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #f5f5f5;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.3;
+                transition: opacity .15s ease-in;
+                &:hover {
+                    opacity: .95;
+                }
+                label {
+                    color: #000;
+                    left: 50%;
+                    width: 100%;
+                    transform: translate(-50%, -50%);
+                    margin: auto;
+                    background-color: transparent;
+                }
+                input {
+                    border: none !important;
+                    opacity: 0;
+                    width: 100%;
+                    height: 100%;
+                    cursor: pointer;
+                }
+            }
         }
         h2 {
             width: 100%;

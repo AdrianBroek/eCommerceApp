@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import registerAction from "../actions/registerAction";
-import testAvatar from '../images/avatar/text_avatar.png';
+// import registerAction from "../actions/registerAction";
+// import testAvatar from '../images/avatar/text_avatar.png';
 import {
     inputsValidate,
     containsUppercase,

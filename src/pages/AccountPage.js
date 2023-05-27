@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import registerAction from "../actions/registerAction";
-import testAvatar from '../images/avatar/text_avatar.png';
+import noImgAvatar from '../images/avatar/no-pic-avatar.png';
 import {
     inputsValidate,
     containsUppercase,
@@ -22,7 +22,8 @@ const AccountPage = () => {
         lastname: userData ? userData.lastname : null,
         password: userData ? userData.password : null,
         address: userData ? userData.address : null,
-        id: userData.id
+        id: userData.id,
+        avatar: userData ? userData.avatar : null
     })
     const [activePopup, setActivePopup] = useState({
         open: false,
@@ -217,12 +218,38 @@ const AccountPage = () => {
         }
     }, [activePopup])
 
+    const [avatarName, setAvatarName] = useState('')
+
+    useEffect(()=> {
+        console.log(avatarName)
+        console.log(userData.avatar)
+    }, [avatarName])
+
+    function avatarHandler(e){
+        const file = new FileReader()
+        setAvatarName(e.target.files[0].name)
+        file.readAsDataURL(e.target.files[0])
+        file.addEventListener('load', () => {
+            const url = file.result
+            setData(state => ({
+                ...state,
+                avatar: url
+            }))
+        })
+    }
+
     return (
         <section id="acc_page">
             {logged ? (
                 <div>
                     <form onSubmit={submitHandler}>
-                        <img src={testAvatar} />
+                        <div className="avatar-container flex">
+                            <img src={userData.avatar ? userData.avatar : noImgAvatar} />
+                            <div className="input-file-avatar">                            
+                                <label className="flex" for="avatar_input">{avatarName ? avatarName : "Change avatar"}</label>
+                                <input onChange={avatarHandler} type="file" id="avatar_input"/>
+                            </div>
+                        </div>
                         <h2>My account</h2>
                         <div className="username">
                             <input id="username" name="username" onChange={inputHandler} type="text" value={data.username} />

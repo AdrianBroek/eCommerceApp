@@ -28,7 +28,8 @@ const registerAction = (props) => async (dispatch) => {
             id: data.id,
             email: data.email,
             address: data.address,
-            password: data.password
+            password: data.password,
+            avatar: data.avatar
         }
     })
 }

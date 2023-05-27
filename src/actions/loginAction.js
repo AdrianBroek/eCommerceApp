@@ -23,7 +23,8 @@ const loginAction = (props) => async (dispatch) => {
                 id: usedUser.id,
                 email: usedUser.email,
                 address: usedUser.address,
-                password: usedUser.password
+                password: usedUser.password,
+                avatar: usedUser.avatar
             }
         })
     }
