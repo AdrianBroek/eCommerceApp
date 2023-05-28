@@ -28,7 +28,10 @@ const Navbar = () => {
                     ): (
                         <>
                             <Link className="my_account" to='/my_account'>
-                                <FontAwesomeIcon color="white" icon={faUser} />
+                                {/* <FontAwesomeIcon color="white" icon={faUser} /> */}
+                                <div className="avatar-nav flex">
+                                    <img width={20} src={userData.avatar} />
+                                </div>
                             </Link>
                             <div className="logout" onClick={()=> dispatch({type: "USER_LOGOUT"})}>
                                 <FontAwesomeIcon color="white" icon={faSignOut} />

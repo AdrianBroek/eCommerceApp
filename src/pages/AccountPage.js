@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import registerAction from "../actions/registerAction";
@@ -218,14 +218,19 @@ const AccountPage = () => {
         }
     }, [activePopup])
 
-    const [avatarName, setAvatarName] = useState('')
+    // Avatar 
+
+    const [avatarName, setAvatarName] = useState('realease or click to upload file')
 
     useEffect(()=> {
-        console.log(avatarName)
-        console.log(userData.avatar)
+        // console.log(avatarName)
+        // console.log(userData.avatar)
     }, [avatarName])
 
+    const fileInput = useRef()
+
     function avatarHandler(e){
+        // console.log(e.target.files[0].name)
         const file = new FileReader()
         setAvatarName(e.target.files[0].name)
         file.readAsDataURL(e.target.files[0])
@@ -238,16 +243,60 @@ const AccountPage = () => {
         })
     }
 
+    const fileInputDragEnter = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        fileInput.current.style.opacity="0.95"
+        setAvatarName('release or click to upload picture')
+    };
+
+    const fileInputDragLeave = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        fileInput.current.style.opacity="0.3"
+        setAvatarName('')
+    };
+
+    const fileInputDragDrop = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        fileInput.current.style.opacity="0.3"
+        // file name
+        const fileData = e.dataTransfer.files[0];
+        setAvatarName(fileData.name)
+        // file upload
+        const file = new FileReader()
+        file.readAsDataURL(e.dataTransfer.files[0])
+        file.addEventListener('load', () => {
+            const url = file.result
+            setData(state => ({
+                ...state,
+                avatar: url
+            }))
+        })
+    };
+
+    // Avatar ends
+
     return (
         <section id="acc_page">
             {logged ? (
                 <div>
                     <form onSubmit={submitHandler}>
                         <div className="avatar-container flex">
-                            <img src={userData.avatar ? userData.avatar : noImgAvatar} />
-                            <div className="input-file-avatar">                            
+                            <img 
+                            src={data.avatar ? data.avatar : userData.avatar} 
+                            />
+                            <div ref={fileInput} className="input-file-avatar">                            
                                 <label className="flex" for="avatar_input">{avatarName ? avatarName : "Change avatar"}</label>
-                                <input onChange={avatarHandler} type="file" id="avatar_input"/>
+                                <input 
+                                onChange={avatarHandler} 
+                                onDragEnter={e => fileInputDragEnter(e)}
+                                onDragLeave={e => fileInputDragLeave(e)}
+                                onDrop={e => fileInputDragDrop(e)}
+                                type="file" 
+                                id="avatar_input"
+                                />
                             </div>
                         </div>
                         <h2>My account</h2>

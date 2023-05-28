@@ -7,6 +7,15 @@
         place-items: center;
         .userDiv {
             column-gap: 1rem;
+            .avatar-nav {
+                border-radius: 50%;
+                overflow: hidden;
+                height: 30px;
+                width: 30px;
+                img {
+                    max-width: 100%;
+                }
+            }
         }   
         #search {
             margin: auto;
