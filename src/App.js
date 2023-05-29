@@ -22,6 +22,7 @@ import Search from "./components/Search";
 import SearchPage from "./pages/SearchPage";
 import BlogPage from "./pages/BlogPage";
 import Post from "./components/Post";
+import Popup from './components/Popup'
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
 
   const {item, open, popup} = useSelector(state => state.cart)
   const {logged, userData} = useSelector(state => state.loggedStatus)
+  const {active} = useSelector(state => state.popup)
+
 
   useEffect(()=> {
     let timer = setTimeout(()=> {dispatch({type: "CLOSE_POPUP"})}, 5000)
@@ -48,6 +51,10 @@ function App() {
         <Cart />
         <Navbar />
         <Overlay />
+        {active ? 
+        <Popup />
+        : ""
+        }
         {popup.op ? <CartPopup props={popup.prop}/> : console.log()}
         <section className="content">
         <Routes location={location} key={location.pathname}>
@@ -71,7 +78,6 @@ function App() {
           </Route>
         </Routes>
         </section>
-        {/* <Search /> */}
     </div>
     </QueryClientProvider>
   );

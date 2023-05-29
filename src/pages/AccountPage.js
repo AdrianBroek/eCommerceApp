@@ -9,6 +9,7 @@ import {
     checkMail,
     checkPassw
 } from '../components/inputValidate'
+import SuccesPopup from "../components/Popup";
 
 const AccountPage = () => {
 
@@ -234,13 +235,32 @@ const AccountPage = () => {
         const file = new FileReader()
         setAvatarName(e.target.files[0].name)
         file.readAsDataURL(e.target.files[0])
-        file.addEventListener('load', () => {
+        file.addEventListener('load', (res) => {
             const url = file.result
+            console.log(res)
             setData(state => ({
                 ...state,
                 avatar: url
             }))
         })
+    }
+
+    function getExtension(filename) {
+        var parts = filename.split('.');
+        return parts[parts.length - 1];
+    }
+
+    function isImage(filename) {
+        var ext = getExtension(filename);
+        switch (ext.toLowerCase()) {
+          case 'jpg':
+          case 'gif':
+          case 'bmp':
+          case 'png':
+            //etc
+            return true;
+        }
+        return false;
     }
 
     const fileInputDragEnter = e => {
@@ -264,16 +284,31 @@ const AccountPage = () => {
         // file name
         const fileData = e.dataTransfer.files[0];
         setAvatarName(fileData.name)
-        // file upload
-        const file = new FileReader()
-        file.readAsDataURL(e.dataTransfer.files[0])
-        file.addEventListener('load', () => {
-            const url = file.result
-            setData(state => ({
-                ...state,
-                avatar: url
-            }))
-        })
+
+        
+        if(isImage(fileData.name)){
+            // file upload
+            const file = new FileReader()
+            file.readAsDataURL(e.dataTransfer.files[0])
+            file.addEventListener('load', (res) => {
+                const url = file.result
+                // console.log(res)
+                setData(state => ({
+                    ...state,
+                    avatar: url
+                }))
+                dispatch({
+                    type: "LOAD_POPUP",
+                    payload: "success"
+                })
+            })
+        }else {
+            dispatch({
+                type: "LOAD_POPUP",
+                payload: "error"
+            })
+        }
+        
     };
 
     // Avatar ends
