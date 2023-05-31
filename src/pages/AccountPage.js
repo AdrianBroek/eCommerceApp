@@ -10,6 +10,8 @@ import {
     checkPassw
 } from '../components/inputValidate'
 import SuccesPopup from "../components/Popup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEarDeaf, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const AccountPage = () => {
 
@@ -210,12 +212,17 @@ const AccountPage = () => {
     useEffect(()=> {
         if(activePopup.confirm === true && activePopup.open === false && activePopup.valid === true) {
             dispatch(registerAction(data))
-            .then(setActivePopup(prevState => ({
+            .then(
+                setActivePopup(prevState => ({
                 ...prevState,
                 open: false,
                 confirm: false
             }))
             )
+            dispatch({
+                type: "LOAD_POPUP",
+                payload: "success"
+            })
         }
     }, [activePopup])
 
@@ -235,14 +242,25 @@ const AccountPage = () => {
         const file = new FileReader()
         setAvatarName(e.target.files[0].name)
         file.readAsDataURL(e.target.files[0])
-        file.addEventListener('load', (res) => {
-            const url = file.result
-            console.log(res)
-            setData(state => ({
-                ...state,
-                avatar: url
-            }))
-        })
+        if(isImage(e.target.files[0].name)){
+            file.addEventListener('load', (res) => {
+                const url = file.result
+                
+                setData(state => ({
+                    ...state,
+                    avatar: url
+                }))
+                dispatch({
+                    type: "LOAD_POPUP",
+                    payload: "success"
+                })
+            })
+        }else {
+            dispatch({
+                type: "LOAD_POPUP",
+                payload: "error"
+            })
+        }
     }
 
     function getExtension(filename) {
@@ -311,6 +329,9 @@ const AccountPage = () => {
         
     };
 
+    // password input hide/show
+    const [passwordShown, setPasswordShown] = useState(false)
+
     // Avatar ends
 
     return (
@@ -356,8 +377,16 @@ const AccountPage = () => {
                             <label for="address">Address</label>
                         </div>
                         <div className="password">
-                            <input className="password" id="password" name="password" onChange={inputHandler} type="password" value={data.password} />
+                            <input className="password" id="password" name="password" onChange={inputHandler} type={passwordShown ? "text" : "password"} value={data.password} />
                             <label for="password">Password</label>
+                            <div onClick={()=>setPasswordShown(!passwordShown)}>
+                                {passwordShown ? 
+                                <FontAwesomeIcon icon={faEyeSlash}/>
+                                :
+                                <FontAwesomeIcon icon={faEye}/>    
+                            }
+                            </div>
+                            
                         </div>
                         <button onClick={confirm} type="submit">Update</button>                
                         <div className="info">

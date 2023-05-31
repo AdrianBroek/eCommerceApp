@@ -16,7 +16,6 @@ const Popup = () => {
     })
 
     useEffect(()=>{
-        console.log(popup.status)
         switch(popup.status){
             case "error":
                 setPopStatus(state => ({
