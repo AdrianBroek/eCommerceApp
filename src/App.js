@@ -5,7 +5,7 @@ import Cart from "./components/Cart";
 import CartPage from './pages/CartPage'
 import Navbar from "./components/Navbar";
 import { Routes , Route, useLocation } from "react-router-dom";
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/HomePage";
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import OrderPage from "./pages/OrderPage";
 import CategoryPage from "./pages/CategoryPage";

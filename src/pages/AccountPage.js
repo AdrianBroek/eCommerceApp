@@ -271,10 +271,11 @@ const AccountPage = () => {
     function isImage(filename) {
         var ext = getExtension(filename);
         switch (ext.toLowerCase()) {
-          case 'jpg':
-          case 'gif':
-          case 'bmp':
-          case 'png':
+            case 'jpg':
+            case 'gif':
+            case 'bmp':
+            case 'png':
+            case 'webp':
             //etc
             return true;
         }
