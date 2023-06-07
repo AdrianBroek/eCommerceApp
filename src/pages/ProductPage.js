@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faPlus, faMinus, faCircleXmark } from "@fortawesome/free-solid-svg-icons"
 import sendToCart from '../actions/sendToCart'
 import Loader from '../components/Loader'
+import ProductSlider from "../components/ProductSlider";
 // slider
 import Slider from "react-slick";
 
@@ -164,8 +165,12 @@ const ProductPage = () => {
                 <div className="description">
                     <p>{data.description}</p>
                 </div>
+                
             </section>
         )}
+        <section className="similar-products">
+            <ProductSlider url={data.category}/>
+        </section>
         </>
     )
 }

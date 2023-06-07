@@ -46,7 +46,7 @@ const ProductsPage = () => {
                 rows: 1
               }
             }
-          ]
+        ]
       };
 
     // console.log(pathname.substring(pathname.lastIndexOf("/")))
@@ -105,7 +105,7 @@ const ProductsPage = () => {
                 {isLoading ? dummyData.map((el)=> (<DummyProducts key={el.id} props={el}/>)) : ""}
 
                 {!isLoading && data.map((el) => (
-                    <Products key={el.id} props={el}/>
+                  <Products key={el.id} props={el}/>
                 ))}
             </section>
             {/* <Outlet /> */}
