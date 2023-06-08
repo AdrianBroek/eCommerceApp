@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/eCommerceApp/static/css/main.a73145bd.css",
-    "main.js": "/eCommerceApp/static/js/main.f78efcdb.js",
+    "main.js": "/eCommerceApp/static/js/main.d18d92b2.js",
     "static/media/tormarch19-min.jpg": "/eCommerceApp/static/media/tormarch19-min.16b2f27de65f2ee05b75.jpg",
     "static/media/pin_12-min.jpg": "/eCommerceApp/static/media/pin_12-min.44679a2de5bce08a5fde.jpg",
     "static/media/letter_14-min.jpg": "/eCommerceApp/static/media/letter_14-min.7cd7710b3284a1cf5992.jpg",
@@ -16,10 +16,10 @@
     "static/media/slick.woff": "/eCommerceApp/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/eCommerceApp/index.html",
     "main.a73145bd.css.map": "/eCommerceApp/static/css/main.a73145bd.css.map",
-    "main.f78efcdb.js.map": "/eCommerceApp/static/js/main.f78efcdb.js.map"
+    "main.d18d92b2.js.map": "/eCommerceApp/static/js/main.d18d92b2.js.map"
   },
   "entrypoints": [
     "static/css/main.a73145bd.css",
-    "static/js/main.f78efcdb.js"
+    "static/js/main.d18d92b2.js"
   ]
 }
