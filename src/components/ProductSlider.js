@@ -7,19 +7,14 @@ import Slider from "react-slick"
 const ProductSlider = ({url}) => {
     const [products, setProducts] = useState([])
 
-    const getProductsFromCategory = async () => {
+    async function getProductsFromCategory() {
+      // rerendering went bad, so if products are loaded just off the function
+      if(products.length == 0){
         const data = await getProductsCategoryAction(url)
         setProducts(data)
+      }else {return}
     }
-    useEffect(()=> {
-        getProductsFromCategory()
-    }, [])
-
-    //test
-    useEffect(()=> {
-        console.log(products)
-        
-    }, [products])
+    getProductsFromCategory()
 
     // slider
     const sliderRef = useRef();
