@@ -218,3 +218,10 @@ body {
         pointer-events: none;
     }
 }
+
+
+
+.slick-next:before,
+.slick-prev:before {
+    color: #888;
+}
