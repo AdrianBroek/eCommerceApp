@@ -22,14 +22,17 @@ const BlogPage = () => {
     return (
         <>
             <section id="blog-page" className="flex">
-                <div className="flex page-title"></div>
-                <h1>Blog</h1>
+                <div className="page-title">
+                    <h1>Blog</h1>
+                </div>
+                <div className="blog-list">
                 {blogList.posts ? 
                     blogList.posts.map((blog) => (
                         <Blog data={blog}/>
                     ))
                  : <></>
                 }
+                </div>
                 <Outlet /> 
             </section>
         </>

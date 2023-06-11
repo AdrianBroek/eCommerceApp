@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import noPicture from '../images/no-picture.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag, faX, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import blogTagAction from "../actions/blogTagAction";
 
 const Post = () => {
     const dispatch = useDispatch()
@@ -22,6 +23,15 @@ const Post = () => {
         getPostIdFromUrl()
     }, [])
 
+    function tagHandler(tag){
+        console.log(tag)
+        blogTagAction()
+    }
+
+
+    useEffect(()=> {
+        blogTagAction()
+    }, [])
     return (
         <>
         {activePost ? 
@@ -31,7 +41,8 @@ const Post = () => {
                 <FontAwesomeIcon size="xl" icon={faXmarkCircle}/>
             </div>
             <div className="post-pic">
-                <img src={noPicture} alt="no picture"/>
+                {/* <img src={noPicture} alt="no picture"/> */}
+                <img src='https://picsum.photos/400' alt="random generated image"/>
             </div>
             <div className="title">
                 <h2>{activePost.title}</h2>
@@ -42,7 +53,7 @@ const Post = () => {
             <div className="tags flex">
                 <FontAwesomeIcon icon={faHashtag}/>
                 {activePost.tags.map((tag)=>(
-                    <p>{tag}</p>
+                    <p onClick={()=>tagHandler(tag)}>{tag}</p>
                 ))}
             </div>
         </article>
