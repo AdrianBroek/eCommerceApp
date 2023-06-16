@@ -103,6 +103,7 @@ function HomePage() {
             Categories
             <Link to="/category"> - go to categories page!</Link>
           </h2>
+          <Link to="blog">blog</Link>
           <div className="categories-list">
             {!isLoadingCat && dataCat.map((el, index) => (
                 <CategorySquare key={index} cat={el} />

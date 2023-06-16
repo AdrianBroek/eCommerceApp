@@ -10,7 +10,7 @@ const blogAction = () => async (dispatch) =>{
 
     dispatch({
         type: "GET_BLOGS",
-        payload: data.data
+        payload: data.data.posts
     })
     .then(dispatch({type:"LOADED_BLOG_LIST"}))
     // console.log(data)

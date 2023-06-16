@@ -26,8 +26,8 @@ const BlogPage = () => {
                     <h1>Blog</h1>
                 </div>
                 <div className="blog-list">
-                {blogList.posts ? 
-                    blogList.posts.map((blog) => (
+                {blogList ? 
+                    blogList.map((blog) => (
                         <Blog data={blog}/>
                     ))
                  : <></>
