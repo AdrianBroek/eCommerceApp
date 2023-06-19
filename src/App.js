@@ -50,7 +50,6 @@ function App() {
     <div className="App">
         <Cart />
         <Navbar />
-        <Overlay />
         {active ? 
         <Popup />
         : ""
@@ -77,7 +76,9 @@ function App() {
               <Route path="/blog/:id" element={<Post />}></Route>
           </Route>
         </Routes>
+        
         </section>
+        <Overlay />
     </div>
     </QueryClientProvider>
   );

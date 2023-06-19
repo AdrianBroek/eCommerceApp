@@ -7,20 +7,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag, faInfoCircle, faX, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import PostComment from "./PostComment";
+import loaderGif  from '../images/loaderGif.gif'
 
 const Post = () => {
     const dispatch = useDispatch()
     const {activePost} = useSelector(state => state.blog)
     const {userData, logged} = useSelector(state => state.loggedStatus)
-    const {pathname} = useLocation()
-    const navigate = useNavigate()
     const [comment, setComment] = useState()
+    const [image, setImage] = useState(false)
 
-    function getPostIdFromUrl(){
-        const link = pathname.substring(pathname.lastIndexOf("/"))
-        const linkDone = link.replace("/", '')
-        dispatch(PostAction(linkDone))
+    function sendIMG(){
+        if(!image){
+            axios.get('https://picsum.photos/1200')
+            .then((res)=>{
+                if(res) {
+                    // console.log(res.request.responseURL)
+                    setImage(res.request.responseURL)
+                }
+            })
+        }
     }
+    // on load post, load some img from picsum api
+    useEffect(()=>{
+        sendIMG()
+        dispatch({
+            type: "OVERLAY_ON"
+        })
+    },[])
 
     async function getComment(){
         const options = {
@@ -33,7 +46,6 @@ const Post = () => {
 
     useEffect(()=> {
         getComment()
-        console.log(comment)
     }, [activePost])
 
     const post_input_ref = useRef()
@@ -52,6 +64,7 @@ const Post = () => {
             }
         }
         if(newPost.body==''){
+            // alert popup
             dispatch({
                 type: "LOAD_POPUP",
                 payload: "error"
@@ -60,7 +73,7 @@ const Post = () => {
         }
         if(newPost){
             const samePost = comment.filter(del=>del.body==newPost.body)
-            console.log(samePost)
+            // console.log(samePost)
             if(samePost.length > 0){
                 dispatch({
                     type: "LOAD_POPUP",
@@ -71,25 +84,34 @@ const Post = () => {
         }
         
         setComment(state => ([newPost, ...state]))
+        // alert popup
         return dispatch({
             type: "LOAD_POPUP",
             payload: "success"
         })
         
-        // console.log(comment)
     }
 
     return (
         <>
+        
         {activePost ? 
         <article id="post" className={'vol flex ' + activePost.id}>
             <div className="post-container">
-                <div className="exit-post"
-                onClick={()=> navigate(-1)}>
-                    <FontAwesomeIcon size="xl" icon={faXmarkCircle}/>
-                </div>
+                <Link className="exit-post"
+                to="/blog/">
+                    x
+                </Link>
                 <div className="post-pic">
-                    <img src='https://picsum.photos/1200' alt="random generated image"/>
+                    {image ? 
+                        <img src={image} alt="random generated image"/>
+                    : 
+                    <div className="img-loader">
+                        <img style={{padding: '25vh', transition: ".25s"}} src={loaderGif} />
+                        <p>api had no images in posts, so i had to simulate it.</p>
+                    </div>
+                    }
+
                 </div>
                 <div className="title">
                     <h2>{activePost.title}</h2>
@@ -115,7 +137,7 @@ const Post = () => {
                         <button className="b">Comment</button>
                     </form>
                 :<p>to add comment, <Link to="/login">login</Link> to the page!</p>}
-                {comment ? 
+                {comment && comment.length > 0 ? 
                     <>
                     <h4>Comments:</h4>
                         {comment && comment.map((item)=> (
@@ -124,7 +146,8 @@ const Post = () => {
                     </> 
                 : ""}
                 </div> 
-            </div> 
+            </div>
+            
         </article>
          : "" }
         </>
