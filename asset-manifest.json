@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/eCommerceApp/static/css/main.e9186999.css",
-    "main.js": "/eCommerceApp/static/js/main.1e2b9d7e.js",
+    "main.css": "/eCommerceApp/static/css/main.3a196692.css",
+    "main.js": "/eCommerceApp/static/js/main.26a9d34b.js",
     "static/media/pexels-tembela-bohle-1884579.jpg": "/eCommerceApp/static/media/pexels-tembela-bohle-1884579.3ddbd01844e71816ec48.jpg",
     "static/media/pexels-karolina-grabowska-4464821.jpg": "/eCommerceApp/static/media/pexels-karolina-grabowska-4464821.701710642c65fa97b1ff.jpg",
     "static/media/tormarch19-min.jpg": "/eCommerceApp/static/media/tormarch19-min.16b2f27de65f2ee05b75.jpg",
@@ -17,11 +17,11 @@
     "static/media/slick.ttf": "/eCommerceApp/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/eCommerceApp/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/eCommerceApp/index.html",
-    "main.e9186999.css.map": "/eCommerceApp/static/css/main.e9186999.css.map",
-    "main.1e2b9d7e.js.map": "/eCommerceApp/static/js/main.1e2b9d7e.js.map"
+    "main.3a196692.css.map": "/eCommerceApp/static/css/main.3a196692.css.map",
+    "main.26a9d34b.js.map": "/eCommerceApp/static/js/main.26a9d34b.js.map"
   },
   "entrypoints": [
-    "static/css/main.e9186999.css",
-    "static/js/main.1e2b9d7e.js"
+    "static/css/main.3a196692.css",
+    "static/js/main.26a9d34b.js"
   ]
 }
