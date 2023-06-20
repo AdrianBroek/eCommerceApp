@@ -30,9 +30,9 @@ const Post = () => {
     // on load post, load some img from picsum api
     useEffect(()=>{
         sendIMG()
-        dispatch({
-            type: "OVERLAY_ON"
-        })
+        // dispatch({
+        //     type: "OVERLAY_ON"
+        // })
     },[])
 
     async function getComment(){
