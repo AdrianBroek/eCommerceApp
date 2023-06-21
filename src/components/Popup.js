@@ -5,8 +5,9 @@ import { faCheckCircle, faDiagramSuccessor, faInfoCircle, faThumbsUp, faX } from
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 
 
-const Popup = () => {
-    const popup = useSelector(state => state.popup)
+const Popup = ({popup, index}) => {
+    
+    const {popupList} = useSelector(state => state.popup)
     const dispatch = useDispatch()
     const [popStatus, setPopStatus] = useState({
         success: false,
@@ -60,13 +61,18 @@ const Popup = () => {
         
     }, [popup.status])
 
-    console.log(popup.status)
-    console.log(popStatus)
+    function deletePopup(){
+        const newPopupList = popupList.filter((item,ind) => ind != index)
+        dispatch({
+            type: "DELETE_POPUP",
+            payload: newPopupList
+        })
+    }
 
     return (
-        <div id="popup" onClick={()=>dispatch({type: "OFF_POPUP"})}>
+        <div className="container-popup" onClick={(e)=>deletePopup(e)}>
         {popStatus.success && (
-            <div className="success flex container-popup">
+            <div className="success flex">
                 <FontAwesomeIcon color="white" icon={faCheckCircle}/>
                 <div className="popup-txt-container flex">
                     <h4>success</h4>
@@ -75,7 +81,7 @@ const Popup = () => {
             </div>
         )}
         {popStatus.confirm && (
-            <div className="confirm flex container-popup">
+            <div className="confirm flex">
                 <FontAwesomeIcon color="white" icon={faThumbsUp}/>
                 <div className="popup-txt-container flex">
                     <h4>confirm</h4>
@@ -84,7 +90,7 @@ const Popup = () => {
             </div>
         )}
         {popStatus.error && (
-            <div className="err flex container-popup">
+            <div className="err flex">
                 <FontAwesomeIcon color="white" icon={faXmarkCircle}/>
                 <div className="popup-txt-container flex">
                     <h4>error</h4>
@@ -94,7 +100,7 @@ const Popup = () => {
             </div>
         )}
         {popStatus.info && (
-            <div className="info flex container-popup">
+            <div className="info flex">
                 <FontAwesomeIcon color="white" icon={faInfoCircle}/>
                 <div className="popup-txt-container flex">
                     <h4>info</h4>

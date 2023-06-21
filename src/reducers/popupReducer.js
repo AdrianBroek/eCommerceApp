@@ -1,20 +1,24 @@
 const initState = {
-    active: false,
-    status: ""
-}
+        active: false,
+        popupList: []
+    }
 
 const popupReducer = ((state=initState, action) => {
    switch(action.type){
-        case "LOAD_POPUP" :
+        case "GENERATE_POPUP" :
             return {
-                ...state,
                 active: true,
-                status: action.payload
+                popupList: [
+                    ...state.popupList,
+                    {
+                        status: action.payload
+                    }
+                ]
             }
-        case "OFF_POPUP" :
+        case "DELETE_POPUP" :
             return {
                 ...state,
-                active: false,
+                popupList: [...action.payload]
             }
         default : return {...state}
    } 

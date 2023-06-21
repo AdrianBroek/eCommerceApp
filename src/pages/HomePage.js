@@ -18,6 +18,7 @@ import baner3 from '../images/home page baner/tormarch19-min.jpg'
 import baner4 from '../images/home page baner/payment-min.jpg'
 
 import ProductSlider from '../components/ProductSlider'
+import popupAction from '../actions/popupAction'
 
 function HomePage() {
     const dispatch = useDispatch();

@@ -12,6 +12,7 @@ import {
 import SuccesPopup from "../components/Popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEarDeaf, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import popupAction from "../actions/popupAction";
 
 const AccountPage = () => {
 
@@ -219,10 +220,7 @@ const AccountPage = () => {
                 confirm: false
             }))
             )
-            dispatch({
-                type: "LOAD_POPUP",
-                payload: "success"
-            })
+            dispatch(popupAction('success'))
         }
     }, [activePopup])
 
@@ -250,16 +248,10 @@ const AccountPage = () => {
                     ...state,
                     avatar: url
                 }))
-                dispatch({
-                    type: "LOAD_POPUP",
-                    payload: "success"
-                })
+                dispatch(popupAction('success'))
             })
         }else {
-            dispatch({
-                type: "LOAD_POPUP",
-                payload: "error"
-            })
+            dispatch(popupAction('error'))
         }
     }
 
@@ -316,16 +308,10 @@ const AccountPage = () => {
                     ...state,
                     avatar: url
                 }))
-                dispatch({
-                    type: "LOAD_POPUP",
-                    payload: "success"
-                })
+                dispatch(popupAction('success'))
             })
         }else {
-            dispatch({
-                type: "LOAD_POPUP",
-                payload: "error"
-            })
+            dispatch(popupAction('error'))
         }
         
     };

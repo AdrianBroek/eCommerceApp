@@ -32,7 +32,7 @@ function App() {
 
   const {item, open, popup} = useSelector(state => state.cart)
   const {logged, userData} = useSelector(state => state.loggedStatus)
-  const {active} = useSelector(state => state.popup)
+  const {popupList} = useSelector(state => state.popup)
 
 
   useEffect(()=> {
@@ -50,8 +50,13 @@ function App() {
     <div className="App">
         <Cart />
         <Navbar />
-        {active ? 
-        <Popup />
+        {popupList.length > 0 ? 
+        <div id="popup" className="flex">
+          {popupList.map((popupItem, index)=> (
+            <Popup popup={popupItem} index={index}/>
+          ))
+        }
+        </div>
         : ""
         }
         {popup.op ? <CartPopup props={popup.prop}/> : console.log()}
