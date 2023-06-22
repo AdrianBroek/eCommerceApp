@@ -6,15 +6,26 @@ import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 
 
 const Popup = ({popup, index}) => {
-    
     const {popupList} = useSelector(state => state.popup)
     const dispatch = useDispatch()
     const [popStatus, setPopStatus] = useState({
         success: false,
         confirm: false,
         error: false,
-        info: false
+        info: false,
+        reset: false
     })
+
+    // turn off popup after some time
+    setTimeout(()=>{
+        setPopStatus(state => ({
+            success: false,
+            confirm: false,
+            error: false,
+            info: false,
+            reset: true
+        }))
+    },[5000])
 
     useEffect(()=>{
         switch(popup.status){
@@ -70,45 +81,49 @@ const Popup = ({popup, index}) => {
     }
 
     return (
-        <div className="container-popup" onClick={(e)=>deletePopup(e)}>
-        {popStatus.success && (
-            <div className="success flex">
-                <FontAwesomeIcon color="white" icon={faCheckCircle}/>
-                <div className="popup-txt-container flex">
-                    <h4>success</h4>
-                    <p>Cheers!</p>
+        <>
+        {!popStatus.reset && (
+            <div className="container-popup" onClick={(e)=>deletePopup(e)}>
+            {popStatus.success && (
+                <div className="success flex">
+                    <FontAwesomeIcon color="white" icon={faCheckCircle}/>
+                    <div className="popup-txt-container flex">
+                        <h4>success</h4>
+                        <p>Cheers!</p>
+                    </div>
                 </div>
+            )}
+            {popStatus.confirm && (
+                <div className="confirm flex">
+                    <FontAwesomeIcon color="white" icon={faThumbsUp}/>
+                    <div className="popup-txt-container flex">
+                        <h4>confirm</h4>
+                        <p>Something went wrong. Please try again.</p>
+                    </div>
+                </div>
+            )}
+            {popStatus.error && (
+                <div className="err flex">
+                    <FontAwesomeIcon color="white" icon={faXmarkCircle}/>
+                    <div className="popup-txt-container flex">
+                        <h4>error</h4>
+                        <p>Something went wrong. Please try again.</p>
+                    </div>
+                    
+                </div>
+            )}
+            {popStatus.info && (
+                <div className="info flex">
+                    <FontAwesomeIcon color="white" icon={faInfoCircle}/>
+                    <div className="popup-txt-container flex">
+                        <h4>info</h4>
+                        <p>Something went wrong. Please try again.</p>
+                    </div>
+                </div>
+            )}
             </div>
         )}
-        {popStatus.confirm && (
-            <div className="confirm flex">
-                <FontAwesomeIcon color="white" icon={faThumbsUp}/>
-                <div className="popup-txt-container flex">
-                    <h4>confirm</h4>
-                    <p>Something went wrong. Please try again.</p>
-                </div>
-            </div>
-        )}
-        {popStatus.error && (
-            <div className="err flex">
-                <FontAwesomeIcon color="white" icon={faXmarkCircle}/>
-                <div className="popup-txt-container flex">
-                    <h4>error</h4>
-                    <p>Something went wrong. Please try again.</p>
-                </div>
-                
-            </div>
-        )}
-        {popStatus.info && (
-            <div className="info flex">
-                <FontAwesomeIcon color="white" icon={faInfoCircle}/>
-                <div className="popup-txt-container flex">
-                    <h4>info</h4>
-                    <p>Something went wrong. Please try again.</p>
-                </div>
-            </div>
-        )}
-        </div>
+        </>
     )
 }
 

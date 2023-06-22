@@ -28,6 +28,7 @@ function HomePage() {
       dispatch(categoriesDataAction())
     },[dispatch])
 
+    const {popupList} = useSelector(state=>state.popup)
     const {dataCat, isLoadingCat, activeCategory} = useSelector(state => state.categories)
     const {autor, tytuł} = useSelector(state => state.books)
       // slider
@@ -98,6 +99,7 @@ function HomePage() {
             </Slider>
           </div>
         </section>
+        <button onClick={()=>dispatch(popupAction('success',popupList))}>asdasd</button>
 
         <section className="hp-categories">
           <h2 className="page-title flex">

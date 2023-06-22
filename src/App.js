@@ -29,24 +29,11 @@ function App() {
   const queryClient = new QueryClient()
   const location = useLocation()
   const dispatch = useDispatch()
-
-  const {item, open, popup} = useSelector(state => state.cart)
-  const {logged, userData} = useSelector(state => state.loggedStatus)
+  const {popup} = useSelector(state => state.cart)
   const {popupList} = useSelector(state => state.popup)
-
-
-  useEffect(()=> {
-    let timer = setTimeout(()=> {dispatch({type: "CLOSE_POPUP"})}, 5000)
-
-    return () => {
-      clearTimeout(timer)
-    }
-
-  }, [popup.op])
 
   return (
     <QueryClientProvider client={queryClient}>
-    
     <div className="App">
         <Cart />
         <Navbar />

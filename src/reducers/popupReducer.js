@@ -11,7 +11,8 @@ const popupReducer = ((state=initState, action) => {
                 popupList: [
                     ...state.popupList,
                     {
-                        status: action.payload
+                        status: action.payload,
+                        timeout: 5
                     }
                 ]
             }
