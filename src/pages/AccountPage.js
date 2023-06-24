@@ -193,7 +193,6 @@ const AccountPage = () => {
                         element.classList.remove('wrong')
                     },[1000])
                 }
-
         });
     }
 

@@ -13,6 +13,7 @@ import overlayReducer from './overlayReducer'
 import searchReducer from './searchReducer'
 import blogReducer from './blogReducer'
 import popupReducer from './popupReducer'
+import ordersReducer from './ordersReducer'
 
 const rootReducer = combineReducers({
     books: booksReducer,
@@ -23,12 +24,13 @@ const rootReducer = combineReducers({
     productData: productReducer,
     loggedStatus: login,
     totalCart: totalReducer,
-    order: orderReducer,
+    orderSteps: orderReducer,
     delivery: deliveryReducer,
     overlay: overlayReducer,
     search: searchReducer,
     blog: blogReducer,
-    popup: popupReducer
+    popup: popupReducer,
+    orders: ordersReducer, 
 })
 
 export default rootReducer

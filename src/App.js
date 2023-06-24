@@ -23,6 +23,7 @@ import SearchPage from "./pages/SearchPage";
 import BlogPage from "./pages/BlogPage";
 import Post from "./components/Post";
 import Popup from './components/Popup'
+import ThankYouPage from "./pages/ThankYouPage";
 
 
 function App() {
@@ -31,6 +32,21 @@ function App() {
   const dispatch = useDispatch()
   const {popup} = useSelector(state => state.cart)
   const {popupList} = useSelector(state => state.popup)
+
+  // check if order in local storage is on, 
+  // if now make one with empty array
+  useEffect(()=> {
+    let orders = localStorage.getItem('orders')
+    if(orders === null){
+      localStorage.setItem('orders', JSON.stringify([]))
+    }else{
+      // put to redux store what is inside localstorage
+      dispatch({
+        type: "SET_ORDERS",
+        payload: JSON.parse(localStorage.getItem('orders'))
+      })
+    }
+  }, [])
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -62,6 +78,7 @@ function App() {
             <Route path="/order/delivery" element={ <Delivery />} />
             <Route path="/order/products" element={ <OrderProducts />} />
             <Route path="/order/summary" element={ <Summary />} />
+            <Route path="/order/pay" element={<ThankYouPage />} />
           </Route>
           <Route path="/search" element={<SearchPage />} ></Route>
           <Route path="/blog" element={<BlogPage />} >

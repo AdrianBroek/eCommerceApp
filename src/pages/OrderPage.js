@@ -9,14 +9,39 @@ import { Link, Outlet, useOutletContext , useLocation } from "react-router-dom";
 import stepAction from "../actions/stepAction";
 import nextStepAction from "../actions/nextStepAction";
 import prevStepAction from "../actions/prevStepAction";
+import orderAction from "../actions/orderAction";
 
 const OrderPage = () => {
     const dispatch = useDispatch()
-    const {orderStep, nextStep, prevStep} = useSelector(state => state.order)
-    const order = useSelector(state => state.order)
+    const {orderStep, nextStep, prevStep} = useSelector(state => state.orderSteps)
+    const order = useSelector(state => state.orderSteps)
     const {pathname} = useLocation()
     const totalCart = useSelector(state => state.totalCart)
     const delivery = useSelector(state => state.delivery)
+    const loggedStatus = useSelector(state => state.loggedStatus)
+    function setOrder(){
+        
+        const orderUser = {
+            userData: totalCart.personalData,
+            registered: loggedStatus.logged
+        }
+        const orderProduct = {
+            products: totalCart.items
+        }
+        const orderPrice = totalCart.totalPrice
+        const orderDelivery = delivery
+        // console.log(orderUser)
+        // console.log(orderProduct)
+        // console.log(orderPrice)
+        // console.log(orderDelivery)
+        const orderData = {
+            orderUser,
+            orderProduct,
+            orderPrice,
+            orderDelivery
+        }
+        dispatch(orderAction(orderData))
+    }
 
     const [activeBtn, setActiveBtn] = useState({
         next: false,
@@ -99,7 +124,7 @@ const OrderPage = () => {
 
     // prev
     useEffect(()=> {
-        console.log(activeBtn)
+        // console.log(activeBtn)
     }, [orderStep])
 
     return (
@@ -132,7 +157,7 @@ const OrderPage = () => {
                     <button className="a off"><FontAwesomeIcon icon={faStepBackward}/> Back</button>
                 }
                 {activeBtn.next ? 
-                    <Link to={nextStep} className="b abutton">{nextStep == 'pay' ? 'Pay ' : 'Next '}<FontAwesomeIcon icon={faForwardStep}/></Link>
+                    <Link onClick={nextStep == 'pay' ? ()=>setOrder() : ''} to={nextStep} className="b abutton">{nextStep == 'pay' ? 'Pay ' : 'Next '}<FontAwesomeIcon icon={faForwardStep}/></Link>
                     :
                     <button className="b off">{nextStep == 'pay' ? 'Pay ' : 'Next '}<FontAwesomeIcon icon={faForwardStep}/></button>
                 }

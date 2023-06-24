@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import popupAction from "../actions/popupAction";
 
 const CartItem = ({props}) => {
     const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const CartItem = ({props}) => {
                 data: newCartData
             }
         })
+        dispatch(popupAction('success'))
     }
 
     return (

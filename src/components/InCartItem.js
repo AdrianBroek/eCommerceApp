@@ -5,6 +5,7 @@ import { faTrash, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom";
 import sendTotalData from "../actions/sendTotalData";
 import { useLocation } from "react-router-dom";
+import popupAction from "../actions/popupAction";
 
 const InCartItem = ({props}) => {
     const {pathname} = useLocation()
@@ -43,6 +44,7 @@ const InCartItem = ({props}) => {
                 data: newCartData
             }
         })
+        dispatch(popupAction('success'))
     }
 
     const [prodQty, setProdQty] = useState(props.quantity)

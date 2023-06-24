@@ -5,11 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faUser, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "./Search";
+import popupAction from "../actions/popupAction";
 
 const Navbar = () => {
     const dispatch = useDispatch()
 
     const {logged, userData} = useSelector(state => state.loggedStatus)
+
+    function logout(){
+        dispatch({type: "USER_LOGOUT"})
+        dispatch(popupAction('success'))
+    }
 
     return (
         <header id='navbar'>
@@ -33,7 +39,7 @@ const Navbar = () => {
                                     <img src={userData.avatar} />
                                 </div>
                             </Link>
-                            <div className="logout" onClick={()=> dispatch({type: "USER_LOGOUT"})}>
+                            <div className="logout" onClick={()=> logout()}>
                                 <FontAwesomeIcon color="white" icon={faSignOut} />
                             </div>
                         </>
