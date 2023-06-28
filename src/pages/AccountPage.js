@@ -13,6 +13,7 @@ import SuccesPopup from "../components/Popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEarDeaf, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import popupAction from "../actions/popupAction";
+import Order from "../components/Order";
 
 const AccountPage = () => {
 
@@ -397,6 +398,14 @@ const AccountPage = () => {
             ) : (
                 <></>
             )}
+            <section>
+                <div>
+                    <h2>Your orders:</h2>
+                    {userData.order.map((order)=> (
+                        <Order id={order}/>
+                    ))}
+                </div>
+            </section>
         </section>
     )
 }

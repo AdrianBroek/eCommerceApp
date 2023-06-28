@@ -1,8 +1,5 @@
 import React from "react";
 
-// const userData = window.localStorage.getItem('user')
-// const user = JSON.parse(userData)
-
 const initState = {
     logged: false,
     userData: {
@@ -13,7 +10,8 @@ const initState = {
         email: '',
         address: '',
         password:'',
-        avatar: ''
+        order: [],
+        avatar: '',
     }
 }
 
@@ -30,10 +28,31 @@ const login = (state = initState, action) => {
                 ...state,
                 userData: action.payload
             }
-        case "USER_LOGOUT":
+        case "USER_ORDER_ADD":
             return {
                 ...state,
+                userData: {
+                    ...state.userData,
+                    order: [
+                        action.payload
+                    ]
+                }
+                
+            }
+        case "USER_LOGOUT":
+            return {
                 logged: false,
+                userData: {
+                    username: '',
+                    firstname: "",
+                    lastname: "",
+                    id: '',
+                    email: '',
+                    address: '',
+                    password:'',
+                    order: [],
+                    avatar: '',
+                }
             }
         default:
             return {

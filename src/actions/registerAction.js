@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 
 const registerAction = (props) => async (dispatch) => {
     const data = await props
-
+    console.log(props)
     const oldAccs = JSON.parse(localStorage.getItem('user')) || []
     
     function checkIfEditData(){
@@ -29,7 +29,8 @@ const registerAction = (props) => async (dispatch) => {
             email: data.email,
             address: data.address,
             password: data.password,
-            avatar: data.avatar
+            avatar: data.avatar,
+            order: data.order
         }
     })
 }

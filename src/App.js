@@ -34,7 +34,7 @@ function App() {
   const {popupList} = useSelector(state => state.popup)
 
   // check if order in local storage is on, 
-  // if now make one with empty array
+  // if yes, now make one with empty array
   useEffect(()=> {
     let orders = localStorage.getItem('orders')
     if(orders === null){

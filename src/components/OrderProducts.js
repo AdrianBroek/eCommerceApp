@@ -14,7 +14,7 @@ const OrderProducts = () => {
 
     function countSum(){
         let tablicaCen = []
-        console.log(tablicaCen)
+        // console.log(tablicaCen)
         item.forEach(element => {
             let sumka = element.product.price * element.quantity
             tablicaCen.push(sumka)
