@@ -1,0 +1,82 @@
+#order-acc {
+    padding: 2rem;
+    margin: 5rem auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    background: white;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .title {
+    }
+    .order-acc-container {
+        .order {
+            transition: all .15s ease-in;
+            &:hover {
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+            border: 1px solid #f5f5f5;
+            padding: .25rem 1rem;
+            margin: 1rem 0;
+            .id, .status, .products, .info {
+                padding: 1rem 0;
+            }
+            .products {
+                flex-direction: column;
+                row-gap: 1rem;
+                .product {
+                    display: grid;
+                    grid-template-columns: 1fr .5fr 3fr 1fr;
+                    width: 100%;
+                    justify-content: space-between;
+                    align-items: center;
+                    img {
+                        width: 100%;
+                    }
+                    .title {
+                        .brand {
+                            font-weight: 300;
+                            color: #888;
+                        }
+                    }
+                    .quantity {
+                        text-align: center;
+                    }
+                    .prod-price {
+                        text-align: right;
+                    }
+                }
+                
+            }
+            hr {
+                margin: 2rem 0;
+                border-top: 1px solid #f5f5f5;
+            }
+            .info {
+                flex-direction: column;
+                justify-content: space-around;
+                row-gap: 1rem;
+                div {
+                    width: 100%;
+                    justify-content: space-between;
+                    p {
+                        font-weight: 300;
+                        color: #888;
+                    }
+                }
+            }
+            .id, .status {
+                justify-content: space-between;
+                p:first-child {
+                    font-weight: 300;
+                    color: #888;
+                }
+            }
+            .id {
+                p:last-child {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
