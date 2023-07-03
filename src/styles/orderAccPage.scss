@@ -1,12 +1,14 @@
 #order-acc {
     padding: 2rem;
-    margin: 5rem auto;
+    margin-top: 5rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     background: white;
     border-radius: 1rem;
     align-items: center;
     justify-content: center;
     position: relative;
+    max-width: 1000px;
+    width: 100%;
     .title {
     }
     .order-acc-container {
@@ -78,5 +80,11 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    #order-acc {
+        margin: 5rem auto;
     }
 }

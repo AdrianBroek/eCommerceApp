@@ -19,15 +19,6 @@ const Order = ({id}) => {
         <section className="order">
             {order && (
                 <>
-                <div className="id flex">
-                    <p>Order ID: </p>
-                    <p>{order.id}</p>
-                </div>
-                <div className="status flex">
-                    <p>Delivery status: </p>
-                    <p>{order.deliveryStatus}</p>
-                </div>
-                <hr />
                 <div className="products flex">
                     {order.products.map((product)=> (
                         <div className="product">
@@ -42,22 +33,39 @@ const Order = ({id}) => {
                     ))}
                 </div>
                 <hr />
+                <div className="id flex">
+                    <p>Order ID: </p>
+                    <p>{order.id}</p>
+                </div>
+                <div className="status flex">
+                    <p>Delivery status: </p>
+                    <p>{order.deliveryStatus}</p>
+                </div>
+                <hr />
                 <div className="info flex">
                     <div className="flex">
                         <p>Order payment:</p>
                         <h4>{order.delivery.payment.type}</h4>
                     </div>
                     <div className="flex">
-                        <p>Order courier:</p>
+                        <p>Order delivery:</p>
                         <h4>{order.delivery.delivery.type}</h4>
+                    </div>
+                    <div className="flex">
+                        <p>Order courier:</p>
+                        <h4>{order.delivery.courier.type}</h4>
                     </div>
                     <div className="flex">
                         <p>Order address:</p>
                         <h4>{order.user.userData.address}</h4>
                     </div>
                     <div className="flex">
+                        <p>Order delivery cost:</p>
+                        <h4>{order.delivery.delivery.cost} $</h4>
+                    </div>
+                    <div className="flex">
                         <p>Total:</p>
-                        <h2>{order.totalPrice}</h2>
+                        <h2>{Number(order.delivery.delivery.cost)+Number(order.totalPrice)} $</h2>
                     </div>
                 </div>
                 </>

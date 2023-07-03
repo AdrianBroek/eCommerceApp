@@ -28,7 +28,8 @@ const AccountPage = () => {
         password: userData ? userData.password : null,
         address: userData ? userData.address : null,
         id: userData.id,
-        avatar: userData ? userData.avatar : null
+        avatar: userData ? userData.avatar : null,
+        order: userData ? userData.order : null,
     })
     const [activePopup, setActivePopup] = useState({
         open: false,
@@ -398,7 +399,7 @@ const AccountPage = () => {
             ) : (
                 <></>
             )}
-            {logged ? (
+            {logged && userData.order ? (
             <section id="order-acc">
                 {userData.order && (
                     <div className="order-acc-container">
@@ -410,7 +411,8 @@ const AccountPage = () => {
                 )}
                 
             </section> 
-            ) : ""}
+            ) : ""
+            }
         </section>
     )
 }

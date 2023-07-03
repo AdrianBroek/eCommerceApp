@@ -31,16 +31,17 @@ const ThankYouPage = () => {
                 // })  
                 // loggedStatus.userData  
                 dispatch(registerAction({
-                    username: orderData.user.userData.username,
-                    firstname: orderData.user.userData.firstname,
-                    lastname: orderData.user.userData.lastname,
-                    id: orderData.user.userData.id,
-                    email: orderData.user.userData.email,
-                    address: orderData.user.userData.address,
-                    password:orderData.user.userData.password,
+                    username: loggedStatus.userData.username,
+                    firstname: loggedStatus.userData.firstname,
+                    lastname: loggedStatus.userData.lastname,
+                    id: loggedStatus.userData.id,
+                    email: loggedStatus.userData.email,
+                    address: loggedStatus.userData.address,
+                    password: loggedStatus.userData.password,
                     order: [
                         orderData.id
-                    ]
+                    ],
+                    avatar: loggedStatus.userData.avatar
                 }))
                 
        

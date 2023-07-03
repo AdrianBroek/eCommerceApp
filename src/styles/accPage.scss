@@ -160,6 +160,7 @@
         flex-direction: column;
         row-gap: 1rem;
         text-align: center;
+        z-index: 2;
         button {
             background-color: #888;
             color: #fff;
@@ -175,6 +176,19 @@
                 background-color: red;
             }
         }
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    #acc_page {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+@media screen and (max-width: 1600px) {
+    #acc_page {
+        display: flex;
+        flex-direction: column;
     }
 }
 
