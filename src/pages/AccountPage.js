@@ -403,7 +403,7 @@ const AccountPage = () => {
             <section id="order-acc">
                 {userData.order && (
                     <div className="order-acc-container">
-                        <h2 className="title">Your orders:</h2>
+                        <h2 className="title">My orders:</h2>
                         {userData.order.map((order)=> (
                             <Order id={order}/>
                         ))}

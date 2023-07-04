@@ -12,7 +12,7 @@ const orderAction = (order) => (dispatch) => {
             products: order.orderProduct.products,
             totalPrice: order.orderPrice,
             delivery: order.orderDelivery,
-            deliveryStatus: 'njewiem',
+            deliveryStatus: 'pending',
             id: uuid()
         }
     })

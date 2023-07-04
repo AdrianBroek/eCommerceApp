@@ -68,6 +68,7 @@ const Order = ({id}) => {
                         <h2>{Number(order.delivery.delivery.cost)+Number(order.totalPrice)} $</h2>
                     </div>
                 </div>
+                <div class="shadow"></div>
                 </>
             )}
             
