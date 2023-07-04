@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesStacked, faMoneyBill, faStore, faTruck, faTruckDroplet, faTruckFast, faTruckField, faTruckPickup } from "@fortawesome/free-solid-svg-icons";
 import { faApplePay, faCcMastercard, faCcVisa, faDhl, faFacebook, faGooglePay } from "@fortawesome/free-brands-svg-icons"
 import { useOutletContext } from "react-router-dom";
+import { act } from "react-dom/test-utils";
 
 const Delivery = () => {
 
@@ -27,7 +28,7 @@ const Delivery = () => {
         confirm: false,
         valid: false
     })
-    const [info, setInfo] = useState()
+
     const [correctCheck, setCorrectCheck] = useState({
         username: false,
         firstname: false,
@@ -39,8 +40,7 @@ const Delivery = () => {
 
     // delivery options
     const delivery = useSelector(state => state.delivery)
-    // deliveryData set or not
-    const [deliveryOption, setDeliveryOption] = useState(false)
+    
     // active delivery input detect
     const [active, setActive] = useState({
         payment: delivery.payment ? delivery.payment : null,
@@ -49,10 +49,6 @@ const Delivery = () => {
         agreement: delivery.agreement ? delivery.agreement : false,
         isSet: false
     })
-
-    useEffect(()=> {
-        console.log(active)
-    }, [active])
 
     // update delivery options
     useEffect(()=> {
@@ -75,34 +71,43 @@ const Delivery = () => {
         })
     }, [active.delivery])
 
+    // if all active types are setted, set active.isSet to true
+    useEffect(()=> {
+        if (active.payment.type && active.agreement.type && active.delivery.type && active.courier.type && active.isSet == false){
+            setActive((state => ({...state, isSet: true})))
+        }
+    }, [active])
+
+    console.log(active)
+
     useEffect(()=> {
         // console.log(active.payment)
         dispatch({type: "CHANGE_AGREEMENT_OPTION", payload: active.agreement})
     }, [active.agreement])
 
+
+    // deliveryData set or not
+    const [deliveryOption, setDeliveryOption] = useState(false)
+
     // totalData delivery
     useEffect(()=> {
-        dispatch({type: "SET_DELIVERY_DATA", payload: delivery})
-        dispatch({type: 'ORDER_DELIVERY_SET', payload: true})
-    }, [deliveryOption])
-
-    useEffect(()=> {
-        // if (delivery.isSet){
-        //     dispatch({type: "SET_DELIVERY_DATA", payload: delivery})
-        // } 
-        console.log(delivery)
-
-    }, [deliveryOption])
-
-    useEffect(()=> {
-        if (delivery.payment && delivery.courier && delivery.delivery && delivery.agreement){
-            setDeliveryOption(true)
-            
+        if(active.isSet) {
+            dispatch({type: 'ORDER_DELIVERY_SET', payload: true})
+            console.log('tak2')
         }
-        // setDeliveryOption(false)
-    }, [delivery])
+    }, [deliveryOption])
+
+    useEffect(()=> {
+        if (delivery.payment.type && delivery.courier.type && delivery.delivery.type && delivery.agreement.type){
+            if(active.isSet) {
+                setDeliveryOption(true)
+                console.log('tak')
+            }
+        }
+    }, [active.isSet])
 
     //////////////
+
 
     useEffect(()=> {
         if(logged){
@@ -166,9 +171,10 @@ const Delivery = () => {
     function submitHandler (e){
         e.preventDefault();
 
+        // check inputs correct and set state correctCheck if it is
         const inputs = document.querySelectorAll('input')
+        
         inputs.forEach((element, index) => {
-            
             if (element.value.length >= 6){
                 // if has more than 5 letters - start
                 if (containsUppercase(element.value)){
@@ -297,22 +303,18 @@ const Delivery = () => {
         });
     }
 
-    // validate
+    // inputs validate
     useEffect(()=> {
         inputsValidate()
     }, [inputHandler])
 
+    // verify button on click
     function confirm(){
-        // console.log('confirm')
         setActivePopup(state => ({
             ...state,
             open: true
         }))
     }
-
-    useEffect(()=>{
-        // console.log(activePopup)
-    }, [activePopup])
 
     useEffect(()=> {
         if(activePopup.confirm === true && activePopup.open === false && activePopup.valid === true) {
@@ -384,11 +386,6 @@ const Delivery = () => {
                 <div>
                     <form onSubmit={submitHandler}>
                         <h2>Order as a guest</h2>
-                        {/* <div className="username">
-                            <input id="username" name="username" onChange={inputHandler} type="text" value={data.username} />
-                            <label for="username">User name</label>
-                        </div> */}
-                        {/* here */}
                         <div className="firstname">
                             <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
                             <label for="firstname">First name</label>

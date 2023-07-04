@@ -8,7 +8,7 @@ const Order = ({id}) => {
     function filtreOrders() {
         const singleOrder = orders.filter(state=> state.id == id)
         setOrder(singleOrder[0])
-        console.log(singleOrder[0])
+        // console.log(singleOrder[0])
     }
 
     useEffect(()=> {
