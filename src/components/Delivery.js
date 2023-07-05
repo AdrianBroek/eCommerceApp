@@ -43,12 +43,14 @@ const Delivery = () => {
     
     // active delivery input detect
     const [active, setActive] = useState({
-        payment: delivery.payment ? delivery.payment : null,
-        courier: delivery.courier ? delivery.courier : null,
-        delivery: delivery.delivery ? delivery.delivery : null,
-        agreement: delivery.agreement ? delivery.agreement : false,
+        payment: delivery.payment.type ? delivery.payment : false,
+        courier: delivery.courier.type ? delivery.courier : false,
+        delivery: delivery.delivery.type ? delivery.delivery : false,
+        agreement: delivery.agreement.type ? delivery.agreement : false,
         isSet: false
     })
+
+    console.log(active.delivery)
 
     // update delivery options
     useEffect(()=> {

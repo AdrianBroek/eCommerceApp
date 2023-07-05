@@ -5,12 +5,6 @@ import { useSelector } from "react-redux";
 const CustomInput = ({name, value, active, setActive, cost}) => {
     const ref = useRef()
 
-
-    const {delivery} = useSelector(state => state.totalCart)
-
-    // console.log(active)
-    // console.log(value)
-
     function clickHandler(e){
         switch(ref.current.value){
             case "VISA" :
@@ -109,7 +103,8 @@ const CustomInput = ({name, value, active, setActive, cost}) => {
     }
 
     useEffect(()=> {
-        // console.log(active)
+        console.log(active)
+        console.log(value)
     }, [active])
 
     return (

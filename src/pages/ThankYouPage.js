@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import registerAction from "../actions/registerAction";
-
+import gandalf from '../images/gandalf-you-shall-not-pass.gif'
+import thankYou from '../images/thank-you.png'
 
 const ThankYouPage = () => {
     const dispatch = useDispatch()
@@ -18,18 +19,14 @@ const ThankYouPage = () => {
         localStorage.setItem('orders', JSON.stringify(oldOrders))
     }
     
-
+    
     useEffect(()=> {
+        dispatch({type: "ORDER_RESET"})
         pushOrderToLocalStorage()
         // check if user in storage
         if(loggedStatus.logged){
             // if order in userData redux is empty
             if(loggedStatus.userData.order == null){
-                // dispatch({
-                //     type: "USER_ORDER_ADD",
-                //     payload: orderData.id
-                // })  
-                // loggedStatus.userData  
                 dispatch(registerAction({
                     username: loggedStatus.userData.username,
                     firstname: loggedStatus.userData.firstname,
@@ -54,16 +51,23 @@ const ThankYouPage = () => {
         }
     }, [orderData])
 
+
     return (
-        <>
-            {orders.length > 0 ? 
-            <>
-                <p>Thank you for ordering {orderData.user.userData.firstname}!</p>
-            </>
+        <section id="thankYou-page">
+            {orders.length > 0 && orderData.user.userData ? 
+                <div className="success flex">
+                    <div className="gif">
+                        <img src={thankYou}/>
+                    </div>
+                    <p>Thank you for ordering {orderData.user.userData.firstname}!</p>
+                    <p>You will find information about your order on your account section</p>
+                </div>
             :
-            <><p>aaand what are u doing here?</p></>
+                <div className="gif">
+                        <img src={gandalf}/>
+                </div>
             }
-        </>
+        </section>
     )
 }
 

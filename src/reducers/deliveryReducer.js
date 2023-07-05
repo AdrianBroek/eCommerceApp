@@ -43,6 +43,24 @@ const deliveryReducer = (state=initState, action) => {
                 ...state,
                 isSet: action.payload,
             }
+        case "ORDER_RESET" :
+            return {
+                payment: {
+                    cost: false,
+                    type: false
+                },
+                courier: {
+                    type: false
+                },
+                delivery: {
+                    cost: false,
+                    type: false
+                },
+                agreement: {
+                    type: false
+                },
+                isSet: false
+            }
         default:
             return {...state}
     }
