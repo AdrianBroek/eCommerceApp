@@ -12,6 +12,7 @@ const Order = ({id}) => {
     }
 
     useEffect(()=> {
+        console.log(id)
         filtreOrders()
     }, [])
 

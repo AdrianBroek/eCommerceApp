@@ -17,11 +17,11 @@ const ThankYouPage = () => {
         oldOrders.push(orderData)
         // set local storage to what is in local storage + new one
         localStorage.setItem('orders', JSON.stringify(oldOrders))
+        dispatch({type: "ORDER_RESET"})
     }
     
     
     useEffect(()=> {
-        dispatch({type: "ORDER_RESET"})
         pushOrderToLocalStorage()
         // check if user in storage
         if(loggedStatus.logged){
