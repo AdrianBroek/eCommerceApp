@@ -12,6 +12,7 @@ const CartPage = () => {
     const {item, open} = useSelector(state => state.cart)
     const {totalPrice} = useSelector(state => state.totalCart)
 
+    // sum of product counting
     function countSum(){
         let tablicaCen = []
         console.log(tablicaCen)
@@ -25,6 +26,7 @@ const CartPage = () => {
     let sumData = countSum()
     const totalSum = sumData.reduce((prevNm, nm) => prevNm + nm, 0)
 
+    // sending to total data items and total sum of products
     useEffect(()=> {
         dispatch(sendTotalData(item, totalSum))
     }, [item])
