@@ -36,7 +36,6 @@ const AccountPage = () => {
         confirm: false,
         valid: false
     })
-    const [info, setInfo] = useState()
     const [correctCheck, setCorrectCheck] = useState({
         username: false,
         firstname: false,
@@ -45,10 +44,6 @@ const AccountPage = () => {
         address: false,
         password: false,
     })
-
-    useEffect(()=> {
-        // console.log(JSON.parse(localStorage.getItem('user')))
-    }, [data])
 
     useEffect(()=> {
         if(correctCheck.username && correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address && correctCheck.password){
@@ -212,27 +207,36 @@ const AccountPage = () => {
     }
 
     useEffect(()=> {
+
         if(activePopup.confirm === true && activePopup.open === false && activePopup.valid === true) {
             dispatch(registerAction(data))
             .then(
                 setActivePopup(prevState => ({
                 ...prevState,
                 open: false,
-                confirm: false
+                confirm: false,
+                valid: false
             }))
             )
+            .then(
+                setCorrectCheck(prevState => ({
+                    username: false,
+                    firstname: false,
+                    lastname: false,
+                    email: false,
+                    address: false,
+                    password: false,
+                }))
+            )
             dispatch(popupAction('success'))
+        }else if (activePopup.confirm === false && activePopup.open === true && activePopup.valid === false)  {
+            dispatch(popupAction('error'))
         }
     }, [activePopup])
 
     // Avatar 
 
     const [avatarName, setAvatarName] = useState('realease or click to upload file')
-
-    useEffect(()=> {
-        // console.log(avatarName)
-        // console.log(userData.avatar)
-    }, [avatarName])
 
     const fileInput = useRef()
 
@@ -369,10 +373,10 @@ const AccountPage = () => {
                             <label for="password">Password</label>
                             <div onClick={()=>setPasswordShown(!passwordShown)}>
                                 {passwordShown ? 
-                                <FontAwesomeIcon icon={faEyeSlash}/>
-                                :
-                                <FontAwesomeIcon icon={faEye}/>    
-                            }
+                                    <FontAwesomeIcon icon={faEyeSlash}/>
+                                    :
+                                    <FontAwesomeIcon icon={faEye}/>    
+                                }
                             </div>
                             
                         </div>
@@ -393,7 +397,7 @@ const AccountPage = () => {
             (
                 <div className="confirmation">
                     Are you sure to change your account data?
-                    <button onClick={() => setActivePopup(prevState => ({...prevState, confirm: true, open: false}))}>Yes</button>
+                    <button disabled={activePopup.valid ? false : true} onClick={() => setActivePopup(prevState => ({...prevState, confirm: true, open: false}))}>Yes</button>
                     <button onClick={() => setActivePopup(prevState => ({...prevState, confirm: false, open: false}))}>I'm not</button>
                 </div>
             ) : (

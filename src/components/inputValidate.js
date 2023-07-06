@@ -17,10 +17,11 @@ export function checkPassw(str) {
 // validate
 export function inputsValidate(){
     
-    const inputs = document.querySelectorAll('input')
+    const inputs = document.querySelectorAll('form input')
     // console.log(inputs)
     inputs.forEach((element, index) => {
-        if (element.value.length >= 6){
+        if (element.value.length != 0){
+        if (element.value.length >= 3){
             // if has more than 5 letters - start
             if (containsUppercase(element.value)){
                 // if has 1 uppercase letter
@@ -55,7 +56,7 @@ export function inputsValidate(){
                 element.style.border="2px solid red"
             }
 
-    });
+    }});
 }
 
 

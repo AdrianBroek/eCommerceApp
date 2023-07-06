@@ -41,9 +41,6 @@
             border-radius: .25rem;
             padding: .5rem;
             transition: .15s ease-out;
-            &:focus,&:active{
-                border: 1px solid #000;
-            }
         }
         input {
             border: 2px solid #888;
@@ -79,6 +76,7 @@
             align-items: center;
             font-size: .95rem;
             color: rgba(136, 136, 136, 0.541);
+            cursor: text;
         }
         input:focus + label,
         input:valid + label {
@@ -89,6 +87,19 @@
         }
         .name, .email, .address, .password {
             position: relative;
+        }
+        .password {
+            div {
+                cursor: pointer;
+                position: absolute;
+                width: 10%;
+                right: 7px;
+                top: 50%;
+                transform: translateY(-50%);
+                svg {
+                    max-width: 100%;
+                }
+            }
         }
         .info {
             position: absolute;
@@ -114,7 +125,43 @@
             color: orange;
         }
     }
+    .confirmation {
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -20%);
+        background: #fff;
+        padding: 3rem;
+        border-radius: .5rem;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        text-align: center;
+        z-index: 2;
+        button {
+            background-color: #888;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: .9rem;
+            text-transform: uppercase;
+            padding: .5rem;
+            border-radius: .5rem;
+            border: 0;
+            width: 100%;
+            &:last-child {
+                background-color: red;
+            }
+            &:disabled {
+                opacity: .2;
+                cursor: unset;
+            }
+        }
+    }
 }
+
+
 
 @keyframes shake {
     0% {

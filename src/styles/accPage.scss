@@ -175,6 +175,10 @@
             &:last-child {
                 background-color: red;
             }
+            &:disabled {
+                opacity: .2;
+                cursor: unset;
+            }
         }
     }
 }
