@@ -30,9 +30,6 @@ const Post = () => {
     // on load post, load some img from picsum api
     useEffect(()=>{
         sendIMG()
-        // dispatch({
-        //     type: "OVERLAY_ON"
-        // })
     },[])
 
     async function getComment(){
@@ -66,17 +63,18 @@ const Post = () => {
         if(newPost.body==''){
             // alert popup
             dispatch({
-                type: "LOAD_POPUP",
+                type: "GENERATE_POPUP",
                 payload: "error"
             })
             return
         }
         if(newPost){
             const samePost = comment.filter(del=>del.body==newPost.body)
-            // console.log(samePost)
+            
             if(samePost.length > 0){
+                console.log(samePost)
                 dispatch({
-                    type: "LOAD_POPUP",
+                    type: "GENERATE_POPUP",
                     payload: "error"
                 })
                 return
@@ -86,7 +84,7 @@ const Post = () => {
         setComment(state => ([newPost, ...state]))
         // alert popup
         return dispatch({
-            type: "LOAD_POPUP",
+            type: "GENERATE_POPUP",
             payload: "success"
         })
         

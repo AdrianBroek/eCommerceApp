@@ -26,6 +26,15 @@ const Navbar = () => {
                 <Link to='/'>
                     <img src={logo} />
                 </Link>
+                <div className="flex">
+                    <Link className="link" to='/blog'>
+                        Blog
+                    </Link>
+                    <Link className="link" to='/category'>
+                        Categories
+                    </Link>
+                </div>
+
                 <div className="userDiv flex">
                     {!logged ? (
                         <Link className="register" to='/register'>
@@ -34,10 +43,14 @@ const Navbar = () => {
                     ): (
                         <>
                             <Link className="my_account" to='/my_account'>
-                                {/* <FontAwesomeIcon color="white" icon={faUser} /> */}
-                                <div className="avatar-nav flex">
-                                    <img src={userData.avatar} />
-                                </div>
+                                {userData.avatar ? 
+                                    <div className="avatar-nav flex">
+                                        <img src={userData.avatar} />
+                                    </div>
+                                : 
+                                    <FontAwesomeIcon color="white" icon={faUser} />
+                                }
+                                
                             </Link>
                             <div className="logout" onClick={()=> logout()}>
                                 <FontAwesomeIcon color="white" icon={faSignOut} />

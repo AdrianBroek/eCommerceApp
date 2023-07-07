@@ -40,7 +40,6 @@ function HomePage() {
         slidesToShow: 1,
         dots: true,
         arrows: false,
-        fade: true,
     }
 
     //slider nav options
@@ -57,18 +56,6 @@ function HomePage() {
 
   return (
     <div id="home-page">
-        {/* <section className="categories-list flex">
-          {!isLoadingCat && dataCat.map((el, index) => (
-             <CategorySquare key={index} cat={el} />
-          ))}
-        </section> */}
-
-        {/* <section className="product-list">
-          {!isLoading && data.map((el) => (
-              <Products key={el.id} props={el}/>
-          ))}
-        </section> */}
-
         <section className="promoBaner">
           <div className="baner-nav-container flex">
             <Slider {...settings2} ref={sliderRef2}>
@@ -99,14 +86,11 @@ function HomePage() {
             </Slider>
           </div>
         </section>
-        <button onClick={()=>dispatch(popupAction('success',popupList))}>asdasd</button>
-
         <section className="hp-categories">
           <h2 className="page-title flex">
             Categories
-            <Link to="/category"> - go to categories page!</Link>
+            <Link className="link" to="/category"> - go to categories page!</Link>
           </h2>
-          <Link to="blog">blog</Link>
           <div className="categories-list">
             {!isLoadingCat && dataCat.map((el, index) => (
                 <CategorySquare key={index} cat={el} />

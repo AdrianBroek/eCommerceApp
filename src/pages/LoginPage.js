@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import loginAction from "../actions/loginAction";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck, faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faWrench, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -70,17 +71,27 @@ const Login = () => {
         checkData()
     }
 
+    // password input hide/show
+    const [passwordShown, setPasswordShown] = useState(false)
+
     return (
         <section id="loginPage">
-        <form onSubmit={(e)=>submitHandler(e)}>
+        <form novalidate="novalidate" onSubmit={(e)=>submitHandler(e)}>
             <h2>Login to your Walmart account!</h2>
             <div className="email">
-                <input className={er.active ? 'er' : ''} type="text" onChange={mailCheck}/>
+                <input required novalidate className={er.active ? 'er' : ''} type="text" onChange={mailCheck}/>
                 <label for="email">Email</label>
             </div>
             <div className="password">
-                <input className={er.active ? 'er' : ''} type="text" onChange={passCheck}/>
+                <input type={passwordShown ? "text" : "password"} required novalidate className={er.active ? 'er' : ''} onChange={passCheck}/>
                 <label for="password">Password</label>
+                <div onClick={()=>setPasswordShown(!passwordShown)}>
+                        {passwordShown ? 
+                            <FontAwesomeIcon icon={faEyeSlash}/>
+                            :
+                            <FontAwesomeIcon icon={faEye}/>    
+                        }
+                    </div>
             </div>
             <button className="a" type="submit">Login</button>
             <button className="abutton b">

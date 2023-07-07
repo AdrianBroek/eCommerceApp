@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const CategorySquare = ({cat}) => {
     const dispatch = useDispatch()
     const {activeCategory} = useSelector(state => state.categories)
-
-    
+    const {pathname} = useLocation()
+    console.log(pathname)
 
     function clickHandler(){
         dispatch({
@@ -20,19 +21,18 @@ const CategorySquare = ({cat}) => {
     return (
         <>
         <div className={activeCategory === cat ? 'noselect category-square active' : 'noselect category-square'}>
+            {pathname == '/' ? 
+            <Link to={'category/'+cat} className="square">{cat}</Link>    
+        : 
             <div
                 className="square"
-                // onClick={() => dispatch({
-                //     type: "SET_ACTIVE_CATEGORY", 
-                //     payload: cat
-                // })} 
                 onClick={clickHandler}
-                // to={"/category/"+cat}
                 >
                 {cat}
             </div>
+        }
+            
         </div>
-        {/* <div className="separator"/> */}
         </>
     )
 }

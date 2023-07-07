@@ -230,8 +230,8 @@ const AccountPage = () => {
                 }))
             )
             dispatch(popupAction('success'))
-        }else if (activePopup.confirm === false && activePopup.open === true && activePopup.valid === false)  {
-            dispatch(popupAction('error'))
+        }else if (activePopup.confirm === false && activePopup.open === false && activePopup.valid === false)  {
+            // dispatch(popupAction('error'))
         }
     }, [activePopup])
 

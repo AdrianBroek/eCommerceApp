@@ -13,7 +13,7 @@ const PostComment = ({setComment, comment, item}) => {
         const newArray = comment.filter(del=>del.postId != item.postId)
         setComment(newArray)
         dispatch({
-            type: "LOAD_POPUP",
+            type: "GENERATE_POPUP",
             payload: "success"
         })
     }

@@ -37,7 +37,7 @@
             padding: .5rem;
             transition: .15s ease-out;
             &:focus,&:active{
-                border: 1px solid #000;
+                border: 2px solid #888;
             }
         }
         input {
@@ -75,8 +75,11 @@
             background: #fff;
             display: flex;
             align-items: center;
-            font-size: .95rem;
+            font-size: .85rem;
+            font-weight: 300;
             color: rgba(136, 136, 136, 0.541);
+            cursor: unset;
+            pointer-events: none;
         }
         input:focus + label,
         input:valid + label {
@@ -87,6 +90,19 @@
         }
         .name, .email, .address, .password {
             position: relative;
+        }
+        .password {
+            div {
+                cursor: pointer;
+                position: absolute;
+                width: 10%;
+                right: 7px;
+                top: 50%;
+                transform: translateY(-50%);
+                svg {
+                    max-width: 100%;
+                }
+            }
         }
         .info {
             position: absolute;
