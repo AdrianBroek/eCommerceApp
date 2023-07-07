@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEarDeaf, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import popupAction from "../actions/popupAction";
 import Order from "../components/Order";
+import InputHelper from "../components/InputHelper";
 
 const AccountPage = () => {
 
@@ -320,17 +321,30 @@ const AccountPage = () => {
         }
         
     };
+    // Avatar ends
 
     // password input hide/show
     const [passwordShown, setPasswordShown] = useState(false)
 
-    // Avatar ends
+    //input helper
+    const [finput, setFinput] = useState()
+
+    function setFocusInput (e){
+        setFinput(e.target.id)
+        // console.log(finput)
+    }
+   
 
     return (
         <section id="acc_page">
             {logged ? (
                 <div>
-                    <form onSubmit={submitHandler}>
+                    <form novalidate="novalidate" onSubmit={submitHandler}>
+                        <div className="input-helper-container">
+                            {finput ? 
+                                <InputHelper activeInput={finput}/>
+                            : "" }
+                        </div>
                         <div className="avatar-container flex">
                             <img 
                             src={data.avatar ? data.avatar : userData.avatar} 
@@ -349,27 +363,27 @@ const AccountPage = () => {
                         </div>
                         <h2>My account</h2>
                         <div className="username">
-                            <input id="username" name="username" onChange={inputHandler} type="text" value={data.username} />
+                            <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required novalidate id="username" name="username" onChange={inputHandler} type="text" value={data.username} />
                             <label for="username">User name</label>
                         </div>
                         <div className="firstname">
-                            <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
+                            <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required novalidate id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
                             <label for="firstname">First name</label>
                         </div>
                         <div className="lastname">
-                            <input id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
+                            <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required novalidate id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
                             <label for="lastname">Last name</label>
                         </div>
                         <div className="email">
-                            <input className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
+                            <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required novalidate className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
                             <label for="email">Email</label>
                         </div>
                         <div className="address">
-                            <input id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
+                            <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required novalidate id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
                             <label for="address">Address</label>
                         </div>
                         <div className="password">
-                            <input className="password" id="password" name="password" onChange={inputHandler} type={passwordShown ? "text" : "password"} value={data.password} />
+                            <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required novalidate className="password" id="password" name="password" onChange={inputHandler} type={passwordShown ? "text" : "password"} value={data.password} />
                             <label for="password">Password</label>
                             <div onClick={()=>setPasswordShown(!passwordShown)}>
                                 {passwordShown ? 
@@ -381,9 +395,6 @@ const AccountPage = () => {
                             
                         </div>
                         <button onClick={confirm} type="submit">Update</button>                
-                        <div className="info">
-                            Hasło musi zawierać ileś tam znaków
-                        </div>
                     </form>
                 </div>
             ) : (

@@ -117,7 +117,7 @@
             position: relative;
             width: 100%;
             &.wrong {
-                animation: shake 1s infinite;
+                animation: shake 1s;
             }
         }
         label {
@@ -131,8 +131,10 @@
             background: #fff;
             display: flex;
             align-items: center;
-            font-size: .95rem;
+            font-size: .85rem;
+            font-weight: 300;
             color: rgba(136, 136, 136, 0.541);
+            cursor: unset;
         }
         input:focus + label,
         input:valid + label {
@@ -145,6 +147,11 @@
             position: absolute;
             top: 0;
             left: 0;
+        }
+        .input-helper-container {
+            grid-column-end: 3;
+            grid-column-start: 1;
+            min-height: 20px;
         }
     }
     .confirmation {
@@ -193,23 +200,5 @@
     #acc_page {
         display: flex;
         flex-direction: column;
-    }
-}
-
-@keyframes shake {
-    0% {
-        transform: translateX(-3px)
-    }
-    10% {
-        transform: translateX(3px)
-    }
-    25% {
-        transform: translateX(-3px)
-    }
-    50% {
-        transform: translateX(0px)
-    }
-    100% {
-        transform: translateX(0px)
     }
 }

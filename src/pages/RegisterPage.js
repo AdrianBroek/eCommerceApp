@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import popupAction from "../actions/popupAction";
+import InputHelper from "../components/InputHelper";
 
 const RegisterPage = () => {
 
@@ -268,24 +269,37 @@ const RegisterPage = () => {
         });
     }
 
+    //input helper
+    const [finput, setFinput] = useState()
+
+    function setFocusInput (e){
+        setFinput(e.target.id)
+        console.log(finput)
+    }
+
     return (
         <section id="registerPage">
             <form novalidate="novalidate" onSubmit={submitHandler}>
+                <div className="input-helper-container">
+                    {finput ? 
+                        <InputHelper activeInput={finput}/>
+                    : "" }
+                </div>
                 <h2>Register a Walmart account!</h2>
                 <div className="name">
-                    <input required novalidate onChange={(e)=>inputHandler(e,'username')} value={input.username} type="text" id="username" name="username"/>
+                    <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required novalidate onChange={(e)=>inputHandler(e,'username')} value={input.username} type="text" id="username" name="username"/>
                     <label htmlFor="username">username</label>
                 </div>
                 <div className="name">
-                    <input required onChange={(e)=>inputHandler(e,'firstname')} value={input.firstname} type="text" id="firstname"/>
+                    <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required onChange={(e)=>inputHandler(e,'firstname')} value={input.firstname} type="text" id="firstname"/>
                     <label htmlFor="firstname">firstname</label>
                 </div>
                 <div className="name">
-                    <input required onChange={(e)=>inputHandler(e,'lastname')} value={input.lastname} type="text" id="lastname"/>
+                    <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required onChange={(e)=>inputHandler(e,'lastname')} value={input.lastname} type="text" id="lastname"/>
                     <label htmlFor="lastname">lastname</label>
                 </div>
                 <div className="password">
-                    <input required onChange={(e)=>inputHandler(e,'password')} value={input.password} id="password" type={passwordShown ? "text" : "password"}/>
+                    <input className="password" onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required onChange={(e)=>inputHandler(e,'password')} value={input.password} id="password" type={passwordShown ? "text" : "password"}/>
                     <label htmlFor="password">password</label>
                     <div onClick={()=>setPasswordShown(!passwordShown)}>
                         {passwordShown ? 
@@ -296,11 +310,11 @@ const RegisterPage = () => {
                     </div>
                 </div>
                 <div className="email">
-                    <input required onChange={(e)=>inputHandler(e,'email')} value={input.email} id="email" type="text"/>
+                    <input className="email" onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required onChange={(e)=>inputHandler(e,'email')} value={input.email} id="email" type="text"/>
                     <label htmlFor="email">email</label>
                 </div>
                 <div className="address">
-                    <input required onChange={(e)=>inputHandler(e,'address')} value={input.address} id="address" type="text"/>
+                    <input className="address" onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required onChange={(e)=>inputHandler(e,'address')} value={input.address} id="address" type="text"/>
                     <label htmlFor="address">address</label>
                 </div>
                 <button className="abutton a" onClick={confirm}>Register</button>

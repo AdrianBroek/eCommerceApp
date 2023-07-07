@@ -33,7 +33,7 @@
         h2 {
             width: 100%;
             text-align: center;
-            margin: 5rem 0;
+            margin: 0 0 5rem;
         }
         input, button {
             text-decoration: none;
@@ -60,7 +60,7 @@
             position: relative;
             width: 100%;
             &.wrong {
-                animation: shake 1s infinite;
+                animation: shake 1s;
             }
         }
         label {
@@ -74,7 +74,8 @@
             background: #fff;
             display: flex;
             align-items: center;
-            font-size: .95rem;
+            font-size: .85rem;
+            font-weight: 300;
             color: rgba(136, 136, 136, 0.541);
             cursor: text;
         }
@@ -101,10 +102,10 @@
                 }
             }
         }
-        .info {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .input-helper-container {
+            grid-column-end: 3;
+            grid-column-start: 1;
+            min-height: 100px;
         }
     }
     .popup {
@@ -163,20 +164,29 @@
 
 
 
+// @keyframes shake {
+//     0% {
+//         transform: translateX(-3px)
+//     }
+//     10% {
+//         transform: translateX(3px)
+//     }
+//     25% {
+//         transform: translateX(-3px)
+//     }
+//     50% {
+//         transform: translateX(0px)
+//     }
+//     100% {
+//         transform: translateX(0px)
+//     }
+// }
+
 @keyframes shake {
-    0% {
-        transform: translateX(-3px)
-    }
-    10% {
-        transform: translateX(3px)
-    }
-    25% {
-        transform: translateX(-3px)
-    }
-    50% {
-        transform: translateX(0px)
-    }
-    100% {
-        transform: translateX(0px)
-    }
+    0% { transform: skewX(-15deg); }
+ 5% { transform: skewX(15deg); }
+ 10% { transform: skewX(-15deg); }
+ 15% { transform: skewX(15deg); }
+ 20% { transform: skewX(0deg); }
+ 100% { transform: skewX(0deg); }
 }
