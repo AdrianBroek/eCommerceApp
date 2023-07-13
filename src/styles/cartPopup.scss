@@ -43,6 +43,14 @@
             background-color: orange;
         }
     }
+    .image {
+        height: 200px;
+        width: 300px;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
     .toCart {
         border: none;
         background-color: #000;

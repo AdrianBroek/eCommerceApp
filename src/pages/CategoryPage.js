@@ -31,19 +31,23 @@ const ProductsPage = () => {
               breakpoint: 1024,
               settings: {
                 slidesToShow: 4,
+                dots: false
               }
             },
             {
               breakpoint: 600,
               settings: {
                 slidesToShow: 3,
+                dots: false
               }
             },
             {
               breakpoint: 400,
               settings: {
                 slidesToShow: 1,
-                rows: 1
+                rows: 1,
+                variableWidth: false,
+                dots: false
               }
             }
         ]

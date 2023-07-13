@@ -26,7 +26,7 @@ const Products = ({props}) => {
             <div className='items'>
                 <p className='brand'>{props.brand}</p>
             </div>
-            <p className='description' dangerouslySetInnerHTML={{__html: props.description.length > 120 ? props.description.substring(0,120)+"(...)" : props.description}}></p>
+            <p className='description' dangerouslySetInnerHTML={{__html: props.description.length > 80 ? props.description.substring(0,80)+"(...)" : props.description}}></p>
 
             <div className='price'>
                 <p>{props.price} <span>$</span></p>

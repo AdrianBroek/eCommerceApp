@@ -7,22 +7,23 @@ const CategorySquare = ({cat}) => {
     const dispatch = useDispatch()
     const {activeCategory} = useSelector(state => state.categories)
     const {pathname} = useLocation()
-    console.log(pathname)
+    // console.log(cat)
 
     function clickHandler(){
         dispatch({
             type: "SET_ACTIVE_CATEGORY", 
             payload: cat
         })
-        // this is not reloads
+        // this is not reloading
         window.history.pushState('null', '/category/${cat}', `/category/${cat}`);
+        // console.log(cat)
     }
 
     return (
         <>
         <div className={activeCategory === cat ? 'noselect category-square active' : 'noselect category-square'}>
             {pathname == '/' ? 
-            <Link to={'category/'+cat} className="square">{cat}</Link>    
+            <Link onClick={clickHandler} to={'category/'+cat} className="square">{cat}</Link>    
         : 
             <div
                 className="square"

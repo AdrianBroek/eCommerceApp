@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import booksAction from "../actions/bookAction";
 import changeAuthor from "../actions/changeAuthorAction";
@@ -15,10 +15,13 @@ import Slider from "react-slick";
 import baner1 from '../images/home page baner/letter_14-min.jpg'
 import baner2 from '../images/home page baner/pin_12-min.jpg'
 import baner3 from '../images/home page baner/tormarch19-min.jpg'
-import baner4 from '../images/home page baner/payment-min.jpg'
+import baner4 from '../images/home page baner/laptop_12-min.jpg'
 
 import ProductSlider from '../components/ProductSlider'
 import popupAction from '../actions/popupAction'
+
+import { motion } from "framer-motion";
+import { categorySquareHomePageAnim } from "../animations";
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -53,6 +56,8 @@ function HomePage() {
         autoplay: true,
         autoplaySpeed: 5500,
     }
+
+  const [showAllCat, setShowAllCat] = useState(false)
 
   return (
     <div id="home-page">
@@ -91,11 +96,20 @@ function HomePage() {
             Categories
             <Link className="link" to="/category"> - go to categories page!</Link>
           </h2>
-          <div className="categories-list">
+          <motion.div 
+            className={showAllCat ? "categories-list visible" : "categories-list"}
+            variants={categorySquareHomePageAnim}
+            initial="hidden"
+            animate={showAllCat ? "show" : 'hidden'}
+          >
             {!isLoadingCat && dataCat.map((el, index) => (
                 <CategorySquare key={index} cat={el} />
             ))}
-          </div>
+            <div onClick={()=>setShowAllCat(!showAllCat)}
+            className={showAllCat ? "hideCat flex visible" : "hideCat flex "}>
+              <button>{showAllCat ? "Hide" : "Show more"}</button>
+            </div>
+          </motion.div>
         </section>
         <section className="product-sliders">
           <ProductSlider url="laptops"/>

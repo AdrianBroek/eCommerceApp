@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faDiagramSuccessor, faInfoCircle, faThumbsUp, faX } from "@fortawesome/free-solid-svg-icons";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
-
+import { motion } from "framer-motion";
+import { popupAlertAnim } from "../animations";
 
 const Popup = ({popup, index}) => {
     const {popupList} = useSelector(state => state.popup)
@@ -83,7 +84,14 @@ const Popup = ({popup, index}) => {
     return (
         <>
         {!popStatus.reset && (
-            <div className="container-popup" onClick={(e)=>deletePopup(e)}>
+            <motion.div 
+            className="container-popup" 
+            onClick={(e)=>deletePopup(e)}
+            variants={popupAlertAnim}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            >
             {popStatus.success && (
                 <div className="success flex">
                     <FontAwesomeIcon color="white" icon={faCheckCircle}/>
@@ -94,7 +102,9 @@ const Popup = ({popup, index}) => {
                 </div>
             )}
             {popStatus.confirm && (
-                <div className="confirm flex">
+                <div className="confirm flex"
+
+                >
                     <FontAwesomeIcon color="white" icon={faThumbsUp}/>
                     <div className="popup-txt-container flex">
                         <h4>confirm</h4>
@@ -121,7 +131,7 @@ const Popup = ({popup, index}) => {
                     </div>
                 </div>
             )}
-            </div>
+            </motion.div>
         )}
         </>
     )

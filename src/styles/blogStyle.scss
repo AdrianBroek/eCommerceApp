@@ -201,5 +201,12 @@
     #blog-page .blog-list .post .title {
         font-size: 3.5vw;
     }
+    #blog-page .blog-list .post {
+        padding: .5rem;
+        height: 300px;
+        .tags {
+            font-size: 3vw;
+        }
+    }
 
 }
