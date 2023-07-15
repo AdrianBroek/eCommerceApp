@@ -129,3 +129,14 @@
         }
     }
 }
+
+
+@media screen and (max-width: 500px){
+    #home-page .hp-categories .page-title {
+        flex-direction: column;
+        margin: 5rem auto 2.5rem;
+        a {
+            color: orange;
+        }
+    }
+}

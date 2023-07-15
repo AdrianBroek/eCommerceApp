@@ -38,7 +38,7 @@ const ProductSlider = ({url}) => {
             }
           },
           {
-            breakpoint: 400,
+            breakpoint: 320,
             settings: {
               slidesToShow: 1,
               rows: 1,

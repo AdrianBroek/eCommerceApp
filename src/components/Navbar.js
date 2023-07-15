@@ -23,7 +23,7 @@ const Navbar = () => {
                 <div className="searchContainer">
                     <Search /> 
                 </div>
-                <Link to='/'>
+                <Link className="logo" to='/'>
                     <img src={logo} />
                 </Link>
                 <div className="flex">

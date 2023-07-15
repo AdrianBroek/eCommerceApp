@@ -19,7 +19,7 @@ const CartPopup = ({props}) => {
             <h2>Product added to a cart!</h2>
             <button onClick={()=>dispatch({type: "CLOSE_POPUP"})}>x</button>
             <div className="flex">
-                <div className="image">
+                <div className="image flex">
                     
                     <img onLoad={()=>setLoadImg(true)}
                     src={loadImg ? product.thumbnail : loaderGif} />

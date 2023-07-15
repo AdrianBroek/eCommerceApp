@@ -211,3 +211,12 @@
         max-width: 100%;
     }
 }
+
+@media screen and (max-width: 500px){
+    .productPage {
+        padding: .25rem;
+    }
+    .productPage .box .left .images {
+        min-width: 50px;
+    }
+}

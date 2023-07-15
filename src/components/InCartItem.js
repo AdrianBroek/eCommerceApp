@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import sendTotalData from "../actions/sendTotalData";
 import { useLocation } from "react-router-dom";
 import popupAction from "../actions/popupAction";
+import { motion } from "framer-motion";
 
 const InCartItem = ({props}) => {
     const {pathname} = useLocation()
@@ -143,7 +144,12 @@ const InCartItem = ({props}) => {
     return (
         <section className="product">
             <div className="quantity">
-                {edit ? (<button onClick={ ()=> plusQuantity() } className="plus"><FontAwesomeIcon icon={faPlus} /></button>):""}
+                {edit ? (<motion.button
+                whileTap={{scale: .8}}
+                whileHover={{
+                    scale: 0.8,
+                }}
+                onClick={ ()=> plusQuantity() } className="plus"><FontAwesomeIcon icon={faPlus} /></motion.button>):""}
                 {getQuantityFromCartRedux()}
                 {edit ? (<button onClick={ ()=> minusQuantity() } className="minus"><FontAwesomeIcon icon={faMinus} /></button>):""}
             </div>

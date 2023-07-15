@@ -29,7 +29,12 @@ const Cart = () => {
             )}
             {open && overlay.open && (
                 <div className="cartSettings">
-                    <button onClick={()=>clearAll()} className="clearCart">Clear all</button>
+                    <button 
+                    whileTap={{scale: .8}}
+                    whileHover={{
+                        scale: 0.8,
+                    }}
+                    onClick={()=>clearAll()} className="clearCart">Clear all</button>
                     <Link onClick={()=>dispatch({type:"OPEN_CART"})} to='/cart'><button className="toCart">To cart</button></Link>
                 </div>
             )}

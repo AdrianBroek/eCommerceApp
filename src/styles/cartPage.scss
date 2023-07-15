@@ -1,5 +1,6 @@
 #cartPage, 
 #orderPage {
+    padding-bottom: 5rem;
     #products {
         max-width: 1024px;
         min-width: 90%;
@@ -68,3 +69,12 @@
 }
 
 #cartPage {text-align: center;}
+
+@media screen and (max-width: 500px) {
+    #cartPage {
+        padding: .5rem;
+    }
+    #cartPage #products .table, #cartPage #products .product, #orderPage #products .table, #orderPage #products .product {
+        font-size: 2.5vw;
+    }
+}
