@@ -15,6 +15,7 @@ import { faEarDeaf, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import popupAction from "../actions/popupAction";
 import Order from "../components/Order";
 import InputHelper from "../components/InputHelper";
+import { motion } from "framer-motion";
 
 const AccountPage = () => {
 
@@ -394,11 +395,11 @@ const AccountPage = () => {
                             </div>
                             
                         </div>
-                        <button onClick={confirm} type="submit">Update</button>                
+                        <motion.button whileTap={{scale: .95}} onClick={confirm} type="submit">Update</motion.button>                
                     </form>
                 </div>
             ) : (
-                <button style={{marginTop: '1rem'}} className="buttona a flex">
+                <button style={{marginTop: '1rem'}} className="buttona login a flex">
                     <Link to="/login">
                         Login
                     </Link>

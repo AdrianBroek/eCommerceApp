@@ -146,12 +146,11 @@ const InCartItem = ({props}) => {
             <div className="quantity">
                 {edit ? (<motion.button
                 whileTap={{scale: .8}}
-                whileHover={{
-                    scale: 0.8,
-                }}
                 onClick={ ()=> plusQuantity() } className="plus"><FontAwesomeIcon icon={faPlus} /></motion.button>):""}
                 {getQuantityFromCartRedux()}
-                {edit ? (<button onClick={ ()=> minusQuantity() } className="minus"><FontAwesomeIcon icon={faMinus} /></button>):""}
+                {edit ? (<motion.button 
+                whileTap={{scale: .8}}
+                onClick={ ()=> minusQuantity() } className="minus"><FontAwesomeIcon icon={faMinus} /></motion.button>):""}
             </div>
             <div>
                 <img src={prodata.thumbnail} height='auto' width='60px'></img>
@@ -165,9 +164,9 @@ const InCartItem = ({props}) => {
                 {prodata.price} $
             </div>
             <div className="del">
-                <button className="a" onClick={()=> deleteItem()}>
+                <motion.button whileTap={{scale: .8}} className="a" onClick={()=> deleteItem()}>
                     <FontAwesomeIcon icon={faTrash} />
-                </button>
+                </motion.button>
             </div>
         </section>
     )

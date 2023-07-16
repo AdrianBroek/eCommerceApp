@@ -32,6 +32,7 @@ function App() {
   const dispatch = useDispatch()
   const {popup} = useSelector(state => state.cart)
   const {popupList} = useSelector(state => state.popup)
+  const {pathname} = useLocation()
 
   // check if order in local storage is on, 
   // if yes, now make one with empty array
@@ -47,6 +48,10 @@ function App() {
       })
     }
   }, [])
+
+  useEffect(()=> {
+    window.scrollTo(0,0);
+  }, [pathname])
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from './CartItem';
 import popupAction from '../actions/popupAction'
+import { motion } from "framer-motion";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -17,8 +18,10 @@ const Cart = () => {
     }
 
     return (
-        <section id='cart'>
-            <FontAwesomeIcon onClick={() => dispatch({type: "OPEN_CART"})} icon={faCartShopping} />
+        <motion.section id='cart'>
+            <motion.div whileTap={{scale: .85}} className="icon flex" onClick={() => dispatch({type: "OPEN_CART"})}>
+                <FontAwesomeIcon icon={faCartShopping} />
+            </motion.div>
             <p className='count'>{item.length}</p>
             {open && overlay.open && (
                 <div className={item.length > 0 ? "open-cart" : "open-cart fill"}>
@@ -29,17 +32,12 @@ const Cart = () => {
             )}
             {open && overlay.open && (
                 <div className="cartSettings">
-                    <button 
-                    whileTap={{scale: .8}}
-                    whileHover={{
-                        scale: 0.8,
-                    }}
-                    onClick={()=>clearAll()} className="clearCart">Clear all</button>
+                    <button onClick={()=>clearAll()} className="clearCart">Clear all</button>
                     <Link onClick={()=>dispatch({type:"OPEN_CART"})} to='/cart'><button className="toCart">To cart</button></Link>
                 </div>
             )}
 
-        </section>
+        </motion.section>
     )
 }
 

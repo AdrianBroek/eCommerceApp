@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import popupAction from "../actions/popupAction";
 import InputHelper from "../components/InputHelper";
+import { motion } from "framer-motion";
 
 const RegisterPage = () => {
 
@@ -317,7 +318,7 @@ const RegisterPage = () => {
                     <input className="address" onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required onChange={(e)=>inputHandler(e,'address')} value={input.address} id="address" type="text"/>
                     <label htmlFor="address">address</label>
                 </div>
-                <button className="abutton a" onClick={confirm}>Register</button>
+                <motion.button whileTap={{scale: .95}} className="abutton a" onClick={confirm}>Register</motion.button>
                 <p>Already have an account? <Link to="/login">Sign in</Link></p>
                 {activePopup.open ? 
                 (

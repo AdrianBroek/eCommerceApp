@@ -6,6 +6,8 @@ import { faUserPlus, faUser, faSignOut } from "@fortawesome/free-solid-svg-icons
 import { useDispatch, useSelector } from "react-redux";
 import Search from "./Search";
 import popupAction from "../actions/popupAction";
+import { motion } from "framer-motion";
+import { glow } from "../animations";
 
 const Navbar = () => {
     const dispatch = useDispatch()
@@ -44,9 +46,16 @@ const Navbar = () => {
                         <>
                             <Link className="my_account" to='/my_account'>
                                 {userData.avatar ? 
+                                    <>
                                     <div className="avatar-nav flex">
                                         <img src={userData.avatar} />
                                     </div>
+                                    <motion.div
+                                        variants={glow}
+                                        animate="show"
+                                        className="online-bubble">
+                                    </motion.div>
+                                    </>
                                 : 
                                     <FontAwesomeIcon color="white" icon={faUser} />
                                 }

@@ -35,10 +35,6 @@
             height: fit-content;
             border-radius: .25rem;
             padding: .5rem;
-            transition: .15s ease-out;
-            &:focus,&:active{
-                border: 2px solid #888;
-            }
         }
         input {
             border: 2px solid #888;

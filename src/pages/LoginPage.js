@@ -4,7 +4,7 @@ import loginAction from "../actions/loginAction";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faWrench, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
+import { motion } from "framer-motion";
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -20,7 +20,7 @@ const Login = () => {
     })
 
     useEffect(()=> {
-        console.log(data.id)
+        // console.log(data.id)
         if (data.id){
             dispatch(loginAction(data))
         }
@@ -62,9 +62,9 @@ const Login = () => {
         }
     }
 
-    useEffect(()=> {
-        console.log(er)
-    }, [er])
+    // useEffect(()=> {
+    //     console.log(er)
+    // }, [er])
 
     function submitHandler(e){
         e.preventDefault()
@@ -93,10 +93,10 @@ const Login = () => {
                         }
                     </div>
             </div>
-            <button className="a" type="submit">Login</button>
-            <button className="abutton b">
+            <motion.button whileTap={{scale: .95}} className="a" type="submit">Login</motion.button>
+            <motion.button whileTap={{scale: .95}} className="abutton b">
                 <Link to="/register">Register</Link>
-            </button>
+            </motion.button>
         </form>
         {logged && (
             <div className="popup">

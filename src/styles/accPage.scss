@@ -95,10 +95,6 @@
             border: 2px solid #888;
             border-radius: .25rem;
             padding: .5rem;
-            transition: .15s ease-out;
-            &:focus,&:active{
-                border: 1px solid #000;
-            }
         }
         div {
             position: relative;
@@ -187,6 +183,10 @@
                 cursor: unset;
             }
         }
+    }
+    .login {
+        width: 20%;
+        margin: 5rem auto;
     }
 }
 

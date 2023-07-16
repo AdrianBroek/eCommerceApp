@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesStacked, faMoneyBill, faStore, faTruck, faTruckDroplet, faTruckFast, faTruckField, faTruckPickup } from "@fortawesome/free-solid-svg-icons";
 import { faApplePay, faCcMastercard, faCcVisa, faDhl, faFacebook, faGooglePay } from "@fortawesome/free-brands-svg-icons"
 import { useOutletContext } from "react-router-dom";
-import { act } from "react-dom/test-utils";
+import { motion } from "framer-motion";
 
 const Delivery = () => {
 
@@ -333,29 +333,29 @@ const Delivery = () => {
         <section id="delivery" className="flex">
             {logged ? (
                 <div>
-                    <form onSubmit={submitHandler}>
+                    <form novalidate="novalidate" onSubmit={submitHandler}>
                         <h2>Personal data for the order</h2>
                         <div className="username">
-                            <input id="username" name="username" onChange={inputHandler} type="text" value={data.username} />
+                            <input required novalidate id="username" name="username" onChange={inputHandler} type="text" value={data.username} />
                             <label for="username">User name</label>
                         </div>
                         <div className="firstname">
-                            <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
+                            <input required novalidate id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
                             <label for="firstname">First name</label>
                         </div>
                         <div className="lastname">
-                            <input id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
+                            <input required novalidate id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
                             <label for="lastname">Last name</label>
                         </div>
                         <div className="email">
-                            <input className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
+                            <input required novalidate className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
                             <label for="email">Email</label>
                         </div>
                         <div className="address">
-                            <input id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
+                            <input required novalidate id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
                             <label for="address">Address</label>
                         </div>
-                        <button onClick={confirm} type="submit">Verify</button>
+                        <motion.button whileTap={{scale: .95}} onClick={confirm} type="submit">Verify</motion.button>
                     </form>
                     {activePopup.open ? 
                     (
@@ -389,26 +389,26 @@ const Delivery = () => {
                     <form onSubmit={submitHandler}>
                         <h2>Order as a guest</h2>
                         <div className="firstname">
-                            <input id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
+                            <input required novalidate id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />
                             <label for="firstname">First name</label>
                         </div>
                         <div className="lastname">
-                            <input id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
+                            <input required novalidate id="lastname" name="lastname" onChange={inputHandler} type="text" value={data.lastname} />
                             <label for="lastname">Last name</label>
                         </div>
                         <div className="email">
-                            <input className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
+                            <input required novalidate className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
                             <label for="email">Email</label>
                         </div>
                         <div className="address">
-                            <input id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
+                            <input required novalidate id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
                             <label for="address">Address</label>
                         </div>
                         {/* <div className="password">
                             <input className="password" id="password" name="password" onChange={inputHandler} type="password" value={data.password} />
                             <label for="password">Password</label>
                         </div> */}
-                        <button onClick={confirm} type="submit">Verify</button>                
+                        <motion.button whileTap={{scale: .95}} onClick={confirm} type="submit">Verify</motion.button>                
                     </form>
                 </div>
                 </>

@@ -66,3 +66,14 @@ export const popupAlertAnim = {
         }
     }
 }
+
+export const glow = {
+    show: {
+        boxShadow: '0px 0px 15px #50c878',
+        transition: {
+            yoyo : Infinity,
+            duration : .85,
+            ease: 'easeInOut'
+        }   
+    }
+}
