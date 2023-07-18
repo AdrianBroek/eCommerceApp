@@ -15,8 +15,7 @@ export function checkPassw(str) {
     }
 
 // validate
-export function inputsValidate(){
-    
+export function inputsValidate(register){
     const inputs = document.querySelectorAll('form input')
     // console.log(inputs)
     inputs.forEach((element, index) => {
@@ -33,14 +32,24 @@ export function inputsValidate(){
 
             if (element.classList.contains("email")){
                 // check mail
-
-                // console.log(element.value)
-                if (checkMail(element.value)){
-                    element.classList.remove('wrong')
-                    element.style.border="2px solid green"
-                }else {
-                    element.style.border="2px solid red"
+                // if register(registerPage) is true, check if mail is already existed as well
+                if(register){
+                    if (checkMail(element.value) && checkIfMailExist(element.value)){
+                        element.classList.remove('wrong')
+                        element.style.border="2px solid green"
+                    }else {
+                        element.style.border="2px solid red"
+                    }
+                }else{
+                    // console.log(element.value)
+                    if (checkMail(element.value)){
+                        element.classList.remove('wrong')
+                        element.style.border="2px solid green"
+                    }else {
+                        element.style.border="2px solid red"
+                    }
                 }
+                
             }
             if (element.classList.contains("password")){
                 // check passw
@@ -59,5 +68,27 @@ export function inputsValidate(){
     }});
 }
 
+export function checkIfMailExist(mail){
+    const storage = JSON.parse(window.localStorage.getItem('user'))
+    let check
+    // check if mail variable is in storage
+    if(storage != null){
+        const loggedUser = storage.filter(item => 
+            item.email == mail
+        )
+        // if yes then email exists = put check variable to false
+        if(loggedUser.length > 0){
+    
+            check = false
+        }else {
+            // if no then email is free to use
+            // = put check variable to true
+            check = true
+        }
+    }else {
+        check = true
+    }
+    
 
-
+    return check
+}

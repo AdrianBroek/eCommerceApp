@@ -7,7 +7,8 @@ import {
     inputsValidate,
     containsUppercase,
     checkMail,
-    checkPassw
+    checkPassw,
+    checkIfMailExist
 } from '../components/inputValidate'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -102,7 +103,8 @@ const RegisterPage = () => {
 
     // validate
     useEffect(()=> {
-        inputsValidate()
+        inputsValidate(true)
+        // console.log('inputy sie sprawdwzaja')
     }, [inputHandler])
 
     function confirm(){
@@ -125,6 +127,7 @@ const RegisterPage = () => {
                     valid: false,
                 }))
             )
+            // then reset correctCheck state
             .then(
                 setCorrectCheck(prevState => ({
                     username: false,
@@ -135,20 +138,24 @@ const RegisterPage = () => {
                     password: false,
                 }))
             )
+            // then reset input state
             .then(
                 setInput(prevState => ({
                     ...prevState,
-                username: '',
-                firstname: '',
-                lastname: '',
-                email: '',
-                password: '',
-                address: ''
+                    username: '',
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    password: '',
+                    address: ''
                 }))
             )
+            // then set popup with success type
             .then (
                 dispatch(popupAction('success'))
             )
+        } else if (activePopup.confirm === false && activePopup.open === true && activePopup.valid === false && !checkIfMailExist(input.email))  {
+            dispatch(popupAction('error','Email has already been registered'))
         } else if (activePopup.confirm === false && activePopup.open === true && activePopup.valid === false)  {
             dispatch(popupAction('error'))
         }
@@ -224,9 +231,7 @@ const RegisterPage = () => {
 
                 if (element.classList.contains("email")){
                     // check mail
-
-                    // console.log(element.value)
-                    if (checkMail(element.value)){
+                    if (checkIfMailExist(element.value) && checkMail(element.value)){
                         element.classList.remove('wrong')
                         element.style.border="2px solid green"
                         setCorrectCheck(prevState => ({
@@ -239,7 +244,12 @@ const RegisterPage = () => {
                         setTimeout(()=> {
                             element.classList.remove('wrong')
                         },[1000])
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            email: false,
+                        }))  
                     }
+                    // checkIfMailExist()
                 }
                 if (element.classList.contains("password")){
                     // check passw
@@ -275,7 +285,7 @@ const RegisterPage = () => {
 
     function setFocusInput (e){
         setFinput(e.target.id)
-        console.log(finput)
+        // console.log(finput)
     }
 
     return (

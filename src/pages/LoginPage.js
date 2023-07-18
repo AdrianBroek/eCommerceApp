@@ -46,20 +46,26 @@ const Login = () => {
     }
 
     function checkData(){
-        let loggedUser = storage.filter(item => 
-            item.password == data.password
-            &&
-            item.email == data.mail
-        )
-        console.log(loggedUser)
-        if (loggedUser.length > 0) {
-            setData(prevState => ({
-                ...prevState,
-                id: loggedUser[0].id
-            }))
+        let loggedUser
+        if(storage) {
+            loggedUser = storage.filter(item => 
+                item.password == data.password
+                &&
+                item.email == data.mail
+            )
+            if (loggedUser.length > 0) {
+                setData(prevState => ({
+                    ...prevState,
+                    id: loggedUser[0].id
+                }))
+            }else {
+                setEr({active : true})
+            }
         }else {
             setEr({active : true})
         }
+        // console.log(storage)
+       
     }
 
     // useEffect(()=> {

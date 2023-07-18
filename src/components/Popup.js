@@ -29,7 +29,7 @@ const Popup = ({popup, index}) => {
     },[5000])
 
     useEffect(()=>{
-        switch(popup.status){
+        switch(popup.popup.status){
             case "error":
                 setPopStatus(state => ({
                     ...state,
@@ -96,8 +96,16 @@ const Popup = ({popup, index}) => {
                 <div className="success flex">
                     <FontAwesomeIcon color="white" icon={faCheckCircle}/>
                     <div className="popup-txt-container flex">
-                        <h4>success</h4>
-                        <p>Cheers!</p>
+                        {popup.popup.msg ? 
+                            <>
+                                <h4>Success</h4>
+                                <p>{popup.popup.msg}</p>
+                            </>
+                            :<>
+                                <h4>Success</h4>
+                                <p>Cheers!</p>
+                            </>
+                        }
                     </div>
                 </div>
             )}
@@ -107,8 +115,16 @@ const Popup = ({popup, index}) => {
                 >
                     <FontAwesomeIcon color="white" icon={faThumbsUp}/>
                     <div className="popup-txt-container flex">
-                        <h4>confirm</h4>
-                        <p>Something went wrong. Please try again.</p>
+                        {popup.popup.msg ? 
+                            <>
+                                <h4>Confirm</h4>
+                                <p>{popup.popup.msg}</p>
+                            </>
+                            :<>
+                                <h4>Confirm</h4>
+                                <p>Something went wrong. Please try again.</p>
+                            </>
+                        }
                     </div>
                 </div>
             )}
@@ -116,8 +132,16 @@ const Popup = ({popup, index}) => {
                 <div className="err flex">
                     <FontAwesomeIcon color="white" icon={faXmarkCircle}/>
                     <div className="popup-txt-container flex">
+                        {popup.popup.msg ? 
+                        <>
+                            <h4>error</h4>
+                            <p>{popup.popup.msg}</p>
+                        </>
+                        :<>
                         <h4>error</h4>
                         <p>Something went wrong. Please try again.</p>
+                        </>
+                        }
                     </div>
                     
                 </div>
@@ -126,8 +150,16 @@ const Popup = ({popup, index}) => {
                 <div className="info flex">
                     <FontAwesomeIcon color="white" icon={faInfoCircle}/>
                     <div className="popup-txt-container flex">
-                        <h4>info</h4>
-                        <p>Something went wrong. Please try again.</p>
+                        {popup.popup.msg ? 
+                            <>
+                                <h4>info</h4>
+                                <p>{popup.popup.msg}</p>
+                            </>
+                            :<>
+                                <h4>error</h4>
+                                <p>Something went wrong. Please try again.</p>
+                            </>
+                        }
                     </div>
                 </div>
             )}
