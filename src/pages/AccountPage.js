@@ -271,8 +271,6 @@ const AccountPage = () => {
         var ext = getExtension(filename);
         switch (ext.toLowerCase()) {
             case 'jpg':
-            case 'gif':
-            case 'bmp':
             case 'png':
             case 'webp':
             //etc
@@ -315,10 +313,12 @@ const AccountPage = () => {
                     ...state,
                     avatar: url
                 }))
-                dispatch(popupAction('success'))
+                dispatch(popupAction('success','image loaded'))
             })
+            
         }else {
-            dispatch(popupAction('error'))
+            dispatch(popupAction('error','You can only add jpg/jpeg/png/webp images '))
+            
         }
         
     };
@@ -334,7 +334,15 @@ const AccountPage = () => {
         setFinput(e.target.id)
         // console.log(finput)
     }
-   
+
+    function avatarDelete (e){
+        dispatch({type:"AVATAR_DELETE"})
+        setData(state => ({
+            ...state,
+            avatar: ''
+        }))
+        dispatch(popupAction('success','Avatar deleted'))
+    }
 
     return (
         <section id="acc_page">
@@ -350,15 +358,16 @@ const AccountPage = () => {
                             <img 
                             src={data.avatar ? data.avatar : userData.avatar} 
                             />
+                            {userData.avatar || data.avatar ? <div onClick={()=>avatarDelete()} className="delete-avatar flex">x</div> : ''}
                             <div ref={fileInput} className="input-file-avatar">                            
                                 <label className="flex" for="avatar_input">{avatarName ? avatarName : "Change avatar"}</label>
                                 <input 
-                                onChange={avatarHandler} 
-                                onDragEnter={e => fileInputDragEnter(e)}
-                                onDragLeave={e => fileInputDragLeave(e)}
-                                onDrop={e => fileInputDragDrop(e)}
-                                type="file" 
-                                id="avatar_input"
+                                    onChange={avatarHandler} 
+                                    onDragEnter={e => fileInputDragEnter(e)}
+                                    onDragLeave={e => fileInputDragLeave(e)}
+                                    onDrop={e => fileInputDragDrop(e)}
+                                    type="file" 
+                                    id="avatar_input"
                                 />
                             </div>
                         </div>

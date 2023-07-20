@@ -386,7 +386,7 @@ const Delivery = () => {
                 </button>
                 <p>or order as a <b>guest</b></p>
                 <div>
-                    <form onSubmit={submitHandler}>
+                    <form noValidate="noValidate" onSubmit={submitHandler}>
                         <h2>Order as a guest</h2>
                         <div className="firstname">
                             <input required novalidate id="firstname" name="firstname" onChange={inputHandler} type="text" value={data.firstname} />

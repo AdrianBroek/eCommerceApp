@@ -54,6 +54,14 @@ const login = (state = initState, action) => {
                     avatar: '',
                 }
             }
+        case "AVATAR_DELETE":
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    avatar: '',
+                }
+            }
         default:
             return {
                 ...state

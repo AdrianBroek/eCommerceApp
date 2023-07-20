@@ -16,7 +16,7 @@ const Blog = (data) => {
 
     useEffect(()=> {
         setImage('https://picsum.photos/200')
-        console.log(image)
+        // console.log(image)
     }, [])
 
     // GenerateImage()

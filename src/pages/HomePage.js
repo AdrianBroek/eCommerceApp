@@ -8,7 +8,7 @@ import categoriesDataAction from '../actions/categoriesDataAction'
 import Products from '../components/Products'
 import CategorySquare from '../components/CategorySquare'
 import '../styles/app.scss'
-import { Routes , Route, useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // slider
 import Slider from "react-slick";
 // banner images
@@ -18,7 +18,6 @@ import baner3 from '../images/home page baner/tormarch19-min.jpg'
 import baner4 from '../images/home page baner/laptop_12-min.jpg'
 
 import ProductSlider from '../components/ProductSlider'
-import popupAction from '../actions/popupAction'
 
 import { motion } from "framer-motion";
 import { categorySquareHomePageAnim } from "../animations";
@@ -34,15 +33,15 @@ function HomePage() {
     const {popupList} = useSelector(state=>state.popup)
     const {dataCat, isLoadingCat, activeCategory} = useSelector(state => state.categories)
     const {autor, tytuł} = useSelector(state => state.books)
-      // slider
-      const sliderRef = useRef();
-      const sliderRef2 = useRef();
-      //slider main options 
-      const settings = {
-        asNavFor: sliderRef2.current,
-        slidesToShow: 1,
-        dots: true,
-        arrows: false,
+    // slider
+    const sliderRef = useRef();
+    const sliderRef2 = useRef();
+    //slider main options 
+    const settings = {
+      asNavFor: sliderRef2.current,
+      slidesToShow: 1,
+      dots: true,
+      arrows: true,
     }
 
     //slider nav options
