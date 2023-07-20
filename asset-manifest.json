@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/eCommerceApp/static/css/main.e97e30be.css",
-    "main.js": "/eCommerceApp/static/js/main.b93b3bc2.js",
+    "main.css": "/eCommerceApp/static/css/main.4cd27837.css",
+    "main.js": "/eCommerceApp/static/js/main.bf369c8c.js",
     "static/media/gandalf-you-shall-not-pass.gif": "/eCommerceApp/static/media/gandalf-you-shall-not-pass.12c86eacba1b3bd4bea4.gif",
     "static/media/pexels-tembela-bohle-1884579.jpg": "/eCommerceApp/static/media/pexels-tembela-bohle-1884579.3ddbd01844e71816ec48.jpg",
-    "static/media/pexels-karolina-grabowska-4464821.jpg": "/eCommerceApp/static/media/pexels-karolina-grabowska-4464821.701710642c65fa97b1ff.jpg",
     "static/media/tormarch19-min.jpg": "/eCommerceApp/static/media/tormarch19-min.16b2f27de65f2ee05b75.jpg",
     "static/media/laptop_12-min.jpg": "/eCommerceApp/static/media/laptop_12-min.3a5087ab2fc49efa3f65.jpg",
     "static/media/pin_12-min.jpg": "/eCommerceApp/static/media/pin_12-min.44679a2de5bce08a5fde.jpg",
     "static/media/letter_14-min.jpg": "/eCommerceApp/static/media/letter_14-min.7cd7710b3284a1cf5992.jpg",
+    "static/media/pexels-karolina-grabowska-4464821.jpg": "/eCommerceApp/static/media/pexels-karolina-grabowska-4464821.d0de800ac5b8b9462a2c.jpg",
     "static/media/no-pic-avatar.png": "/eCommerceApp/static/media/no-pic-avatar.4528e6f2751f53694618.png",
     "static/media/loaderGif.gif": "/eCommerceApp/static/media/loaderGif.9ec70a06685e83a3a939.gif",
     "static/media/no-results.png": "/eCommerceApp/static/media/no-results.e6359f53f34f2703c335.png",
@@ -19,11 +19,11 @@
     "static/media/slick.ttf": "/eCommerceApp/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/eCommerceApp/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/eCommerceApp/index.html",
-    "main.e97e30be.css.map": "/eCommerceApp/static/css/main.e97e30be.css.map",
-    "main.b93b3bc2.js.map": "/eCommerceApp/static/js/main.b93b3bc2.js.map"
+    "main.4cd27837.css.map": "/eCommerceApp/static/css/main.4cd27837.css.map",
+    "main.bf369c8c.js.map": "/eCommerceApp/static/js/main.bf369c8c.js.map"
   },
   "entrypoints": [
-    "static/css/main.e97e30be.css",
-    "static/js/main.b93b3bc2.js"
+    "static/css/main.4cd27837.css",
+    "static/js/main.bf369c8c.js"
   ]
 }
