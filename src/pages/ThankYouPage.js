@@ -34,6 +34,8 @@ const ThankYouPage = () => {
         if(singleUser){
             // if order in storage is empty
             if(singleUser.order == null){
+                console.log(singleUser)
+                console.log('order is empty in storage')
                 dispatch(registerAction({
                     username: singleUser.username,
                     firstname: singleUser.firstname,
@@ -52,6 +54,9 @@ const ThankYouPage = () => {
                 // if not empty, add another order ID to the array and update user with new order
                 let arrayOfOrders = singleUser.order
                 arrayOfOrders.push(orderData.id)
+                console.log(arrayOfOrders)
+                console.log(singleUser)
+                console.log('order isnt empty so we should add')
                 dispatch(registerAction({
                     username: singleUser.username,
                     firstname: singleUser.firstname,
