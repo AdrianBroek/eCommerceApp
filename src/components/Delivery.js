@@ -7,7 +7,8 @@ import {
     inputsValidate,
     containsUppercase,
     checkMail,
-    checkPassw
+    checkPassw,
+    checkIfMailExist
 } from '../components/inputValidate'
 import CustomInput from "./CustomInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,7 @@ import { faBoxesStacked, faMoneyBill, faStore, faTruck, faTruckDroplet, faTruckF
 import { faApplePay, faCcMastercard, faCcVisa, faDhl, faFacebook, faGooglePay } from "@fortawesome/free-brands-svg-icons"
 import { useOutletContext } from "react-router-dom";
 import { motion } from "framer-motion";
+import popupAction from "../actions/popupAction";
 
 const Delivery = () => {
 
@@ -50,7 +52,7 @@ const Delivery = () => {
         isSet: false
     })
 
-    console.log(active.delivery)
+    // console.log(active.delivery)
 
     // update delivery options
     useEffect(()=> {
@@ -80,7 +82,7 @@ const Delivery = () => {
         }
     }, [active])
 
-    console.log(active)
+    // console.log(active)
 
     useEffect(()=> {
         // console.log(active.payment)
@@ -95,7 +97,6 @@ const Delivery = () => {
     useEffect(()=> {
         if(active.isSet) {
             dispatch({type: 'ORDER_DELIVERY_SET', payload: true})
-            console.log('tak2')
         }
     }, [deliveryOption])
 
@@ -103,7 +104,6 @@ const Delivery = () => {
         if (delivery.payment.type && delivery.courier.type && delivery.delivery.type && delivery.agreement.type){
             if(active.isSet) {
                 setDeliveryOption(true)
-                console.log('tak')
             }
         }
     }, [active.isSet])
@@ -158,6 +158,13 @@ const Delivery = () => {
                 setData((state) => ({...state, lastname: e.target.value}))
                 break;
             case "email" :
+                // if email already exists
+                if(!checkIfMailExist(e.target.value) && e.target.classList.contains('guest')){
+                    e.target.classList.add('email-used') 
+                    dispatch(popupAction('info', 'This email address is already used, you can still purchase but you have to add correct password'))
+                }else {
+                    e.target.classList.remove('email-used')
+                }
                 setData((state) => ({...state, email: e.target.value}))
                 break;
             case "address" :
@@ -177,7 +184,7 @@ const Delivery = () => {
         const inputs = document.querySelectorAll('input')
         
         inputs.forEach((element, index) => {
-            if (element.value.length >= 6){
+            if (element.value.length >= 3){
                 // if has more than 5 letters - start
                 if (containsUppercase(element.value)){
                     // if has 1 uppercase letter
@@ -397,7 +404,7 @@ const Delivery = () => {
                             <label for="lastname">Last name</label>
                         </div>
                         <div className="email">
-                            <input required novalidate className="email" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
+                            <input required novalidate className="email guest" id="email" name="email" onChange={inputHandler} type="text" value={data.email} />
                             <label for="email">Email</label>
                         </div>
                         <div className="address">

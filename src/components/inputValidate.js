@@ -88,7 +88,5 @@ export function checkIfMailExist(mail){
     }else {
         check = true
     }
-    
-
     return check
 }

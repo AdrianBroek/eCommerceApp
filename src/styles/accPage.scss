@@ -136,6 +136,9 @@
                 animation: shake 1s;
             }
         }
+        input.email-used {
+            border: 2px solid orange !important;
+        }
         label {
             position: absolute;
             top: 50%;

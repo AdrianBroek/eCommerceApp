@@ -103,8 +103,8 @@ const CustomInput = ({name, value, active, setActive, cost}) => {
     }
 
     useEffect(()=> {
-        console.log(active)
-        console.log(value)
+        // console.log(active)
+        // console.log(value)
     }, [active])
 
     return (
