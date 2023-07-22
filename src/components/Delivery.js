@@ -12,7 +12,7 @@ import {
 } from '../components/inputValidate'
 import CustomInput from "./CustomInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBoxesStacked, faMoneyBill, faStore, faTruck, faTruckDroplet, faTruckFast, faTruckField, faTruckPickup } from "@fortawesome/free-solid-svg-icons";
+import { faBoxesStacked, faMoneyBill, faStore, faTruck, faTruckDroplet, faTruckFast, faTruckField, faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 import { faApplePay, faCcMastercard, faCcVisa, faDhl, faFacebook, faGooglePay } from "@fortawesome/free-brands-svg-icons"
 import { useOutletContext } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -21,6 +21,8 @@ import popupAction from "../actions/popupAction";
 const Delivery = () => {
 
     const dispatch = useDispatch()
+    // password input hide/show
+    const [passwordShown, setPasswordShown] = useState(false)
     
     const { logged, userData } = useSelector(state => state.loggedStatus)
 
@@ -133,18 +135,13 @@ const Delivery = () => {
         }
         // if guest and email exists
         else if(!logged && emailAlreadyInUse){
-            console.log('not logged, and email is already in use')
-            console.log(existPasswordValidate)
             if(correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address && correctCheck.password && existPasswordValidate){
-                console.log('zgadza sie all')
-                
                 // totalData delivery
                 dispatch({type: 'SET_PERSONAL_DATA', payload: data})
                 setActivePopup(prevState => ({
                     ...prevState,
                     valid: true
                 }))
-                console.log(activePopup)
             }else {
                 setActivePopup(prevState => ({
                     ...prevState,
@@ -265,13 +262,7 @@ const Delivery = () => {
                         default :
                             return setCorrectCheck(prevState => ({...prevState}))
                     }
-                } else {
-                    element.style.border="2px solid red"
-                    element.classList.add('wrong')
-                    setTimeout(()=> {
-                        element.classList.remove('wrong')
-                    },[1000])
-                }
+                
                 // check passw
                 if (element.classList.contains("password")){
                     // console.log(element.value)
@@ -313,6 +304,13 @@ const Delivery = () => {
                         },[1000])
                     }
                 }
+            } else {
+                element.style.border="2px solid red"
+                element.classList.add('wrong')
+                setTimeout(()=> {
+                    element.classList.remove('wrong')
+                },[1000])
+            }
             } else {
                     element.style.border="2px solid red"
                     element.classList.add('wrong')
@@ -475,8 +473,15 @@ const Delivery = () => {
                         </div>
                         {emailAlreadyInUse ? 
                         <div className="password">
-                            <input className="password" id="password" name="password" onChange={inputHandler} type="password" value={data.password} />
+                            <input type={passwordShown ? "text" : "password"} className="password" id="password" name="password" onChange={inputHandler} value={data.password} />
                             <label for="password">Password</label>
+                            <div onClick={()=>setPasswordShown(!passwordShown)}>
+                                {passwordShown ? 
+                                    <FontAwesomeIcon icon={faEyeSlash}/>
+                                    :
+                                    <FontAwesomeIcon icon={faEye}/>    
+                                }
+                            </div>
                         </div>
                         : ""}
                         <motion.button whileTap={{scale: .95}} onClick={confirm} type="submit">Verify</motion.button>                

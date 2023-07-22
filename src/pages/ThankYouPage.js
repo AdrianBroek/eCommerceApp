@@ -24,6 +24,7 @@ const ThankYouPage = () => {
         // set local storage to what is in local storage + new one
         localStorage.setItem('orders', JSON.stringify(oldOrders))
         dispatch({type: "ORDER_RESET"})
+        dispatch({type: "SET_PERSONAL_DATA", payload: false})
     }
     
     

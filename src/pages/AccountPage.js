@@ -139,14 +139,6 @@ const AccountPage = () => {
                         default :
                             return setCorrectCheck(prevState => ({...prevState}))
                     }
-                } else {
-                    element.style.border="2px solid red"
-                    element.classList.add('wrong')
-                    setTimeout(()=> {
-                        element.classList.remove('wrong')
-                    },[1000])
-                }
-
                 if (element.classList.contains("email")){
                     // check mail
 
@@ -185,6 +177,13 @@ const AccountPage = () => {
                         },[1000])
                     }
                 }
+            } else {
+                element.style.border="2px solid red"
+                element.classList.add('wrong')
+                setTimeout(()=> {
+                    element.classList.remove('wrong')
+                },[1000])
+            }
             } else {
                     element.style.border="2px solid red"
                     element.classList.add('wrong')
