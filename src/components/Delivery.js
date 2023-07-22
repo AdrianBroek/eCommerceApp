@@ -52,6 +52,9 @@ const Delivery = () => {
         isSet: false
     })
 
+    const [emailAlreadyInUse, setEmailAlreadyInUse] = useState(false)
+    const [existPasswordValid, setExistPasswordValid] = useState(false)
+
     // console.log(active.delivery)
 
     // update delivery options
@@ -110,8 +113,9 @@ const Delivery = () => {
 
     //////////////
 
-
+    // if correct inputs, dispatch personal data to redux
     useEffect(()=> {
+        // if logged user
         if(logged){
             if(correctCheck.username && correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address){
                 // totalData delivery
@@ -126,7 +130,30 @@ const Delivery = () => {
                     valid: false
                 }))
             }
-        }else{
+        }
+        // if guest and email exists
+        else if(!logged && emailAlreadyInUse){
+            console.log('not logged, and email is already in use')
+            console.log(existPasswordValidate)
+            if(correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address && correctCheck.password && existPasswordValidate){
+                console.log('zgadza sie all')
+                
+                // totalData delivery
+                dispatch({type: 'SET_PERSONAL_DATA', payload: data})
+                setActivePopup(prevState => ({
+                    ...prevState,
+                    valid: true
+                }))
+                console.log(activePopup)
+            }else {
+                setActivePopup(prevState => ({
+                    ...prevState,
+                    valid: false
+                }))
+            }
+        }
+        // if guest
+        else{
             if(correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address){
                 // totalData delivery
                 dispatch({type: 'SET_PERSONAL_DATA', payload: data})
@@ -161,9 +188,11 @@ const Delivery = () => {
                 // if email already exists
                 if(!checkIfMailExist(e.target.value) && e.target.classList.contains('guest')){
                     e.target.classList.add('email-used') 
+                    setEmailAlreadyInUse(true)
                     dispatch(popupAction('info', 'This email address is already used, you can still purchase but you have to add correct password'))
                 }else {
                     e.target.classList.remove('email-used')
+                    setEmailAlreadyInUse(false)
                 }
                 setData((state) => ({...state, email: e.target.value}))
                 break;
@@ -185,7 +214,7 @@ const Delivery = () => {
         
         inputs.forEach((element, index) => {
             if (element.value.length >= 3){
-                // if has more than 5 letters - start
+                // if has more than 3 letters - start
                 if (containsUppercase(element.value)){
                     // if has 1 uppercase letter
                     element.style.border="2px solid green"
@@ -226,6 +255,7 @@ const Delivery = () => {
                             break
                         }
                         case "password": {
+                            
                             setCorrectCheck(prevState => ({
                                 ...prevState,         
                                 password: true,
@@ -242,10 +272,32 @@ const Delivery = () => {
                         element.classList.remove('wrong')
                     },[1000])
                 }
-
+                // check passw
+                if (element.classList.contains("password")){
+                    // console.log(element.value)
+                    console.log(correctCheck)
+                    console.log(activePopup)
+                    if (checkPassw(element.value) && existPasswordValidate){
+                        element.style.border="2px solid green"
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            email: true,
+                        }))
+                    } else {
+                        element.style.border="2px solid red"
+                        element.classList.add('wrong')
+                        setTimeout(()=> {
+                            element.classList.remove('wrong')
+                        },[1000])
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            email: false,
+                        }))
+                    }
+                }
                 // check mail
                 if (element.classList.contains("email")){
-                    
+
                     if (checkMail(element.value)){
                         element.classList.remove('wrong')
                         element.style.border="2px solid green"
@@ -336,6 +388,16 @@ const Delivery = () => {
         }
     }, [activePopup])
 
+
+    // if password for guest existed mail is correct
+    const existUser = JSON.parse(localStorage.getItem('user')).filter(user => user.email == data.email)[0]
+    let existPasswordValidate = false
+    // get password of that user
+    if(existUser){
+        // check if password is correct
+        existPasswordValidate = data.password == existUser.password
+    }
+
     return (
         <section id="delivery" className="flex">
             {logged ? (
@@ -411,10 +473,12 @@ const Delivery = () => {
                             <input required novalidate id="address" name="address" onChange={inputHandler} type="text" value={data.address} />
                             <label for="address">Address</label>
                         </div>
-                        {/* <div className="password">
+                        {emailAlreadyInUse ? 
+                        <div className="password">
                             <input className="password" id="password" name="password" onChange={inputHandler} type="password" value={data.password} />
                             <label for="password">Password</label>
-                        </div> */}
+                        </div>
+                        : ""}
                         <motion.button whileTap={{scale: .95}} onClick={confirm} type="submit">Verify</motion.button>                
                     </form>
                 </div>

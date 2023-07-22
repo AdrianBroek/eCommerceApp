@@ -19,8 +19,8 @@ const OrderPage = () => {
     const totalCart = useSelector(state => state.totalCart)
     const delivery = useSelector(state => state.delivery)
     const loggedStatus = useSelector(state => state.loggedStatus)
-    function setOrder(){
-        
+    
+    function setOrder(){    
         const orderUser = {
             userData: totalCart.personalData,
             registered: loggedStatus.logged
