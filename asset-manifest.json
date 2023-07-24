@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/eCommerceApp/static/css/main.f3566051.css",
-    "main.js": "/eCommerceApp/static/js/main.9bb44b05.js",
+    "main.css": "/eCommerceApp/static/css/main.5708af4f.css",
+    "main.js": "/eCommerceApp/static/js/main.8f6e69ed.js",
     "static/media/gandalf-you-shall-not-pass.gif": "/eCommerceApp/static/media/gandalf-you-shall-not-pass.12c86eacba1b3bd4bea4.gif",
     "static/media/pexels-tembela-bohle-1884579.jpg": "/eCommerceApp/static/media/pexels-tembela-bohle-1884579.3ddbd01844e71816ec48.jpg",
     "static/media/tormarch19-min.jpg": "/eCommerceApp/static/media/tormarch19-min.16b2f27de65f2ee05b75.jpg",
@@ -19,11 +19,11 @@
     "static/media/slick.ttf": "/eCommerceApp/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/eCommerceApp/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/eCommerceApp/index.html",
-    "main.f3566051.css.map": "/eCommerceApp/static/css/main.f3566051.css.map",
-    "main.9bb44b05.js.map": "/eCommerceApp/static/js/main.9bb44b05.js.map"
+    "main.5708af4f.css.map": "/eCommerceApp/static/css/main.5708af4f.css.map",
+    "main.8f6e69ed.js.map": "/eCommerceApp/static/js/main.8f6e69ed.js.map"
   },
   "entrypoints": [
-    "static/css/main.f3566051.css",
-    "static/js/main.9bb44b05.js"
+    "static/css/main.5708af4f.css",
+    "static/js/main.8f6e69ed.js"
   ]
 }
