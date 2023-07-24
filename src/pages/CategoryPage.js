@@ -37,7 +37,7 @@ const ProductsPage = () => {
             {
               breakpoint: 600,
               settings: {
-                slidesToShow: 3,
+                slidesToShow: 2,
                 variableWidth: false,
                 dots: false
               }

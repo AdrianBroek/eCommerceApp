@@ -86,7 +86,7 @@ const AccountPage = () => {
 
         const inputs = document.querySelectorAll('input')
         inputs.forEach((element, index) => {
-            if (element.value.length >= 6){
+            if (element.value.length >= 3){
                 // if has more than 5 letters - start
 
                 if (containsUppercase(element.value)){
@@ -254,7 +254,7 @@ const AccountPage = () => {
                     ...state,
                     avatar: url
                 }))
-                dispatch(popupAction('success'))
+                dispatch(popupAction('success','image loaded'))
             })
         }else {
             dispatch(popupAction('error'))
@@ -270,6 +270,7 @@ const AccountPage = () => {
         var ext = getExtension(filename);
         switch (ext.toLowerCase()) {
             case 'jpg':
+            case 'jpeg':
             case 'png':
             case 'webp':
             //etc

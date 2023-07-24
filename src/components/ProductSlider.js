@@ -26,20 +26,30 @@ const ProductSlider = ({url}) => {
         swipeToSlide: true,
         responsive: [
           {
+            breakpoint: 1640,
+            settings: {
+              slidesToShow: 3,
+              arrows: false,
+            }
+          },
+          {
             breakpoint: 1024,
             settings: {
               slidesToShow: 3,
+              arrows: false,
             }
           },
           {
             breakpoint: 768,
             settings: {
               slidesToShow: 2,
+              arrows: false,
             }
           },
           {
             breakpoint: 320,
             settings: {
+              arrows: false,
               slidesToShow: 1,
               rows: 1,
             }

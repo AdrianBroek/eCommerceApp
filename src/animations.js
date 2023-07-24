@@ -77,3 +77,65 @@ export const glow = {
         }   
     }
 }
+
+export const ProductImageSliderAnim = {
+    hidden : {
+        opacity: 0,
+        y: '-10%',
+    },
+    show : {
+        opacity: 1, 
+        y: '0',
+        x: '0',
+        transition: {
+            duration : .3, 
+            ease: 'easeInOut',
+        }
+    },
+    exit : {
+        y: '-10%',
+        opacity: 0,
+        transition: {
+            duration : .12, 
+            ease: 'easeIn'
+        }
+    }
+}
+
+export const AdditionalInfoAnim = {
+    closed : {
+        height: '50px',
+    },
+    opened : {
+        height: '100%', 
+        transition: {
+            duration : .35, 
+            ease: 'easeInOut',
+        }
+    },
+    exit : {
+        y: '-10%',
+        opacity: 0,
+        transition: {
+            duration : 10, 
+            ease: 'easeIn'
+        }
+    }
+}
+
+export const AdditionalInfoAnimP = {
+    closed : {
+        height: '0',
+        opacity: 0,
+        padding: '0rem'
+    },
+    opened : {
+        height: '100%', 
+        opacity: 1,
+        padding: '2rem',
+        // transition: {
+        //     duration : .15, 
+        //     ease: 'easeInOut',
+        // }
+    },
+}

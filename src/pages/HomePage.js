@@ -41,7 +41,7 @@ function HomePage() {
       asNavFor: sliderRef2.current,
       slidesToShow: 1,
       dots: true,
-      arrows: true,
+      arrows: false,
     }
 
     //slider nav options
@@ -53,7 +53,8 @@ function HomePage() {
         verticalSwiping: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 5500,
+        autoplaySpeed: 4500,
+        speed: 100,
     }
 
   const [showAllCat, setShowAllCat] = useState(false)

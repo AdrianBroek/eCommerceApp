@@ -1,0 +1,26 @@
+#additional-info {
+    background-color: #f5f5f5;
+    position: relative;
+    cursor: pointer;
+    margin: 2rem 0;
+    flex-direction: column;
+    p {
+        padding: 2rem;
+        border-top: 1px solid #ebebeb;
+        text-align: center;
+    }
+    h2 {
+        display: block;
+        padding: 1rem;
+        text-align: center;
+    }
+    .icon {
+        position: absolute;
+        border: 1px solid #000;
+        padding: .25rem;
+        width: 30px;
+        height: 30px;
+        top: 5px;
+        right: 10px;
+    }
+}

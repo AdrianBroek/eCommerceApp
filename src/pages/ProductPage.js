@@ -9,6 +9,10 @@ import Loader from '../components/Loader'
 import ProductSlider from "../components/ProductSlider";
 // slider
 import Slider from "react-slick";
+// prod image slider
+import ProductImageSlider from "../components/ProductImageSlider";
+import AdditionalInfo from "../components/AdditionalInfo";
+import { motion, LayoutGroup } from "framer-motion";
 
 const ProductPage = () => {
     const {pathname} = useLocation()
@@ -19,7 +23,8 @@ const ProductPage = () => {
     const [error, setError] = useState(false)
     //main image src
     const [imgSrc, setImgSrc] = useState(false)
-
+    // product image slider
+    const [prodImageState, setProdImageState] = useState(false)
     // slider
     const sliderRef = useRef();
     const sliderRef2 = useRef();
@@ -31,13 +36,9 @@ const ProductPage = () => {
         // speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
-        // arrows: true,
-        // touchMove: true,
-        // variableWidth: true,
         draggable: true,
-        // centerMode: true,
         asNavFor: sliderRef2.current,
-        focusOnSelect: true
+        focusOnSelect: true,
     }
 
     //slider main options
@@ -49,10 +50,6 @@ const ProductPage = () => {
         slidesToScroll: 1,
         focusOnSelect: true,
         asNavFor: sliderRef.current
-        // arrows: true,
-        // touchMove: true,
-        // variableWidth: true,
-        
     }
 
     useEffect(()=>{
@@ -87,6 +84,8 @@ const ProductPage = () => {
         setImgSrc(src)
     }
 
+    // console.log(data.images)
+
     return (
         <>
         {isLoading && (
@@ -117,13 +116,14 @@ const ProductPage = () => {
                 </div>
                 <div className="box">
                     <div className="left">
-                        <div className="prod-image">
-                            {/* <img src={imgSrc ? imgSrc : data.images[0]} /> */}
+                        <div className="prod-image"
+                        >
                             <Slider {...settings2} ref={sliderRef2} >
                                 {data.images.map((src)=> (
                                     <div>
                                         <img 
-                                        width="300px"
+                                        width="1500px"
+                                        onClick={()=> setProdImageState(true)}
                                         src={src} />
                                     </div>
                                 ))}
@@ -147,7 +147,7 @@ const ProductPage = () => {
                         <p>{data.rating.rate}</p> */}
                     </div>
                     <div className="right">
-                        <p>{data.title}</p>
+                        <h1 className="prod-name">{data.title}</h1>
                         <p>Brand: {data.brand}</p>
                         <p className="price">{data.price} $</p>
                         <p className="rating">Rating: {data.rating}</p>
@@ -162,12 +162,22 @@ const ProductPage = () => {
                         {error ? <div className="error flex"><p>Count must be at least <b>1</b></p><div className="close" onClick={()=> setError(false)}><FontAwesomeIcon icon={faCircleXmark} /></div></div> : ""}
                     </div>
                 </div>
-                <div className="description">
-                    <p>{data.description}</p>
-                </div>
-                
+                <LayoutGroup>
+                    <AdditionalInfo name="Description">
+                        <p>{data.description}</p>
+                    </AdditionalInfo >
+                    <AdditionalInfo name="Reviews">
+                        <p>Random text</p>
+                        <p>Random text</p>
+                        <p>Random text</p>
+                    </AdditionalInfo>
+                </LayoutGroup>
             </section>
         )}
+        {data.images && prodImageState && (
+            <ProductImageSlider setProdImageState={setProdImageState} images={data.images}/>
+        )}
+        
         <section className="similar-products">
             <ProductSlider url={data.category}/>
         </section>
