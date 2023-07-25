@@ -45,14 +45,15 @@
         height: 30px;
         right: 25px;
         top: 25px;
-        color: #000000;
+        color: #ffffff;
         z-index: 2;
-        border: 1px solid #000000;
+        border: 15px solid #000000;
         border-radius: 50%;
         cursor: pointer;
         transition: .15s ease-in;
         &:hover {
-            border: 1px solid orange;
+            border: 2px solid orange;
+            color: #000000;
         }
     }
 }

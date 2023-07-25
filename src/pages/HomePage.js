@@ -42,6 +42,7 @@ function HomePage() {
       slidesToShow: 1,
       dots: true,
       arrows: false,
+      speed: 400,
     }
 
     //slider nav options
@@ -54,7 +55,6 @@ function HomePage() {
         arrows: false,
         autoplay: true,
         autoplaySpeed: 4500,
-        speed: 100,
     }
 
   const [showAllCat, setShowAllCat] = useState(false)

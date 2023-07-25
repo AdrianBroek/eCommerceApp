@@ -16,7 +16,7 @@ const Products = ({props}) => {
     // console.log(props)
     return (
         <div className='product'>
-            <div onClick={() => dispatch(productAction(props.id))} className='imageContent'>
+            <div onClick={() => dispatch(productAction(props.id))} className='imageContent flex'>
                 <Link to={"/product/"+props.id}>
                     <img src={props.thumbnail} />
                 </Link>

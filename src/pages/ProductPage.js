@@ -164,12 +164,14 @@ const ProductPage = () => {
                 </div>
                 <LayoutGroup>
                     <AdditionalInfo name="Description">
+                        <hr />
                         <p>{data.description}</p>
                     </AdditionalInfo >
-                    <AdditionalInfo name="Reviews">
-                        <p>Random text</p>
-                        <p>Random text</p>
-                        <p>Random text</p>
+                    <AdditionalInfo name="Delivery cost">
+                        <hr />
+                        <p>Collection point 25$</p>
+                        <hr />
+                        <p>BOX 20$</p>
                     </AdditionalInfo>
                 </LayoutGroup>
             </section>

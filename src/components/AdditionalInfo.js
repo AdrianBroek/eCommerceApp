@@ -19,7 +19,7 @@ const AdditionalInfo = ({children, text, name}) => {
             id="additional-info"
             layout
             onClick={()=>setOpen(!open)}
-            style={{ height: open ? "auto" : 40 }}
+            style={{ height: open ? "auto" : "auto" }}
             className="flex"
         >
             <motion.h2 layout>{name}</motion.h2>
