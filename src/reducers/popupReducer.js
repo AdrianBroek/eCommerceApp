@@ -1,3 +1,5 @@
+import uuid from "react-uuid"
+
 const initState = {
         active: false,
         popupList: []
@@ -11,7 +13,8 @@ const popupReducer = ((state=initState, action) => {
                 popupList: [
                     ...state.popupList,
                     {
-                        popup: action.payload
+                        popup: action.payload,
+                        id: uuid()
                     }
                 ]
             }

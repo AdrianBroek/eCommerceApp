@@ -1,14 +1,12 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import booksAction from "../actions/bookAction";
-import changeAuthor from "../actions/changeAuthorAction";
-import changeTitle from "../actions/changeTitleAction";
 import productsDataAction from '../actions/productsDataAction'
 import categoriesDataAction from '../actions/categoriesDataAction'
 import Products from '../components/Products'
 import CategorySquare from '../components/CategorySquare'
 import '../styles/app.scss'
 import { Link } from "react-router-dom";
+import popupAction from "../actions/popupAction"
 // slider
 import Slider from "react-slick";
 // banner images
@@ -78,6 +76,7 @@ function HomePage() {
               />
             </Slider>
           </div>
+          
           <div className="baner-container">
             <Slider {...settings} ref={sliderRef} >
                   <img 
@@ -91,7 +90,11 @@ function HomePage() {
             </Slider>
           </div>
         </section>
+        
         <section className="hp-categories">
+          <div onClick={()=>dispatch(popupAction('success','gowno'))}>
+            test popup
+          </div>
           <h2 className="page-title flex">
             Categories
             <Link className="link" to="/category"> - go to categories page!</Link>

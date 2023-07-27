@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 
-const popupAction = (status, msg) => (dispatch) => {
+
+const popupAction = (status, msg, id) => (dispatch) => {
     dispatch({
         type: "GENERATE_POPUP",
         payload: {
             status,
-            msg
+            msg,
+            id
         }
     })
 }

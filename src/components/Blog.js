@@ -42,8 +42,6 @@ const Blog = (data) => {
             </div>
         </article>
         <div className="dummy-image-container">
-            {/* <img src="https://picsum.photos/200/300?random=1"/> */}
-            
         </div>
         </>
     )

@@ -60,9 +60,10 @@ export const popupAlertAnim = {
     },
     exit: {
         opacity: 0,
+        y: 100,
         transition: {
-            duration : .12, 
-            ease: 'easeIn'
+            duration : .35, 
+            ease: 'easeOut'
         }
     }
 }

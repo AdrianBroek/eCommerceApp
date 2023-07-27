@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faDiagramSuccessor, faInfoCircle, faThumbsUp, faX } from "@fortawesome/free-solid-svg-icons";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
-import { motion } from "framer-motion";
+import { motion , AnimatePresence } from "framer-motion";
 import { popupAlertAnim } from "../animations";
 
 const Popup = ({popup, index}) => {
@@ -17,16 +17,29 @@ const Popup = ({popup, index}) => {
         reset: false
     })
 
-    // turn off popup after some time
+    // set reset state to single popup to reset after 5 sec
     setTimeout(()=>{
         setPopStatus(state => ({
-            success: false,
-            confirm: false,
-            error: false,
-            info: false,
+            ...state,
             reset: true
         }))
     },[5000])
+    // detect reset, if true -> delete this popup
+    useEffect(()=> {
+        if(popStatus.reset == true) {
+            deletePopup()
+        }
+    }, [popStatus.reset])
+    
+
+
+    function deletePopup(){
+        const newPopupList = popupList.filter((item) => item.id != popup.id)
+        dispatch({
+            type: "DELETE_POPUP",
+            payload: newPopupList
+        })
+    }
 
     useEffect(()=>{
         switch(popup.popup.status){
@@ -73,24 +86,16 @@ const Popup = ({popup, index}) => {
         
     }, [popup.status])
 
-    function deletePopup(){
-        const newPopupList = popupList.filter((item,ind) => ind != index)
-        dispatch({
-            type: "DELETE_POPUP",
-            payload: newPopupList
-        })
-    }
-
     return (
         <>
-        {!popStatus.reset && (
             <motion.div 
-            className="container-popup" 
-            onClick={(e)=>deletePopup(e)}
-            variants={popupAlertAnim}
-            initial="hidden"
-            animate="show"
-            exit="exit"
+                className="container-popup"
+                onClick={(e)=>deletePopup(e)}
+                variants={popupAlertAnim}
+                initial="hidden"
+                animate="show"
+                exit='exit'
+                layout
             >
             {popStatus.success && (
                 <div className="success flex">
@@ -164,7 +169,6 @@ const Popup = ({popup, index}) => {
                 </div>
             )}
             </motion.div>
-        )}
         </>
     )
 }

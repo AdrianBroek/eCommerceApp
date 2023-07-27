@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PostAction from "../actions/PostAction";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import noPicture from '../images/no-picture.jpg'
+import popupAction from '../actions/popupAction'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag, faInfoCircle, faX, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -62,31 +62,22 @@ const Post = () => {
         }
         if(newPost.body==''){
             // alert popup
-            dispatch({
-                type: "GENERATE_POPUP",
-                payload: "error"
-            })
+            dispatch(dispatch(popupAction('error', 'comment cannot be empty')))
             return
         }
         if(newPost){
             const samePost = comment.filter(del=>del.body==newPost.body)
             
             if(samePost.length > 0){
-                console.log(samePost)
-                dispatch({
-                    type: "GENERATE_POPUP",
-                    payload: "error"
-                })
+                // console.log(samePost)
+                dispatch(dispatch(popupAction('error', 'you cannot spam!')))
                 return
             }
         }
         
         setComment(state => ([newPost, ...state]))
         // alert popup
-        return dispatch({
-            type: "GENERATE_POPUP",
-            payload: "success"
-        })
+        return dispatch(dispatch(popupAction('success')))
         
     }
 

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import popupAction from "../actions/popupAction"
 
 const PostComment = ({setComment, comment, item}) => {
     const {userData, logged} = useSelector(state=>state.loggedStatus)
@@ -12,10 +13,7 @@ const PostComment = ({setComment, comment, item}) => {
     function deleteHandler(){
         const newArray = comment.filter(del=>del.postId != item.postId)
         setComment(newArray)
-        dispatch({
-            type: "GENERATE_POPUP",
-            payload: "success"
-        })
+        dispatch(popupAction('success', 'comment deleted'))
     }
 
 

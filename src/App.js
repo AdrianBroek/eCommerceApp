@@ -24,6 +24,7 @@ import BlogPage from "./pages/BlogPage";
 import Post from "./components/Post";
 import Popup from './components/Popup'
 import ThankYouPage from "./pages/ThankYouPage";
+import { AnimatePresence } from "framer-motion";
 
 
 function App() {
@@ -62,12 +63,15 @@ function App() {
         <Cart />
         <Navbar />
         {popupList.length > 0 ? 
+        
         <div id="popup" className="flex">
-          {popupList.map((popupItem, index)=> (
-            <Popup popup={popupItem} index={index}/>
-          ))
-        }
+          <AnimatePresence>
+            {popupList.map((popupItem, index)=> (
+              <Popup popup={popupItem} index={index} key={popupItem.id}/>
+            ))}
+          </AnimatePresence>
         </div>
+        
         : ""
         }
         {popup.op ? <CartPopup props={popup.prop}/> : console.log()}
