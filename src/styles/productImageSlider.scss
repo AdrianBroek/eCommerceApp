@@ -22,6 +22,12 @@
                 right: 10%;
             }
         }
+        .slick-list {
+            .slick-track {
+                display: flex;
+                align-items: center;
+            }
+        }
     }
     .prod-image-container {
         display: flex !important;

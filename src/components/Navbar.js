@@ -52,6 +52,7 @@ const Navbar = () => {
                                     </div>
                                     <motion.div
                                         variants={glow}
+                                        initial="none"
                                         animate="show"
                                         className="online-bubble">
                                     </motion.div>

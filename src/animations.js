@@ -69,11 +69,14 @@ export const popupAlertAnim = {
 }
 
 export const glow = {
+    none: {
+        boxShadow: '0px 0px 0px #50c878',
+    },
     show: {
         boxShadow: '0px 0px 15px #50c878',
         transition: {
-            yoyo : Infinity,
-            duration : .85,
+            repeat: Infinity,
+            duration : 2,
             ease: 'easeInOut'
         }   
     }

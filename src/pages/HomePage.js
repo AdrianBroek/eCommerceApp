@@ -32,6 +32,7 @@ function HomePage() {
     const {dataCat, isLoadingCat, activeCategory} = useSelector(state => state.categories)
     const {autor, tytuł} = useSelector(state => state.books)
     // slider
+    const [sliderInit, setSliderInit] = useState(false)
     const sliderRef = useRef();
     const sliderRef2 = useRef();
     //slider main options 
@@ -61,7 +62,14 @@ function HomePage() {
     <div id="home-page">
         <section className="promoBaner">
           <div className="baner-nav-container flex">
-            <Slider {...settings2} ref={sliderRef2}>
+            {sliderInit ? 
+              ""
+            : 
+              <div>
+              siema
+
+              </div>}
+            <Slider onInit={()=>setSliderInit(true)} {...settings2} ref={sliderRef2}>
               <img 
                 src={baner1} 
               />

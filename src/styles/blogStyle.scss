@@ -36,31 +36,39 @@
 
 #post {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80vw;
-    height: 95vh;
-    background-color: white;
-    border-radius: 2rem;
-    flex-direction: column;
-    max-width: 700px;
-    overflow-y: scroll;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.658);
+    top: 0;
+    left: 0;
     z-index: 11;
     .post-container {
+        margin: .25rem 0;
+
+        background-color: white;
+        border-radius: 2rem;
+        flex-direction: column;
+        max-width: 700px;
+        overflow-y: scroll;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80vw;
+        height: 95vh;
         padding: 1rem;
-        height: 100%;
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+        &::-webkit-scrollbar-track {
+            width: 0px;
+        }
+        &::-webkit-scrollbar-thumb {
+            width: 0px;
+        }
     }
-    &::-webkit-scrollbar {
-        width: 0px;
-    }
-    &::-webkit-scrollbar-track {
-        width: 0px;
-    }
-    &::-webkit-scrollbar-thumb {
-        width: 0px;
-    }
+    
     .exit-post {
         z-index: 2;
         border: none;

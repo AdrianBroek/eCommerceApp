@@ -49,7 +49,15 @@ const ProductPage = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         focusOnSelect: true,
-        asNavFor: sliderRef.current
+        asNavFor: sliderRef.current,
+        responsive: [
+            {
+              breakpoint: 500,
+              settings: {
+                arrows: false
+              }
+            }
+        ]
     }
 
     useEffect(()=>{

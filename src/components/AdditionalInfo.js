@@ -12,8 +12,6 @@ const AdditionalInfo = ({children, text, name}) => {
 
     const [open, setOpen] = useState(false)
 
-    console.log(open)
-
     return (
         <motion.section
             id="additional-info"
