@@ -28,6 +28,14 @@ const ProductsPage = () => {
         variableWidth: true,
         responsive: [
             {
+              breakpoint: 1300,
+              settings: {
+                slidesToShow: 5,
+                dots: false,
+                variableWidth: false,
+              }
+            },
+            {
               breakpoint: 1024,
               settings: {
                 slidesToShow: 4,
