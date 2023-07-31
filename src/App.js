@@ -24,6 +24,7 @@ import BlogPage from "./pages/BlogPage";
 import Post from "./components/Post";
 import Popup from './components/Popup'
 import ThankYouPage from "./pages/ThankYouPage";
+import TutorPage from "./pages/TutorPage";
 import { AnimatePresence } from "framer-motion";
 
 
@@ -60,6 +61,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
     <div className="App">
+        <TutorPage />
         <Cart />
         <Navbar />
         {popupList.length > 0 ? 

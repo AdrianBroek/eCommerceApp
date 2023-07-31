@@ -105,3 +105,18 @@ export const ProductImageSliderAnim = {
         }
     }
 }
+
+export const arrowAnim = {
+    hidden: {
+        height: 10,
+        opacity: 0
+    },
+    show: {
+        height: 80,
+        opacity: 1,
+        transition: {
+            duration: .5,
+            ease: 'easeInOut'
+        }
+    }
+}
