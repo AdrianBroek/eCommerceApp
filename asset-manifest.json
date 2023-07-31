@@ -1,29 +1,38 @@
 {
   "files": {
-    "main.css": "/eCommerceApp/static/css/main.c69b88ad.css",
-    "main.js": "/eCommerceApp/static/js/main.4c06456b.js",
+    "main.css": "/eCommerceApp/static/css/main.5b9ddc54.css",
+    "main.js": "/eCommerceApp/static/js/main.513c7cf1.js",
     "static/media/gandalf-you-shall-not-pass.gif": "/eCommerceApp/static/media/gandalf-you-shall-not-pass.12c86eacba1b3bd4bea4.gif",
     "static/media/pexels-tembela-bohle-1884579.jpg": "/eCommerceApp/static/media/pexels-tembela-bohle-1884579.3ddbd01844e71816ec48.jpg",
     "static/media/tormarch19-min.jpg": "/eCommerceApp/static/media/tormarch19-min.16b2f27de65f2ee05b75.jpg",
+    "static/media/scroll.gif": "/eCommerceApp/static/media/scroll.3d5357ef94ba396d8ea0.gif",
     "static/media/laptop_12-min.jpg": "/eCommerceApp/static/media/laptop_12-min.3a5087ab2fc49efa3f65.jpg",
     "static/media/pin_12-min.jpg": "/eCommerceApp/static/media/pin_12-min.44679a2de5bce08a5fde.jpg",
     "static/media/letter_14-min.jpg": "/eCommerceApp/static/media/letter_14-min.7cd7710b3284a1cf5992.jpg",
     "static/media/pexels-karolina-grabowska-4464821.jpg": "/eCommerceApp/static/media/pexels-karolina-grabowska-4464821.d0de800ac5b8b9462a2c.jpg",
+    "static/media/fifth.png": "/eCommerceApp/static/media/fifth.cec14594051040f044a0.png",
     "static/media/no-pic-avatar.png": "/eCommerceApp/static/media/no-pic-avatar.4528e6f2751f53694618.png",
+    "static/media/sixth2.png": "/eCommerceApp/static/media/sixth2.86ce4adce5d8763741a9.png",
     "static/media/loaderGif.gif": "/eCommerceApp/static/media/loaderGif.9ec70a06685e83a3a939.gif",
+    "static/media/third3.png": "/eCommerceApp/static/media/third3.ea7327adbd7ddafbca5e.png",
+    "static/media/second.png": "/eCommerceApp/static/media/second.1478e3b3ab9620204dde.png",
+    "static/media/fourth.png": "/eCommerceApp/static/media/fourth.a5956f2155f4321fb420.png",
+    "static/media/third.png": "/eCommerceApp/static/media/third.43d44c89511749e1922b.png",
     "static/media/no-results.png": "/eCommerceApp/static/media/no-results.e6359f53f34f2703c335.png",
+    "static/media/help.png": "/eCommerceApp/static/media/help.ca4db90c0beb166fb2de.png",
     "static/media/thank-you.png": "/eCommerceApp/static/media/thank-you.6b95023021577938efff.png",
+    "static/media/third2.png": "/eCommerceApp/static/media/third2.8407e84d9587ccd05903.png",
     "static/media/walmartLogo.svg": "/eCommerceApp/static/media/walmartLogo.d6ea228a23740ffc7649a5fd061c0a48.svg",
     "static/media/slick.svg": "/eCommerceApp/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/eCommerceApp/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/eCommerceApp/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/eCommerceApp/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/eCommerceApp/index.html",
-    "main.c69b88ad.css.map": "/eCommerceApp/static/css/main.c69b88ad.css.map",
-    "main.4c06456b.js.map": "/eCommerceApp/static/js/main.4c06456b.js.map"
+    "main.5b9ddc54.css.map": "/eCommerceApp/static/css/main.5b9ddc54.css.map",
+    "main.513c7cf1.js.map": "/eCommerceApp/static/js/main.513c7cf1.js.map"
   },
   "entrypoints": [
-    "static/css/main.c69b88ad.css",
-    "static/js/main.4c06456b.js"
+    "static/css/main.5b9ddc54.css",
+    "static/js/main.513c7cf1.js"
   ]
 }
