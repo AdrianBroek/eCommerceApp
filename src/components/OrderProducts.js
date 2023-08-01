@@ -26,7 +26,7 @@ const OrderProducts = () => {
     const totalSum = sumData.reduce((prevNm, nm) => prevNm + nm, 0)
 
     useEffect(()=> {
-        console.log('change')
+        // console.log('change')
         dispatch(sendTotalData(item, totalSum))
     }, [item])
 

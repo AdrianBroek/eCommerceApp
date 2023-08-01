@@ -24,6 +24,7 @@ const Popup = ({popup, index}) => {
             reset: true
         }))
     },[5000])
+    
     // detect reset, if true -> delete this popup
     useEffect(()=> {
         if(popStatus.reset == true) {
@@ -81,9 +82,7 @@ const Popup = ({popup, index}) => {
             break;
             default : 
                 return setPopStatus(state => ({...state}))
-        }
-         
-        
+        }   
     }, [popup.status])
 
     return (

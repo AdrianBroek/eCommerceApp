@@ -7,7 +7,6 @@ const CategorySquare = ({cat}) => {
     const dispatch = useDispatch()
     const {activeCategory} = useSelector(state => state.categories)
     const {pathname} = useLocation()
-    // console.log(cat)
 
     function clickHandler(){
         dispatch({
@@ -16,7 +15,6 @@ const CategorySquare = ({cat}) => {
         })
         // this is not reloading
         window.history.pushState('null', '/category/${cat}', `/category/${cat}`);
-        // console.log(cat)
     }
 
     return (

@@ -1,6 +1,4 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import React, {useEffect, useRef} from "react";
-import { useSelector } from "react-redux";
 
 const CustomInput = ({name, value, active, setActive, cost}) => {
     const ref = useRef()

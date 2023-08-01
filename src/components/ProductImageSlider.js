@@ -9,7 +9,7 @@ const ProductImageSlider = ({images, setProdImageState}) => {
     
     const sliderRef = useRef()
 
-    console.log(images)
+    // console.log(images)
     //slider nav options 
     const settings = {
         dots: true,
