@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import registerAction from "../actions/registerAction";
 import gandalf from '../images/gandalf-you-shall-not-pass.gif'
 import thankYou from '../images/thank-you.png'
-import { checkIfMailExist } from "../components/inputValidate";
+import { checkIfMailExist } from "../functions/inputValidate";
 
 const ThankYouPage = () => {
     const dispatch = useDispatch()

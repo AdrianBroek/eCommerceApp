@@ -62,13 +62,6 @@ function HomePage() {
     <div id="home-page">
         <section className="promoBaner">
           <div className="baner-nav-container flex">
-            {sliderInit ? 
-              ""
-            : 
-              <div>
-              siema
-
-              </div>}
             <Slider onInit={()=>setSliderInit(true)} {...settings2} ref={sliderRef2}>
               <img 
                 src={baner1} 
@@ -100,9 +93,6 @@ function HomePage() {
         </section>
         
         <section className="hp-categories">
-          <div onClick={()=>dispatch(popupAction('success','gowno'))}>
-            test popup
-          </div>
           <h2 className="page-title flex">
             Categories
             <Link className="link" to="/category"> - go to categories page!</Link>

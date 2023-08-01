@@ -9,7 +9,7 @@ import {
     checkMail,
     checkPassw,
     checkIfMailExist
-} from '../components/inputValidate'
+} from '../functions/inputValidate'
 import CustomInput from "./CustomInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesStacked, faMoneyBill, faStore, faTruck, faTruckDroplet, faTruckFast, faTruckField, faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";

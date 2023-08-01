@@ -8,7 +8,7 @@ import {
     containsUppercase,
     checkMail,
     checkPassw
-} from '../components/inputValidate'
+} from '../functions/inputValidate'
 import SuccesPopup from "../components/Popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEarDeaf, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";

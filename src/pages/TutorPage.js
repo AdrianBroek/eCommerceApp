@@ -12,10 +12,15 @@ import sixth2 from '../images/tutorPage/sixth2.png'
 import help from '../images/tutorPage/help.png'
 import scroll from '../images/tutorPage/scroll.gif'
 import {arrowAnim} from '../animations'
+import localStorageVisit from "../functions/localStorageVisit";
 
 const TutorPage = () => {
     const [activePage, setActivePage] = useState('first')
-    const [able, setAble] = useState(true)
+    const [able, setAble] = useState(false)
+    
+    useEffect(()=> {
+        setAble(!localStorageVisit('tutorVisit'))
+    }, [])
 
     function prevHandler(){
         if(activePage == 'second') setActivePage('first')
@@ -83,17 +88,16 @@ const TutorPage = () => {
                         <div className="h">
                             <h4>Hello and welcome to</h4>
                             <h1><span>e</span>Commerce<span>App</span></h1>
-                            <h3>fully made by me- Adrian Brożek</h3>
+                            <h3>fully made by Adrian Brożek</h3>
                         </div>
                         <p>Tech stack used:</p>
                         <ul>
-                            <li>React (functional components), Redux store with redux-thunk and applyMiddleware</li>
+                            <li>React, Redux store with redux-thunk and applyMiddleware</li>
                             <li>scss, framer-motion, slick-slider</li>
                             <li>Axios</li>
                             <li>Api with products and blog from: dummyjson.com</li>
-                            <li>Picsum.photos for random generated photos for blog, since api did have it</li>
-                            <li>LocalStorage as database, because once I lost api- got deleted or something 
-                                and whole app was destroyed, so now I just used products from API in case it will be deleted</li>
+                            <li>Picsum.photos for random generated photos for blog, since api did not have it</li>
+                            <li>LocalStorage as database, to prevent remaking whole application if the api would be destroyed</li>
                         </ul>
                     </div>
                 )}
@@ -108,13 +112,13 @@ const TutorPage = () => {
                 )}
                 {activePage == 'third' && (
                     <div id="third" className="page third flex">
-                        <p>register account</p>
+                        <p>Register an account</p>
                         <div>
                             <img 
                             onLoad={()=>imageLoadHandler()}
                             className="image" src={third} />
                         </div>
-                        <p>login</p>
+                        <p>Login to account</p>
                         <div>
                             <img onLoad={()=>imageLoadHandler()} className="image" src={third2} />
                         </div>

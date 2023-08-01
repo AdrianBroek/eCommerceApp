@@ -61,18 +61,7 @@ const InCartItem = ({props}) => {
     const [prodQty, setProdQty] = useState(getQuantityFromCartRedux())
 
     useEffect(()=> {
-        // if (prodQty >= 1){
-        //     // props.quantity = prodQty
-        //     console.log(item)
-        //     dispatch({
-        //         type: "UPDATE_CART",
-        //         payload: {
-        //             data: item
-        //         }
-        //     })
-        // }
         setProdQty(getQuantityFromCartRedux())
-
     }, [item])
 
     function plusQuantity(){

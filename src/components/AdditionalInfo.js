@@ -1,10 +1,5 @@
 import React, {useState} from "react";
-import { motion , layout } from "framer-motion";
-import { 
-    AdditionalInfoAnim,
-    AdditionalInfoAnimP
-
-} from "../animations";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 

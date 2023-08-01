@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import PostAction from "../actions/PostAction";
 import { useDispatch } from "react-redux";
-import GenerateImage from '../components/GenerateImage'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { faHashtag, faX, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 
 
 const Blog = (data) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const blog = data.data
-    const [image, setImage] = useState('')
-
-    useEffect(()=> {
-        setImage('https://picsum.photos/200')
-        // console.log(image)
-    }, [])
-
-    // GenerateImage()
 
     function blogHref(){
         navigate(`/blog/${blog.id}`)

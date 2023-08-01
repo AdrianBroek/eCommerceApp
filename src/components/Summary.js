@@ -1,20 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
-import InCartItem from "./InCartItem";
+import { sumPay } from "../functions/sumPay";
 
 const Summary = () => {
 
     const {totalPrice, items, personalData } = useSelector(state => state.totalCart)
     const {logged} = useSelector(state => state.loggedStatus)
     const delivery = useSelector(state => state.delivery)
-
-    function sumPay(a,b) {
-        let xA = parseInt(a, 10);
-        let xB = parseInt(b, 10);
-        return xA + xB
-    }
 
     return (
         <section id="summaryOrder" className="flex">
