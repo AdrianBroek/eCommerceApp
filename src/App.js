@@ -86,7 +86,7 @@ function App() {
           <Route path="/product/:id" element={<ProductPage />}></Route>
           <Route path="/cart" element={<CartPage />} ></Route>
           <Route path="/category/" element={<CategoryPage />}>
-            <Route path="/category/:id" element={<CategoryPage />} />
+            <Route path=":id" element={<CategoryPage />} />
           </Route>
           <Route path="/order/" element={<OrderPage />}>
             <Route path="/order/delivery" element={ <Delivery />} />
@@ -96,7 +96,7 @@ function App() {
           </Route>
           <Route path="/search" element={<SearchPage />} ></Route>
           <Route path="/blog" element={<BlogPage />} >
-              <Route path="/blog/:id" element={<Post />}></Route>
+              <Route path=":id" element={<Post />}></Route>
           </Route>
         </Routes>
         

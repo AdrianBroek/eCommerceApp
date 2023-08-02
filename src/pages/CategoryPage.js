@@ -10,8 +10,6 @@ import dummyData from '../dummyProductsData'
 import DummyProducts from '../components/DummyProducts'
 // slider
 import Slider from "react-slick";
-import { Outlet } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const ProductsPage = () => {
     const dispatch = useDispatch();

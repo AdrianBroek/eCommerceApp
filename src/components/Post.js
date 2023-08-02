@@ -33,12 +33,14 @@ const Post = () => {
     },[])
 
     async function getComment(){
+        if(activePost.id){
         const options = {
             url: `https://dummyjson.com/posts/${activePost.id}/comments`,
             method: "GET"
         }
         const commentsData = await axios.request(options) 
         setComment(commentsData.data.comments)
+    }
     }
 
     useEffect(()=> {

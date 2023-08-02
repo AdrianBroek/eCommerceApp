@@ -82,15 +82,15 @@ const Login = () => {
 
     return (
         <section id="loginPage">
-        <form novalidate="novalidate" onSubmit={(e)=>submitHandler(e)}>
+        <form noValidate="noValidate" onSubmit={(e)=>submitHandler(e)}>
             <h2>Login to your Walmart account!</h2>
             <div className="email">
-                <input required novalidate className={er.active ? 'er' : ''} type="text" onChange={mailCheck}/>
-                <label for="email">Email</label>
+                <input required noValidate className={er.active ? 'er' : ''} type="text" onChange={mailCheck}/>
+                <label htmlFor="email">Email</label>
             </div>
             <div className="password">
-                <input type={passwordShown ? "text" : "password"} required novalidate className={er.active ? 'er' : ''} onChange={passCheck}/>
-                <label for="password">Password</label>
+                <input type={passwordShown ? "text" : "password"} required noValidate className={er.active ? 'er' : ''} onChange={passCheck}/>
+                <label htmlFor="password">Password</label>
                 <div onClick={()=>setPasswordShown(!passwordShown)}>
                         {passwordShown ? 
                             <FontAwesomeIcon icon={faEyeSlash}/>

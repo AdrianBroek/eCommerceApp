@@ -14,7 +14,7 @@ const BlogPage = () => {
     }, [])
 
     useEffect(()=> {
-        // console.log(blogList)
+    
     }, [blogList])
 
     // console.log(blogList)
@@ -27,8 +27,8 @@ const BlogPage = () => {
                 </div>
                 <div className="blog-list">
                 {blogList ? 
-                    blogList.map((blog) => (
-                        <Blog data={blog}/>
+                    blogList.map((blog, index) => (
+                        <Blog key={index} data={blog}/>
                     ))
                  : <></>
                 }

@@ -290,7 +290,7 @@ const RegisterPage = () => {
 
     return (
         <section id="registerPage">
-            <form novalidate="novalidate" onSubmit={submitHandler}>
+            <form noValidate="noValidate" onSubmit={submitHandler}>
                 <div className="input-helper-container">
                     {finput ? 
                         <InputHelper activeInput={finput}/>
@@ -298,7 +298,7 @@ const RegisterPage = () => {
                 </div>
                 <h2>Register a Walmart account!</h2>
                 <div className="name">
-                    <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required novalidate onChange={(e)=>inputHandler(e,'username')} value={input.username} type="text" id="username" name="username"/>
+                    <input onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required noValidate onChange={(e)=>inputHandler(e,'username')} value={input.username} type="text" id="username" name="username"/>
                     <label htmlFor="username">username</label>
                 </div>
                 <div className="name">

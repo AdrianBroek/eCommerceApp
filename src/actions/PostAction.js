@@ -6,7 +6,7 @@ const PostAction = (url) => async (dispatch) => {
         url: "https://dummyjson.com/posts/" + url
     }
 
-    console.log(url)
+    // console.log(url)
 
     const data = await axios.request(options)
 

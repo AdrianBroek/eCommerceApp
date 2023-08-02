@@ -7,7 +7,7 @@ import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 
 
-const Blog = (data) => {
+const Blog = (data, index) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const blog = data.data
