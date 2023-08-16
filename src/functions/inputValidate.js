@@ -25,14 +25,13 @@ export function inputsValidate(register){
                 if (containsUppercase(element.value)){
                     // if has 1 uppercase letter
                     element.style.border="2px solid green"
-
                     if (element.classList.contains("email")){
                         // check mail
                         // if register(registerPage) is true, check if mail is already existed as well
                         if(register){
                             if (checkMail(element.value) && checkIfMailExist(element.value)){
                                 element.classList.remove('wrong')
-                                element.style.border="2px solid green"
+                                // element.style.border="2px solid green"
                             }else {
                                 element.style.border="2px solid red"
                             }
@@ -47,16 +46,20 @@ export function inputsValidate(register){
                         }
                         
                     }
-                    if (element.classList.contains("password")){
-                        // check passw
-
-                        // console.log(element.value)
-                        if (checkPassw(element.value)){
-                            element.style.border="2px solid green"
-                        } else {
-                            element.style.border="2px solid red"
+                    // check passw
+                    if(register){
+                        if (element.classList.contains("password")){
+                            // console.log(element.value)
+                            if (checkPassw(element.value)){
+                                element.style.border="2px solid green"
+                            } else {
+                                element.style.border="2px solid red"
+                            }
                         }
+                    }else {
+                        return
                     }
+                    
                 } else {
                     element.style.border="2px solid red"
                 }
@@ -87,5 +90,7 @@ export function checkIfMailExist(mail){
     }else {
         check = true
     }
+    // false if exist
+    // true if not
     return check
 }

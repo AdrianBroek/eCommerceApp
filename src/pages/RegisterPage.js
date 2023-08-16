@@ -17,6 +17,7 @@ import InputHelper from "../components/InputHelper";
 import { motion } from "framer-motion";
 
 const RegisterPage = () => {
+    const dispatch = useDispatch()
 
     const [input, setInput] = useState({
         username: '',
@@ -28,9 +29,17 @@ const RegisterPage = () => {
         address: ''
     })
 
+    //input helper
+    const [finput, setFinput] = useState()
+    function setFocusInput (e){
+        setFinput(e.target.id)
+        // console.log(finput)
+    }
+
     // password input hide/show
     const [passwordShown, setPasswordShown] = useState(false)
 
+    // validation
     const [activePopup, setActivePopup] = useState({
         open: false,
         confirm: false,
@@ -45,19 +54,25 @@ const RegisterPage = () => {
         password: false,
     })
 
+    // if every input is correct -> set activePopup.valid to true
     useEffect(()=> {
-        if(correctCheck.username && correctCheck.firstname && correctCheck.lastname && correctCheck.email && correctCheck.address && correctCheck.password){
+        if(correctCheck.username && correctCheck.firstname && 
+            correctCheck.lastname && correctCheck.email && 
+            correctCheck.address && correctCheck.password){
             setActivePopup(prevState => ({
                 ...prevState,
                 valid: true
+            }))
+        }else {
+            setActivePopup(prevState => ({
+                ...prevState,
+                valid: false
             }))
         }
         // console.log(correctCheck)
     }, [correctCheck])
 
-    const dispatch = useDispatch()
-
-
+    // set inputs value
     function inputHandler(e,name){
         e.preventDefault();
 
@@ -101,12 +116,12 @@ const RegisterPage = () => {
         }
     }
 
-    // validate
+    // validate inputs just for border color and anim
     useEffect(()=> {
         inputsValidate(true)
-        // console.log('inputy sie sprawdwzaja')
     }, [inputHandler])
 
+    // after register click, popup set to open
     function confirm(){
         // console.log('confirm')
         setActivePopup(state => ({
@@ -115,8 +130,227 @@ const RegisterPage = () => {
         }))
     }
 
-    // if active popup valid is true and confirm is true then send registerAction
+    // after submit (register click) validate all of the inputs
+    // and then set correct check if input is valid
+    function submitHandler (e){
+        e.preventDefault();
+
+        // check inputs correct and set state correctCheck if it is
+        const inputs = document.querySelectorAll('input')
+        
+        inputs.forEach((element, index) => {
+            if (element.value.length >= 3){
+                // if has more than 3 letters - start
+                
+                if (containsUppercase(element.value)){
+                    // if has 1 uppercase letter
+                    // console.log(element.value)
+                    element.style.border="2px solid green"
+                    switch(element.id){
+                        case "username": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                username: true,
+                            }))                            
+                            break
+                        }
+                        case "firstname": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                firstname: true,
+                            }))                            
+                            break
+                        }
+                        case "lastname": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                lastname: true,
+                            }))                            
+                            break
+                        }
+                        case "email": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                email: true,
+                            }))                           
+                            break
+                        }
+                        case "address": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                address: true,
+                            }))                      
+                            break
+                        }
+                        case "password": {
+                            
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                password: true,
+                            }))                            
+                            break
+                        }
+                        default :
+                            return setCorrectCheck(prevState => ({...prevState}))
+                    }
+                
+                    // check passw
+                    if (element.classList.contains("password")){
+                        console.log(element.value)
+                        // console.log(correctCheck)
+                        // console.log(activePopup)
+                        if (checkPassw(element.value)){
+                            element.style.border="2px solid green"
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                email: true,
+                            }))
+                        } else {
+                            element.style.border="2px solid red"
+                            element.classList.add('wrong')
+                            setTimeout(()=> {
+                                element.classList.remove('wrong')
+                            },[1000])
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                email: false,
+                            }))
+                        }
+                    }
+                    // check mail
+                    if (element.classList.contains("email")){
+                        if (checkMail(element.value) && checkIfMailExist(element.value) == true){
+                            element.classList.remove('wrong')
+                            element.style.border="2px solid green"
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                email: true,
+                            }))  
+                        }else {
+                            dispatch(popupAction('error','Email has already been registered'))
+                            element.style.border="2px solid red"
+                            element.classList.add('wrong')
+                            setTimeout(()=> {
+                                element.classList.remove('wrong')
+                            },[1000])
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                email: false,
+                            })) 
+                        }
+                    }
+                }else {
+                    element.style.border="2px solid red"
+                    element.classList.add('wrong')
+                    // change correctCheck state for wrong inputs as well
+                    switch(element.id){
+                        case "username": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                username: false,
+                            }))                            
+                            break
+                        }
+                        case "firstname": {
+                            
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                firstname: false,
+                            }))                          
+                            break
+                        }
+                        case "lastname": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                lastname: false,
+                            }))                            
+                            break
+                        }
+                        case "email": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                email: false,
+                            }))                           
+                            break
+                        }
+                        case "address": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                address: false,
+                            }))                      
+                            break
+                        }
+                        case "password": {
+                            setCorrectCheck(prevState => ({
+                                ...prevState,         
+                                password: false,
+                            }))                      
+                            break
+                        }
+                        default :
+                            return setCorrectCheck(prevState => ({...prevState}))
+                    }
+                    setTimeout(()=> {
+                        element.classList.remove('wrong')
+                    },[1000])
+                }
+            } else {
+                element.style.border="2px solid red"
+                element.classList.add('wrong')
+                // change correctCheck state for wrong inputs as well
+                switch(element.id){
+                    case "username": {
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            username: false,
+                        }))                            
+                        break
+                    }
+                    case "firstname": {
+                        
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            firstname: false,
+                        }))                          
+                        break
+                    }
+                    case "lastname": {
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            lastname: false,
+                        }))                            
+                        break
+                    }
+                    case "email": {
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            email: false,
+                        }))                           
+                        break
+                    }
+                    case "address": {
+                        setCorrectCheck(prevState => ({
+                            ...prevState,         
+                            address: false,
+                        }))                      
+                        break
+                    }
+                    default :
+                        return setCorrectCheck(prevState => ({...prevState}))
+                }
+                setTimeout(()=> {
+                    element.classList.remove('wrong')
+                },[1000])
+            }
+        });
+    }
+
+    // after register click, active popups run and this logic starts
     useEffect(()=> {
+        console.log('start')
+        console.log(activePopup)
+        // if user confirms that data is correct *click yes*
+        // if activepopup is closed and inputs are valid then register user
         if(activePopup.confirm === true && activePopup.open === false && activePopup.valid === true) {
             dispatch(registerAction(input))
             .then(
@@ -154,139 +388,12 @@ const RegisterPage = () => {
             .then (
                 dispatch(popupAction('success'))
             )
-        } else if (activePopup.confirm === false && activePopup.open === true && activePopup.valid === false && !checkIfMailExist(input.email))  {
-            dispatch(popupAction('error','Email has already been registered'))
-        } else if (activePopup.confirm === false && activePopup.open === true && activePopup.valid === false)  {
-            dispatch(popupAction('error'))
-        }
+        } 
+        // else if (activePopup.confirm === false && activePopup.open === true && activePopup.valid === false && !checkIfMailExist(input.email))  {
+        //     dispatch(popupAction('error','Email has already been registered'))
+        // }
     }, [activePopup])
 
-    function submitHandler (e){
-        e.preventDefault();
-
-        const inputs = document.querySelectorAll('input')
-        inputs.forEach((element, index) => {
-            // console.log(element)
-            if (element.value.length >= 3){
-                // if has more than 5 letters - start
-                
-                if (containsUppercase(element.value)){
-                    // if has 1 uppercase letter
-                    // console.log(element)
-                    element.style.border="2px solid green"
-                    // console.log(element.id)
-                    switch(element.id){
-                        case "username": {
-                            setCorrectCheck(prevState => ({
-                                ...prevState,         
-                                username: true,
-                            }))                            
-                            break
-                        }
-                        case "firstname": {
-                            setCorrectCheck(prevState => ({
-                                ...prevState,         
-                                firstname: true,
-                            }))                            
-                            break
-                        }
-                        case "lastname": {
-                            setCorrectCheck(prevState => ({
-                                ...prevState,         
-                                lastname: true,
-                            }))                            
-                            break
-                        }
-                        case "email": {
-                            setCorrectCheck(prevState => ({
-                                ...prevState,         
-                                email: true,
-                            }))                           
-                            break
-                        }
-                        case "address": {
-                            setCorrectCheck(prevState => ({
-                                ...prevState,         
-                                address: true,
-                            }))                             
-                            break
-                        }
-                        case "password": {
-                            setCorrectCheck(prevState => ({
-                                ...prevState,         
-                                password: true,
-                            }))                            
-                            break
-                        }
-                        default :
-                            return setCorrectCheck(prevState => ({...prevState}))
-                    }
-
-                if (element.classList.contains("email")){
-                    // check mail
-                    if (checkIfMailExist(element.value) && checkMail(element.value)){
-                        element.classList.remove('wrong')
-                        element.style.border="2px solid green"
-                        setCorrectCheck(prevState => ({
-                            ...prevState,         
-                            email: true,
-                        }))  
-                    }else {
-                        element.style.border="2px solid red"
-                        element.classList.add('wrong')
-                        setTimeout(()=> {
-                            element.classList.remove('wrong')
-                        },[1000])
-                        setCorrectCheck(prevState => ({
-                            ...prevState,         
-                            email: false,
-                        }))  
-                    }
-                    // checkIfMailExist()
-                }
-                if (element.classList.contains("password")){
-                    // check passw
-
-                    // console.log(element.value)
-                    if (checkPassw(element.value)){
-                        element.classList.remove('wrong')
-                        element.style.border="2px solid green"
-                        setCorrectCheck(prevState => ({
-                            ...prevState,         
-                            password: true,
-                        })) 
-                    } else {
-                        element.style.border="2px solid red"
-                        element.classList.add('wrong')
-                        setTimeout(()=> {
-                            element.classList.remove('wrong')
-                        },[1000])
-                    }
-                }
-            } else {
-                element.style.border="2px solid red"
-                element.classList.add('wrong')
-                setTimeout(()=> {
-                    element.classList.remove('wrong')
-                },[1000])
-            }
-            } else {
-                    element.style.border="2px solid red"
-                    element.classList.add('wrong')
-                    setTimeout(()=> {
-                        element.classList.remove('wrong')
-                    },[1000])
-                }
-        });
-    }
-
-    //input helper
-    const [finput, setFinput] = useState()
-
-    function setFocusInput (e){
-        setFinput(e.target.id)
-        // console.log(finput)
-    }
 
     return (
         <section id="registerPage">

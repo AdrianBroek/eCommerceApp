@@ -214,7 +214,7 @@ const Delivery = () => {
                 // if has more than 3 letters - start
                 if (containsUppercase(element.value)){
                     // if has 1 uppercase letter
-                    element.style.border="2px solid green"
+                    // element.style.border="2px solid green"
                     switch(element.id){
                         case "username": {
                             setCorrectCheck(prevState => ({
@@ -266,8 +266,6 @@ const Delivery = () => {
                 // check passw
                 if (element.classList.contains("password")){
                     // console.log(element.value)
-                    console.log(correctCheck)
-                    console.log(activePopup)
                     if (checkPassw(element.value) && existPasswordValidate){
                         element.style.border="2px solid green"
                         setCorrectCheck(prevState => ({
@@ -275,16 +273,19 @@ const Delivery = () => {
                             email: true,
                         }))
                     } else {
-                        element.style.border="2px solid red"
                         element.classList.add('wrong')
+                        element.classList.add('exist')
+                        dispatch(popupAction('error','Password is wrong'))
                         setTimeout(()=> {
                             element.classList.remove('wrong')
+                            element.classList.remove('exist')
                         },[1000])
                         setCorrectCheck(prevState => ({
                             ...prevState,         
                             email: false,
                         }))
                     }
+                    
                 }
                 // check mail
                 if (element.classList.contains("email")){

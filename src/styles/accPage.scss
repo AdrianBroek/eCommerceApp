@@ -135,6 +135,9 @@
             &.wrong {
                 animation: shake 1s;
             }
+            &.exist {
+                border: 2px solid orange !important;
+            }
         }
         input.email-used {
             border: 2px solid orange !important;
