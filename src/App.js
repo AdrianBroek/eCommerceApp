@@ -51,6 +51,21 @@ function App() {
     }
   }, [])
 
+  // 
+  // useEffect(()=> {
+  //   let users = localStorage.getItem('user')
+  //   if(users === null){
+  //     localStorage.setItem('users', JSON.stringify([]))
+  //   }
+  //   else{
+  //     // put to redux store what is inside localstorage
+  //     // dispatch({
+  //     //   type: "SET_ORDERS",
+  //     //   payload: JSON.parse(localStorage.getItem('orders'))
+  //     // })
+  //   }
+  // }, [])
+
   useEffect(()=> {
     if(!pathname.includes("blog")){
       window.scrollTo(0,0);

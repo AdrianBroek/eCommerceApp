@@ -13,8 +13,13 @@ const ThankYouPage = () => {
     const loggedStatus = useSelector(state => state.loggedStatus)
     
     // get user from localstorage by email (email cannot be duplicated so its like id)
-    const userFromOrder = JSON.parse(localStorage.getItem('user')).filter(user => user.email == orderData.user.userData.email)
-    const singleUser = userFromOrder[0]
+    const usersFromLS = JSON.parse(localStorage.getItem('user'));
+    let singleUser
+    if(usersFromLS != null){
+        const userFromOrder = usersFromLS.filter(user => user.email == orderData.user.userData.email)
+        singleUser = userFromOrder[0]
+    }
+    
 
     function pushOrderToLocalStorage(){
         // get what is in local storage

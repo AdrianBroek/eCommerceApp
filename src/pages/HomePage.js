@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState, useMemo} from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import productsDataAction from '../actions/productsDataAction'
 import categoriesDataAction from '../actions/categoriesDataAction'
@@ -36,25 +36,25 @@ function HomePage() {
     const sliderRef = useRef();
     const sliderRef2 = useRef();
     //slider main options 
-    const settings = {
+    const settings = useMemo(() => ({
       asNavFor: sliderRef2.current,
       slidesToShow: 1,
       dots: true,
       arrows: false,
       speed: 400,
-    }
+  }), []);
 
-    //slider nav options
-    const settings2 = {
-        asNavFor: sliderRef.current,
-        slidesToShow: 3,
-        focusOnSelect: true,
-        vertical: true,
-        verticalSwiping: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 4500,
-    }
+  //slider nav options
+  const settings2 = useMemo(() => ({
+    asNavFor: sliderRef.current,
+    slidesToShow: 3,
+    focusOnSelect: true,
+    vertical: true,
+    verticalSwiping: true,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4500,
+  }), []);
 
   const [showAllCat, setShowAllCat] = useState(false)
 

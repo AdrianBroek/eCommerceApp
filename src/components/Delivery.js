@@ -389,12 +389,17 @@ const Delivery = () => {
 
 
     // if password for guest existed mail is correct
-    const existUser = JSON.parse(localStorage.getItem('user')).filter(user => user.email == data.email)[0]
+    
+    const existUser = JSON.parse(localStorage.getItem('user'))
+    console.log(existUser)
     let existPasswordValidate = false
-    // get password of that user
-    if(existUser){
+    if(existUser != null){
+        const foundUser = existUser.filter(user => user.email == data.email)[0]
+        // get password of that user
+        if(foundUser){
         // check if password is correct
-        existPasswordValidate = data.password == existUser.password
+        existPasswordValidate = data.password == foundUser.password
+        }
     }
 
     return (
