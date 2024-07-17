@@ -34,13 +34,14 @@ const Post = () => {
 
     async function getComment(){
         if(activePost.id){
-        const options = {
-            url: `https://dummyjson.com/posts/${activePost.id}/comments`,
-            method: "GET"
+            const options = {
+                url: `https://dummyjson.com/posts/${activePost.id}/comments`,
+                method: "GET"
+            }
+            const commentsData = await axios.request(options) 
+            // console.log(commentsData)
+            setComment(commentsData.data.comments)
         }
-        const commentsData = await axios.request(options) 
-        setComment(commentsData.data.comments)
-    }
     }
 
     useEffect(()=> {
@@ -112,8 +113,8 @@ const Post = () => {
                 </div>
                 <div className="tags flex">
                     <FontAwesomeIcon icon={faHashtag}/>
-                    {activePost.tags.map((tag)=>(
-                        <p>{tag}</p>
+                    {activePost.tags.map((tag, index)=>(
+                        <p key={index}>{tag}</p>
                     ))}
                 </div>
                 
@@ -131,8 +132,8 @@ const Post = () => {
                 {comment && comment.length > 0 ? 
                     <>
                     <h4>Comments:</h4>
-                        {comment && comment.map((item)=> (
-                            <PostComment item={item} comment={comment} setComment={setComment}/>
+                        {comment && comment.map((item, index)=> (
+                            <PostComment key={index} item={item} comment={comment} setComment={setComment}/>
                         ))}
                     </> 
                 : ""}

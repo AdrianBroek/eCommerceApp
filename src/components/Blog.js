@@ -23,13 +23,13 @@ const Blog = (data, index) => {
             <h3 className="title">{blog.title}</h3>
             <div className="tags flex">
                 <FontAwesomeIcon icon={faHashtag}/>
-                {blog.tags.map((tag)=>(
-                    <p>{tag}</p>
+                {blog.tags.map((tag, index)=>(
+                    <p key={index}>{tag}</p>
                 ))}
             </div>
             <div className="reactions">
                 <FontAwesomeIcon icon={faThumbsUp}/>
-                {blog.reactions}
+                {blog.reactions.likes}
             </div>
         </article>
         <div className="dummy-image-container">

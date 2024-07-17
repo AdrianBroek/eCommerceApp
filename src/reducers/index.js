@@ -1,6 +1,5 @@
 import {combineReducers} from 'redux'
 import {productsReducer} from './productsReducer'
-import booksReducer from './bookReducer'
 import cartReducer from './cartReducer'
 import categoriesReducer from './categoriesReducer'
 import categoryProductsReducer from './categoryProductsReducer'
@@ -16,7 +15,6 @@ import popupReducer from './popupReducer'
 import ordersReducer from './ordersReducer'
 
 const rootReducer = combineReducers({
-    books: booksReducer,
     items: productsReducer,
     cart: cartReducer,
     categories: categoriesReducer,

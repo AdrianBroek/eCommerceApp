@@ -13,12 +13,6 @@ const BlogPage = () => {
         dispatch(blogAction())
     }, [])
 
-    useEffect(()=> {
-    
-    }, [blogList])
-
-    // console.log(blogList)
-
     return (
         <>
             <section id="blog-page" className="flex">

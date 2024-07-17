@@ -22,15 +22,14 @@ import { categorySquareHomePageAnim } from "../animations";
 
 function HomePage() {
     const dispatch = useDispatch();
+    const productSliderCount = 5;
 
     useEffect(()=> {
       dispatch(productsDataAction())
       dispatch(categoriesDataAction())
     },[dispatch])
 
-    const {popupList} = useSelector(state=>state.popup)
-    const {dataCat, isLoadingCat, activeCategory} = useSelector(state => state.categories)
-    const {autor, tytuł} = useSelector(state => state.books)
+    const {dataCat, isLoadingCat} = useSelector(state => state.categories)
     // slider
     const [sliderInit, setSliderInit] = useState(false)
     const sliderRef = useRef();
@@ -113,10 +112,14 @@ function HomePage() {
           </motion.div>
         </section>
         <section className="product-sliders">
-          <ProductSlider url="laptops"/>
-          <ProductSlider url="smartphones"/>
-          <ProductSlider url="automotive"/>
-        </section>
+          {dataCat.map((cat, index) => {
+            if (productSliderCount > index) {
+              return <ProductSlider key={cat.slug} url={cat.slug} />;
+            } else {
+              return null;
+            }
+          })}
+        </section> 
     </div>
   );
 }

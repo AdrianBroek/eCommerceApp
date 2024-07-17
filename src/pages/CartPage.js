@@ -14,11 +14,10 @@ const CartPage = () => {
 
     // sum of product counting
     function countSum(){
-        let tablicaCen = []
-        console.log(tablicaCen)
+        let tablicaCen = [];
         item.forEach(element => {
-            let sumka = element.product.price * element.quantity
-            tablicaCen.push(sumka)
+            let sum = element.product.price * element.quantity
+            tablicaCen.push(sum)
         });
         return tablicaCen
         

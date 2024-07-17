@@ -60,8 +60,6 @@ const ProductsPage = () => {
         ]
       };
 
-    // console.log(pathname.substring(pathname.lastIndexOf("/")))
-
     const sliderRef = useRef();
 
     const {data, isLoading} = useSelector(state => state.categoryProducts)
@@ -100,26 +98,23 @@ const ProductsPage = () => {
       dispatch(categoriesDataAction())
     },[activeCategory])
 
-    // sliderRef.current.slickGoTo(10, false)
-
     return (
         <section>
             <h2 style={{margin: '2rem auto', width: 'fit-content'}}>Pick category:</h2>
             <section className="categories-list">
                 <Slider {...settings} ref={sliderRef}>
                     {!isLoadingCat && dataCat.map((el, index) => (
-                        <CategorySquare key={index} cat={el} />
+                        <CategorySquare key={el.slug} cat={el} />
                     ))}
                 </Slider>
             </section>
             <section className="product-list">
-                {isLoading ? dummyData.map((el)=> (<DummyProducts key={el.id} props={el}/>)) : ""}
+                {isLoading ? dummyData.map((el,index)=> (<DummyProducts key={index} props={el}/>)) : ""}
 
                 {!isLoading && data.map((el) => (
                   <Products key={el.id} props={el}/>
-                ))}
+                ))} 
             </section>
-            {/* <Outlet /> */}
         </section>
     )
 }
