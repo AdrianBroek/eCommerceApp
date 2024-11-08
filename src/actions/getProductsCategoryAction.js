@@ -7,7 +7,6 @@ const getProductsCategoryAction = async (url) => {
     }
 
     const data = await axios.request(options)
-    // console.log(data.data.products)
     return data.data.products
 
 }

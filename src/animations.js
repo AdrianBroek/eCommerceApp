@@ -73,14 +73,20 @@ export const glow = {
         boxShadow: '0px 0px 0px #50c878',
     },
     show: {
-        boxShadow: '0px 0px 15px #50c878',
+        boxShadow: [
+            '0px 0px 5px #50c878',
+            '0px 0px 15px #50c878',
+            '0px 0px 5px #50c878'
+        ],
         transition: {
             repeat: Infinity,
-            duration : 2,
-            ease: 'easeInOut'
-        }   
+            duration: 2,
+            ease: 'easeInOut',
+            repeatType: 'mirror' // Powoduje efekt płynnego pulsowania
+        }
     }
 }
+
 
 export const ProductImageSliderAnim = {
     hidden : {

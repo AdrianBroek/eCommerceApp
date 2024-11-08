@@ -13,12 +13,11 @@ const Products = ({props}) => {
     const dispatch = useDispatch()
     const {item} = useSelector(state => state.cart)
 
-    // console.log(props)
     return (
         <div className='product'>
             <div onClick={() => dispatch(productAction(props.id))} className='imageContent flex'>
                 <Link to={"/product/"+props.id}>
-                    <img src={props.thumbnail} />
+                    <img loading="lazy" src={props.thumbnail} />
                 </Link>
                 <p className='rating'>{props.rating}</p>
             </div>

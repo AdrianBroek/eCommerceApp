@@ -55,7 +55,7 @@ const Summary = () => {
                         <>
                             {items.map((product) => (
                                 <div className="product flex">
-                                    <div><img src={product.product.thumbnail} /></div>
+                                    <div><img src={product.product.thumbnail} loading="lazy"/></div>
                                     <div><p>{product.product.title.length >= 20 ? product.product.title.substring(0,24) + '...' : product.product.title}</p></div>
                                     <div><p>{product.quantity}</p></div>
                                     <div><p>{product.product.price} $</p></div>

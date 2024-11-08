@@ -82,7 +82,7 @@ const Search = () => {
                         {searchResult.map(item => (
                             <Link className="sProduct flex" to={`/product/${item.id}`}>
                                 <div className="image">
-                                    <img onLoad={()=>setLoadImg(false)} src={loadImg ? loaderGif : item.thumbnail} width='30px'/>
+                                    <img onLoad={()=>setLoadImg(false)} src={loadImg ? loaderGif : item.thumbnail} width='30px' loading="lazy"/>
                                 </div>
                                 <div className="title">
                                     <p>{item.title}</p>

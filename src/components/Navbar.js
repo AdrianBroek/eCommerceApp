@@ -26,7 +26,7 @@ const Navbar = () => {
                     <Search /> 
                 </div>
                 <Link className="logo" to='/'>
-                    <img src={logo} />
+                    <img loading="lazy" src={logo} />
                 </Link>
                 <div className="flex">
                     <Link className="link" to='/blog'>
@@ -48,7 +48,7 @@ const Navbar = () => {
                                 {userData.avatar ? 
                                     <>
                                     <div className="avatar-nav flex">
-                                        <img src={userData.avatar} />
+                                        <img loading="lazy" src={userData.avatar} />
                                     </div>
                                     <motion.div
                                         variants={glow}

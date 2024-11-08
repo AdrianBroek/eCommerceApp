@@ -122,19 +122,31 @@ const RegisterPage = () => {
     }, [inputHandler])
 
     // after register click, popup set to open
-    function confirm(){
-        // console.log('confirm')
-        setActivePopup(state => ({
+    // function confirm(){
+    //     // console.log('confirm')
+    //     setActivePopup(state => ({
+    //         ...state,
+    //         open: true
+    //     }))
+    // }
+    function confirm() {
+        setActivePopup((state) => ({
             ...state,
-            open: true
-        }))
+            open: true,
+        }));
     }
+
+    // Aktualizacja efektu po zmianie inputu
+    useEffect(() => {
+        // Uruchom sprawdzenie poprawności, jeśli dane uległy zmianie
+        submitHandler(); // Upewnia się, że wszystkie pola są aktualne
+    }, [input]);
 
     // after submit (register click) validate all of the inputs
     // and then set correct check if input is valid
     function submitHandler (e){
-        e.preventDefault();
-
+        // e.preventDefault();
+        if (e) e.preventDefault();
         // check inputs correct and set state correctCheck if it is
         const inputs = document.querySelectorAll('input')
         
@@ -441,7 +453,22 @@ const RegisterPage = () => {
                 (
                     <div className="confirmation">
                         Is your data correct?
-                        <button disabled={activePopup.valid ? false : true} onClick={() => setActivePopup(prevState => ({...prevState, confirm: true, open: false}))}>Yes</button>
+                        {/* <button disabled={activePopup.valid ? false : true} onClick={() => setActivePopup(prevState => ({...prevState, confirm: true, open: false}))}>Yes</button> */}
+                        <button
+                            disabled={activePopup.valid ? false : true}
+                            onClick={() => {
+                                // Sprawdź poprawność przed rejestracją
+                                if (activePopup.valid) {
+                                    setActivePopup((prevState) => ({
+                                        ...prevState,
+                                        confirm: true,
+                                        open: false,
+                                    }));
+                                }
+                            }}
+                        >
+                            Yes
+                        </button>
                         <button onClick={() => setActivePopup(prevState => ({...prevState, confirm: false, open: false}))}>No, let me fix it</button>
                     </div>
                 ) : (

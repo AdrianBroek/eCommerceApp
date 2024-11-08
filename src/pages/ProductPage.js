@@ -13,6 +13,17 @@ import Slider from "react-slick";
 import ProductImageSlider from "../components/ProductImageSlider";
 import AdditionalInfo from "../components/AdditionalInfo";
 import { motion, LayoutGroup } from "framer-motion";
+import popupAction from '../actions/popupAction'
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/scss';
+import 'swiper/scss/free-mode';
+import 'swiper/scss/navigation';
+import 'swiper/scss/thumbs';
+// import required modules
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+
 
 const ProductPage = () => {
     const {pathname} = useLocation()
@@ -25,40 +36,16 @@ const ProductPage = () => {
     const [imgSrc, setImgSrc] = useState(false)
     // product image slider
     const [prodImageState, setProdImageState] = useState(false)
-    // slider
-    const sliderRef = useRef();
-    const sliderRef2 = useRef();
 
-    //slider nav options 
-    const settings = {
-        // dots: true,
-        infinite: false,
-        // speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        draggable: true,
-        asNavFor: sliderRef2.current,
-        focusOnSelect: true,
-    }
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-    //slider main options
-    const settings2 = {
-        // dots: false,
-        infinite: false,
-        // speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        focusOnSelect: true,
-        asNavFor: sliderRef.current,
-        responsive: [
-            {
-              breakpoint: 500,
-              settings: {
-                arrows: false
-              }
-            }
-        ]
-    }
+
+    // Reset thumbsSwiper, gdy data.images jest puste lub się zmienia
+    useEffect(() => {
+        if (!data.images || data.images.length === 0) {
+            setThumbsSwiper(null);
+        }
+    }, [data.images]);
 
     useEffect(()=>{
         const link = pathname.substring(pathname.lastIndexOf("/"))
@@ -80,11 +67,18 @@ const ProductPage = () => {
         }
     }, [addToCart])
 
+    useEffect(()=> {
+        return ()=> {
+            setThumbsSwiper(null)
+        }
+    }, [addToCart])
+
     function addToCart(){
         if(prodCount){
             dispatch(sendToCart(data, prodCount, item))
         }else{
             setError(true)
+            dispatch(popupAction('error'))
         }
     }
 
@@ -92,30 +86,27 @@ const ProductPage = () => {
         setImgSrc(src)
     }
 
-    // console.log(data.images)
-
     return (
         <>
         {isLoading && (
             <section id={'product'+data.id} className="productPage">
-            <div className="breadcrumbs">
-                <p><Loader /></p>
-            </div>
-            <div className="box">
-                <div className="left">
-                    <div className="prod-image">
-                        <Loader />
-                    </div>
-                </div>
-                <div className="right">
+                <div className="breadcrumbs">
                     <p><Loader /></p>
                 </div>
-            </div>
-            <div className="description">
-                <p><Loader /></p>
-            </div>
-        </section>
-
+                <div className="box">
+                    <div className="left">
+                        <div className="prod-image">
+                            <Loader />
+                        </div>
+                    </div>
+                    <div className="right">
+                        <p><Loader /></p>
+                    </div>
+                </div>
+                <div className="description">
+                    <p><Loader /></p>
+                </div>
+            </section>
         )}
         {data && !isLoading && (
             <section id={'product'+data.id} className="productPage">
@@ -124,35 +115,55 @@ const ProductPage = () => {
                 </div>
                 <div className="box">
                     <div className="left">
-                        <div className="prod-image"
-                        >
-                            <Slider {...settings2} ref={sliderRef2} >
-                                {data.images.map((src)=> (
-                                    <div>
+                        <div className="prod-image">
+                            <Swiper
+                                observer={true}
+                                observeParents={true}
+                                spaceBetween={10}
+                                navigation={true}
+                                thumbs={{ swiper: thumbsSwiper }}
+                                modules={[Navigation, Thumbs]}
+                                className="mySwiper2"
+                                lazy={true}
+                            >
+                                {data.images.map((src,index)=> (
+                                    <SwiperSlide key={index}>
                                         <img 
-                                        width="1500px"
-                                        onClick={()=> setProdImageState(true)}
-                                        src={src} />
-                                    </div>
+                                            width="1500px"
+                                            loading="lazy"
+                                            onClick={()=> setProdImageState(true)}
+                                            src={src} 
+                                        />
+                                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                                    </SwiperSlide>
                                 ))}
-                            </Slider>
+                            </Swiper>
                         </div>
+
+                        {/* nav */}
                         <div className="images">
-                            <Slider {...settings} ref={sliderRef}>
-                                {data.images.map((src)=> (
-                                    <div 
-                                    className={src == imgSrc ? 'active imageContainer' : 'imageContainer'}
-                                    // onClick={(e) => changeImage(src)}
-                                    >
-                                        <img 
-                                        width="70px" 
-                                        src={src} />
-                                    </div>
+                            <Swiper
+                                modules={[Thumbs]}
+                                onSwiper={setThumbsSwiper}
+                                spaceBetween={10}
+                                slidesPerView={4}
+                                watchSlidesProgress
+                                className="mySwiper"
+                                lazy={true}
+                            >
+                                {data.images.map((src,index)=> (
+                                    <SwiperSlide key={index}>
+                                        <div
+                                            className={src == imgSrc ? 'active imageContainer' : 'imageContainer'}
+                                            onClick={(e) => changeImage(src)}
+                                        >
+                                            <img loading="lazy" width="70px" src={src} />
+                                            <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                                        </div>
+                                    </SwiperSlide>
                                 ))}
-                            </Slider>
+                            </Swiper>
                         </div>
-                        {/* <p>{data.rating.count}</p>
-                        <p>{data.rating.rate}</p> */}
                     </div>
                     <div className="right">
                         <h1 className="prod-name">{data.title}</h1>
@@ -167,7 +178,6 @@ const ProductPage = () => {
                             </div>         
                         </div>
                         <button className="addToCart" onClick={() => addToCart()}>Add to cart<FontAwesomeIcon icon={faCartShopping} /></button>
-                        {error ? <div className="error flex"><p>Count must be at least <b>1</b></p><div className="close" onClick={()=> setError(false)}><FontAwesomeIcon icon={faCircleXmark} /></div></div> : ""}
                     </div>
                 </div>
                 <LayoutGroup>

@@ -107,7 +107,7 @@ const TutorPage = () => {
                         <br />
                         <div><img
                         onLoad={()=>imageLoadHandler()}
-                        className="image" src={second} /></div>
+                        className="image" src={second} loading="lazy"/></div>
                     </div>
                 )}
                 {activePage == 'third' && (
@@ -116,15 +116,15 @@ const TutorPage = () => {
                         <div>
                             <img 
                             onLoad={()=>imageLoadHandler()}
-                            className="image" src={third} />
+                            className="image" src={third} loading="lazy"/>
                         </div>
                         <p>Login to account</p>
                         <div>
-                            <img onLoad={()=>imageLoadHandler()} className="image" src={third2} />
+                            <img onLoad={()=>imageLoadHandler()} className="image" loading="lazy" src={third2} />
                         </div>
                         <p>Update your account data</p>
                         <div>
-                            <img className="image" src={third3} />
+                            <img className="image" src={third3} loading="lazy"/>
                         </div>
                     </div>
                 )}
@@ -132,14 +132,14 @@ const TutorPage = () => {
                     <div id="fourth" className="page fourth flex">
                         <p>make orders</p>
                         <div><img onLoad={()=>imageLoadHandler()}
-                        className="image" src={fourth} /></div>
+                        className="image" src={fourth} loading="lazy"/></div>
                     </div>
                 )}
                 {activePage == 'fifth' && (
                     <div id="fifth" className="page fifth flex">
                         <p>read and comment on blog posts</p>
                         <div><img onLoad={()=>imageLoadHandler()}
-                         className="image" src={fifth} /></div>
+                         className="image" src={fifth} loading="lazy"/></div>
                     </div>
                 )}
                 {activePage == 'sixth' && (
@@ -147,7 +147,7 @@ const TutorPage = () => {
                         <p>search product.. </p>
                         <div><img className="image" src={sixth} /></div>
                         <p>..and categories!</p>
-                        <div><img onLoad={()=>imageLoadHandler()} className="image" src={sixth2} /></div>
+                        <div><img onLoad={()=>imageLoadHandler()} className="image" src={sixth2} loading="lazy"/></div>
                     </div>
                 )}   
                 {activePage == 'last' && (
@@ -173,14 +173,14 @@ const TutorPage = () => {
                     initial="hidden"
                     animate="show"
                     className="arrow">
-                        <img className="image" src={scroll} />
+                        <img className="image" src={scroll} loading="lazy"/>
                     </motion.div>
                 )}
               
             </section>
         : 
         <div className="helper" onClick={()=>lastBtnHandler()}>
-            <img className="image" src={help} />
+            <img className="image" src={help} loading="lazy"/>
         </div>}
         </>
     )

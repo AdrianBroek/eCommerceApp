@@ -1,0 +1,101 @@
+html {
+    .swiper-button-prev,
+    .swiper-button-next {
+        color: orange;
+    }
+    .swiper-pagination-bullet-active {
+      background: orange;
+    }
+    .swiper-lazy-preloader {
+      border-radius: .85rem;
+      width: 100%;
+      height: 90%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #e0e0e0; 
+      overflow: hidden;
+      min-height: 25px;
+      margin-top: 0;
+      margin-left: 0;
+      animation: none !important;
+      border: none;
+  }
+  
+  .swiper-lazy-preloader::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      animation: loading 1s infinite; 
+  }
+  
+  @keyframes loading {
+      0% {
+          left: -100%;
+      }
+      100% {
+          left: 100%;
+      }
+  }
+}
+.mySwiper {
+    height: 35vh !important; /* ustaw wysokość według potrzeby */
+  }
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: transparent;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .autoplay-progress {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--swiper-theme-color);
+  }
+  
+  .autoplay-progress svg {
+    --progress: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    stroke-width: 4px;
+    stroke: var(--swiper-theme-color);
+    fill: none;
+    stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+    stroke-dasharray: 125.6;
+    transform: rotate(-90deg);
+  }
+  
+  

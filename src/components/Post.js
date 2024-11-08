@@ -96,10 +96,10 @@ const Post = () => {
                 </Link>
                 <div className="post-pic">
                     {image ? 
-                        <img src={image} alt="random generated image"/>
+                        <img src={image} alt="random generated image" loading="lazy"/>
                     : 
                     <div className="img-loader">
-                        <img style={{padding: '25vh', transition: ".25s"}} src={loaderGif} />
+                        <img style={{padding: '25vh', transition: ".25s"}} src={loaderGif} loading="lazy"/>
                         <p>api had no images in posts, so i had to simulate it.</p>
                     </div>
                     }

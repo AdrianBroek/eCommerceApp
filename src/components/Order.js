@@ -23,7 +23,7 @@ const Order = ({id}) => {
                 <div className="products flex">
                     {order.products.map((product)=> (
                         <div className="product">
-                            <img width="50px" src={product.product.thumbnail} />
+                            <img loading="lazy" width="50px" src={product.product.thumbnail} />
                             <p className="quantity">{product.quantity}</p>
                             <div className="title">
                                 <h4>{product.product.title}</h4>
@@ -66,8 +66,8 @@ const Order = ({id}) => {
                     </div>
                     <div className="flex">
                         <p>Total:</p>
-                        <h2>{Number(order.delivery.delivery.cost)+Number(order.totalPrice)} $</h2>
-                    </div>
+                        <h2>{(Number(order.delivery.delivery.cost) + Number(order.totalPrice)).toFixed(2)} $</h2>
+                        </div>
                 </div>
                 <div class="shadow"></div>
                 </>

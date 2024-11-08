@@ -24,7 +24,7 @@ const CartItem = ({props}) => {
 
     return (
         <div className="product-cart">
-            <img src={prodata.thumbnail}></img>
+            <img loading="lazy" src={prodata.thumbnail}></img>
             <Link to={'/product/'+prodata.id}>{prodata.title}</Link>
             <button className="abutton" onClick={()=> deleteItem()}>
                 <FontAwesomeIcon icon={faTrash} />
