@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { useForm } from "react-hook-form"
 import {z} from 'zod';
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -15,47 +15,55 @@ import { Link } from "react-router-dom";
 import { showError } from "../animations";
 import { Errorfield } from "../components/Errorfield";
 
+const applyInputColor = (isValid, inputName) => {
+    const element = document.getElementById(inputName);
+    if (element) {
+      element.style.borderColor = isValid ? "green" : "red";
+    }
+};
+
 const schema = z
     .object({
     username: z.string().min(3, {message: "Username name must be at least 3 characters"})
-    .refine((val)=> {
-        return /^[A-ZŁĆŹŻĄĘ][a-ząęćżźół0-9]*$/.test(val);
+        .refine((val)=> {
+            const isValid = /^[A-ZŁĆŹŻĄĘ][a-ząęćżźół0-9]*$/.test(val);
+            applyInputColor(isValid, "username");
+            return isValid;
     },{message: "Username must start with a big letter"})
     ,firstname: z.string().min(3, { message: 'First name must be at least 3 characters' })
         .refine((val)=> {
-            inputsValidate(true);
-            return /^[A-ZŁĆŹŻ][a-ząęćżźół]*$/.test(val);
+            const isValid = /^[A-ZŁĆŹŻ][a-ząęćżźół]*$/.test(val);
+            applyInputColor(isValid, "firstname");
+            return isValid;
         },{message: "First name must start with a big letter"}),
     lastname: z.string().min(3, { message: 'Last name must be at least 3 characters' })
         .refine((val)=> {
-            inputsValidate(true);
+            const isValid = /^[A-ZŁĆŹŻ][a-ząęćżźół]*$/.test(val);
+            applyInputColor(isValid, "lastname");
             return /^[A-ZŁĆŹŻ][a-ząęćżźół]*$/.test(val);
         },{ message: 'Last name must start with a big letter' }),
     address: z.string().min(3, { message: 'Address must be at least 3 characters' })
         .refine((val)=> {
-            inputsValidate(true);
-            return /^[A-ZŁĆŹŻ][a-ząęćżźół0-9./-_><\s]*$/.test(val);
+            const isValid =  /^[A-ZŁĆŹŻ][a-ząęćżźół0-9./-_><\s]*$/.test(val);
+            applyInputColor(isValid, "address");
+            return isValid;
         },{ message: 'Address ma miec duza litere na poczatku' }),
     email: z
         .string()
         .min(1, { message: 'Email is required' })
-        .email('Invalid email address')
-        .refine((val) => {
-        inputsValidate(true);
-        return /^[A-Z]/.test(val);
-        }, {
-        message: "Email must start with a big letter"
-        }),
+        .email('Invalid email address'),
     password: z
         .string()
         .min(6, { message: 'Password must be at least 6 characters' })
         .refine((val) => {
-            inputsValidate(true);
-            return /[A-Z]/.test(val);
+            const isValid = /[A-Z]/.test(val)
+            applyInputColor(isValid, "password");
+            return isValid;
         }, { message: "Password must contain at least one big letter" })
         .refine((val) => {
-            inputsValidate(true);
-            return /[^\w\s]/.test(val);
+            const isValid = /[^\w\s]/.test(val);
+            applyInputColor(isValid, "password");
+            return isValid;
         }, { message: "Password must contain at least one special symbol" }),
     confirmPassword: z
     .string(),
@@ -69,6 +77,7 @@ const RegisterPage = () => {
     const [passwordShown, setPasswordShown] = useState(false)
 
     const dispatch = useDispatch();
+    const inputRef = useRef(null);
 
     const {
         register,
@@ -79,6 +88,16 @@ const RegisterPage = () => {
       } = useForm({
         resolver: zodResolver(schema),
       })
+
+
+    // Watch the email value
+    const emailValue = watch("email"); 
+    useEffect(() => {
+        if (emailValue && emailValue.length > 0) {
+            applyInputColor(!errors.email, "email");
+        }
+    }, [errors.email]);
+
 
     const onSubmit = (data) => {
         const input = {
@@ -92,8 +111,7 @@ const RegisterPage = () => {
         }
         const ensureEmailDoesNotExist = (email) => {
             if (!checkIfMailExist(email)) throw new Error("This email address already exist in our database");
-        };        
-        
+        };
         try {
             ensureEmailDoesNotExist(input.email);
             dispatch(registerAction(input));
