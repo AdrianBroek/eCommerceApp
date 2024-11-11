@@ -126,3 +126,11 @@ export const arrowAnim = {
         }
     }
 }
+
+export const showError = {
+    hidden : {opacity: 0},
+    show : {
+        opacity: 1
+    },
+    exit : {color: "#4c2626"},
+}

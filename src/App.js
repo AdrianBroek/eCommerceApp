@@ -26,7 +26,7 @@ import Popup from './components/Popup'
 import ThankYouPage from "./pages/ThankYouPage";
 import TutorPage from "./pages/TutorPage";
 import { AnimatePresence } from "framer-motion";
-
+import RegisterPage from "./pages/RegiPage";
 
 function App() {
   const queryClient = new QueryClient()
@@ -50,21 +50,6 @@ function App() {
       })
     }
   }, [])
-
-  // 
-  // useEffect(()=> {
-  //   let users = localStorage.getItem('user')
-  //   if(users === null){
-  //     localStorage.setItem('users', JSON.stringify([]))
-  //   }
-  //   else{
-  //     // put to redux store what is inside localstorage
-  //     // dispatch({
-  //     //   type: "SET_ORDERS",
-  //     //   payload: JSON.parse(localStorage.getItem('orders'))
-  //     // })
-  //   }
-  // }, [])
 
   useEffect(()=> {
     if(!pathname.includes("blog")){
@@ -94,7 +79,8 @@ function App() {
         {popup.op ? <CartPopup props={popup.prop}/> : console.log()}
         <section className="content">
         <Routes location={location} key={location.pathname}>
-          <Route path="/register" element={<Register />}></Route>
+          {/* <Route path="/register" element={<Register />}></Route> */}
+          <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/my_account" element={<AccountPage />}></Route>
           <Route path="/" element={<HomePage />} ></Route>

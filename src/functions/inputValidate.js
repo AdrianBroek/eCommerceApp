@@ -21,7 +21,7 @@ export function inputsValidate(register){
     inputs.forEach((element, index) => {
         if (element.value.length != 0){
             if (element.value.length >= 3){
-                // if has more than 5 letters - start
+                // if has more than 3 letters - start
                 if (containsUppercase(element.value)){
                     // if has 1 uppercase letter
                     element.style.border="2px solid green"

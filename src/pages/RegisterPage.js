@@ -116,7 +116,7 @@ const RegisterPage = () => {
         }
     }
 
-    // validate inputs just for border color and anim
+    // validate inputs just for border color and animation
     useEffect(()=> {
         inputsValidate(true)
     }, [inputHandler])
@@ -439,7 +439,7 @@ const RegisterPage = () => {
                         }
                     </div>
                 </div>
-                <div className="email">
+                <div className="name">
                     <input className="email" onBlur={()=>setFinput('')} onFocus={(e)=>setFocusInput(e)} required onChange={(e)=>inputHandler(e,'email')} value={input.email} id="email" type="text"/>
                     <label htmlFor="email">email</label>
                 </div>

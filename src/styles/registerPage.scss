@@ -9,7 +9,7 @@
         box-shadow: rgba(0, 0, 0, 10%) 0px 4px 12px;
         background: white;
         border-radius: 1rem;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         max-width: 500px;
         position: relative;
@@ -85,8 +85,15 @@
             font-size: .75rem;
             color: #000;
         }
+        .input-container {
+            p[data-error="error-textfield"] {
+                color: #ff0000;
+                font-size: .85rem;
+            }
+        }
         .name, .email, .address, .password {
             position: relative;
+           
         }
         .password {
             div {
@@ -164,9 +171,22 @@
 
 @keyframes shake {
     0% { transform: skewX(-10deg); }
- 5% { transform: skewX(10deg); }
- 10% { transform: skewX(-10deg); }
- 15% { transform: skewX(10deg); }
- 20% { transform: skewX(0deg); }
- 100% { transform: skewX(0deg); }
+    5% { transform: skewX(10deg); }
+    10% { transform: skewX(-10deg); }
+    15% { transform: skewX(10deg); }
+    20% { transform: skewX(0deg); }
+    100% { transform: skewX(0deg); }
+}
+
+
+@media screen and (max-width: 500px){
+    #registerPage {
+        form {
+            grid-template-columns: 100%;
+            button, h2 , p {
+                grid-column-end: 1;
+            }
+        }
+    }
+    
 }
