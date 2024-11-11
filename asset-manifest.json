@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/eCommerceApp/static/css/main.8c7644d1.css",
-    "main.js": "/eCommerceApp/static/js/main.c0cb4a9c.js",
+    "main.css": "/eCommerceApp/static/css/main.78f5e501.css",
+    "main.js": "/eCommerceApp/static/js/main.4fc95400.js",
     "static/media/gandalf-you-shall-not-pass.gif": "/eCommerceApp/static/media/gandalf-you-shall-not-pass.12c86eacba1b3bd4bea4.gif",
     "static/media/pexels-tembela-bohle-1884579.jpg": "/eCommerceApp/static/media/pexels-tembela-bohle-1884579.3ddbd01844e71816ec48.jpg",
-    "static/media/tormarch19-min.jpg": "/eCommerceApp/static/media/tormarch19-min.16b2f27de65f2ee05b75.jpg",
+    "static/media/tormarch19-min.jpg": "/eCommerceApp/static/media/tormarch19-min.845af6a31e6f44e3098f.jpg",
     "static/media/scroll.gif": "/eCommerceApp/static/media/scroll.3d5357ef94ba396d8ea0.gif",
-    "static/media/laptop_12-min.jpg": "/eCommerceApp/static/media/laptop_12-min.3a5087ab2fc49efa3f65.jpg",
-    "static/media/pin_12-min.jpg": "/eCommerceApp/static/media/pin_12-min.44679a2de5bce08a5fde.jpg",
-    "static/media/letter_14-min.jpg": "/eCommerceApp/static/media/letter_14-min.7cd7710b3284a1cf5992.jpg",
+    "static/media/laptop_12-min.jpg": "/eCommerceApp/static/media/laptop_12-min.c9857239fce02a2ebab7.jpg",
+    "static/media/pin_12-min.jpg": "/eCommerceApp/static/media/pin_12-min.2668b9cfe0079992ff88.jpg",
     "static/media/pexels-karolina-grabowska-4464821.jpg": "/eCommerceApp/static/media/pexels-karolina-grabowska-4464821.d0de800ac5b8b9462a2c.jpg",
     "static/media/fifth.png": "/eCommerceApp/static/media/fifth.cec14594051040f044a0.png",
+    "static/media/letter_14-min.jpg": "/eCommerceApp/static/media/letter_14-min.a81455ad3bdb0e10d722.jpg",
     "static/media/no-pic-avatar.png": "/eCommerceApp/static/media/no-pic-avatar.4528e6f2751f53694618.png",
     "static/media/sixth2.png": "/eCommerceApp/static/media/sixth2.86ce4adce5d8763741a9.png",
     "static/media/loaderGif.gif": "/eCommerceApp/static/media/loaderGif.9ec70a06685e83a3a939.gif",
@@ -28,11 +28,11 @@
     "static/media/slick.ttf": "/eCommerceApp/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/eCommerceApp/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/eCommerceApp/index.html",
-    "main.8c7644d1.css.map": "/eCommerceApp/static/css/main.8c7644d1.css.map",
-    "main.c0cb4a9c.js.map": "/eCommerceApp/static/js/main.c0cb4a9c.js.map"
+    "main.78f5e501.css.map": "/eCommerceApp/static/css/main.78f5e501.css.map",
+    "main.4fc95400.js.map": "/eCommerceApp/static/js/main.4fc95400.js.map"
   },
   "entrypoints": [
-    "static/css/main.8c7644d1.css",
-    "static/js/main.c0cb4a9c.js"
+    "static/css/main.78f5e501.css",
+    "static/js/main.4fc95400.js"
   ]
 }
