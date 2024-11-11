@@ -53,7 +53,9 @@ const ProductSlider = ({url}) => {
             >
                 {products.length > 0 ?
                     products.map((el)=> (
-                      <SwiperSlide key={el.id}><Products  props={el}/></SwiperSlide>
+                      <SwiperSlide key={el.id}>
+                        <Products props={el}/>
+                      </SwiperSlide>
                     ))
                     : ""
                 }

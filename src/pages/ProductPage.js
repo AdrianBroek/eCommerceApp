@@ -36,7 +36,7 @@ const ProductPage = () => {
     const [imgSrc, setImgSrc] = useState(false)
     // product image slider
     const [prodImageState, setProdImageState] = useState(false)
-
+    const [navigationEnabled, setNavigationEnabled] = useState(false);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
 
@@ -120,11 +120,12 @@ const ProductPage = () => {
                                 observer={true}
                                 observeParents={true}
                                 spaceBetween={10}
-                                navigation={true}
+                                navigation={navigationEnabled}
                                 thumbs={{ swiper: thumbsSwiper }}
                                 modules={[Navigation, Thumbs]}
                                 className="mySwiper2"
                                 lazy={true}
+                                onLazyImageReady={() => setNavigationEnabled(true)}
                             >
                                 {data.images.map((src,index)=> (
                                     <SwiperSlide key={index}>
