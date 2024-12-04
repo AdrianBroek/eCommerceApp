@@ -36,7 +36,7 @@ $dark-text: #888;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: Poppins,Arial,sans-serif;
 }
 
 :focus-visible {
@@ -114,6 +114,8 @@ button.close {
     }
 }
 
+.relative {position: relative;}
+
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
@@ -127,7 +129,7 @@ button.close {
 .loader {
     border-radius: .85rem;
     width: 100%;
-    height: 90%;
+    height: 100%;
     position: absolute;
     left: 0;
     top: 50%;
@@ -161,6 +163,17 @@ body {
     background-color: #f5f5f5;
 }
 
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+h3 {
+    font-weight: 500;
+}
 .content {
     max-width: 1640px;
     margin: auto;

@@ -12,7 +12,6 @@ const blogAction = () => async (dispatch) => {
         payload: data.data.posts
     })
     dispatch({type:"LOADED_BLOG_LIST"})
-    // console.log(data)
 }
 
 export default blogAction

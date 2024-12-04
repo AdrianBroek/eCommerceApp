@@ -2,6 +2,9 @@ const initState = {
     blogList: [],
     isLoading: true,
     activePost: null,
+    activeTag: null,
+    tagList: [],
+    tagsLoading: true
 }
 
 const blogReducer = (state=initState, action) => {
@@ -21,6 +24,22 @@ const blogReducer = (state=initState, action) => {
             return {
                 ...state,
                 activePost: action.payload
+            }
+        case "SET_TAG_LIST" :
+            return {
+                ...state,
+                tagList: action.payload,
+                tagsLoading: true
+            }
+        case "SET_ACTIVE_TAG" :
+            return {
+                ...state,
+                activeTag: action.payload,
+            }
+        case "LOADED_TAG_LIST" :
+            return {
+                ...state,
+                tagsLoading: false
             }
         default: return {...state}
     }
