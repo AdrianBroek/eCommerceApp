@@ -8,59 +8,19 @@ import categoriesDataAction from '../actions/categoriesDataAction'
 // dummyData
 import dummyData from '../dummyProductsData'
 import DummyProducts from '../components/DummyProducts'
-// slider
-import Slider from "react-slick";
+import { Swiper, SwiperSlide, swiper } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/scss';
+import 'swiper/scss/scrollbar';
+
+// import required modules
+import { FreeMode, Scrollbar } from 'swiper/modules';
 
 const ProductsPage = () => {
     const dispatch = useDispatch();
     const {pathname} = useLocation()
-
-    //slider options
-    const settings = {
-        dots: true,
-        speed: 500,
-        slidesToShow: 9,
-        arrows: true,
-        centerMode: true,
-        swipeToSlide: true,
-        variableWidth: true,
-        responsive: [
-            {
-              breakpoint: 1300,
-              settings: {
-                slidesToShow: 5,
-                dots: false,
-                variableWidth: false,
-              }
-            },
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 4,
-                dots: false
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                variableWidth: false,
-                dots: false
-              }
-            },
-            {
-              breakpoint: 400,
-              settings: {
-                slidesToShow: 1,
-                rows: 1,
-                variableWidth: false,
-                dots: false
-              }
-            }
-        ]
-      };
-
-    const sliderRef = useRef();
+    const [swiper, setSwiepr] = useState(null);
 
     const {data, isLoading} = useSelector(state => state.categoryProducts)
     const {dataCat, isLoadingCat, activeCategory} = useSelector(state => state.categories)
@@ -80,8 +40,8 @@ const ProductsPage = () => {
     // slider
     useEffect(()=> {
         dataCat.forEach((el, index)=>{
-            if(el === activeCategory){
-                sliderRef.current.slickGoTo(index, false)
+            if(el.slug === activeCategory){
+                swiper.slideTo(index, 300, false)
             }
         })
     },[activeCategory,dataCat])
@@ -102,11 +62,41 @@ const ProductsPage = () => {
         <section>
             <h2 style={{margin: '2rem auto', width: 'fit-content'}}>Pick category:</h2>
             <section className="categories-list">
-                <Slider {...settings} ref={sliderRef}>
+                <Swiper 
+                  onSwiper={setSwiepr}
+                  scrollbar={{
+                    hide: true,
+                  }}
+                  freeMode={true}
+                  centeredSlides={true}
+                  slidesPerView={1}
+                  spaceBetween={5}
+                  breakpoints={{
+                    320: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    640: {
+                      slidesPerView: 3,
+                      spaceBetween: 20,
+                    },
+                    1024: {
+                      slidesPerView: 4,
+                      spaceBetween: 40,
+                    },
+                    1300: {
+                      slidesPerView: 5,
+                      spaceBetween: 50,
+                    },
+                  }}
+                  modules={[Scrollbar,FreeMode]}
+                  >
                     {!isLoadingCat && dataCat.map((el, index) => (
-                        <CategorySquare key={el.slug} cat={el} />
+                        <SwiperSlide>
+                          <CategorySquare key={el.slug} cat={el} />
+                        </SwiperSlide>
                     ))}
-                </Slider>
+                </Swiper>
             </section>
             <section className="product-list">
                 {isLoading ? dummyData.map((el,index)=> (<DummyProducts key={index} props={el}/>)) : ""}

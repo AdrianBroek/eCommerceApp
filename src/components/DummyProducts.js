@@ -7,8 +7,9 @@ const DummyProducts = () => {
     return (
         <div className='product'>
             <div className='imageContent'>
-            <Loader />
+                <Loader />
             </div>
+            <br />
             <h2 className='title'><Loader /></h2>
             <div className='items'>
             </div>

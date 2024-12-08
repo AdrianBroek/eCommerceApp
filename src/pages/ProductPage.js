@@ -38,7 +38,7 @@ const ProductPage = () => {
     const [prodImageState, setProdImageState] = useState(false)
     const [navigationEnabled, setNavigationEnabled] = useState(false);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
+    const [imageLoad, setImageLoaded] = useState(false);
 
     // Reset thumbsSwiper, gdy data.images jest puste lub się zmienia
     useEffect(() => {
@@ -129,11 +129,14 @@ const ProductPage = () => {
                             >
                                 {data.images.map((src,index)=> (
                                     <SwiperSlide key={index}>
-                                        <img 
+                                        <motion.img 
+                                            onLoad={()=>setImageLoaded(true)}
                                             width="1500px"
                                             loading="lazy"
                                             onClick={()=> setProdImageState(true)}
                                             src={src} 
+                                            initial={{ opacity: 0 }} 
+                                            animate={imageLoad ? {opacity: 1} : {opacity: 0}}
                                         />
                                         <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                                     </SwiperSlide>

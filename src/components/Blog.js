@@ -19,7 +19,8 @@ const Blog = (data) => {
 
     return (
         <AnimatePresence>
-            <motion.article layout 
+            <motion.article 
+            layout 
             key={blog.id} 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} 
             onClick={()=>blogHref()} className="post flex">

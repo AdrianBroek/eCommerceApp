@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -8,16 +8,23 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons"
 import CartPopup from './CartPopup';
 import productAction from '../actions/productAction';
+import { motion } from 'framer-motion'
 
 const Products = ({props}) => {
     const dispatch = useDispatch()
-    const {item} = useSelector(state => state.cart)
+    const {item} = useSelector(state => state.cart);
+    const [imageLoad, setImageLoaded] = useState(false);
 
     return (
         <div className='product'>
             <div onClick={() => dispatch(productAction(props.id))} className='imageContent flex'>
                 <Link to={"/product/"+props.id}>
-                    <img loading="lazy" src={props.thumbnail} />
+                    <motion.img 
+                        onLoad={()=>setImageLoaded(true)}
+                        loading="lazy" src={props.thumbnail}
+                        initial={{ opacity: 0 }} 
+                        animate={imageLoad ? {opacity: 1} : {opacity: 0}}
+                    />
                 </Link>
                 <p className='rating'>{props.rating}</p>
             </div>

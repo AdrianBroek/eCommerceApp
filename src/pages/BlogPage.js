@@ -5,8 +5,6 @@ import blogTagListAction from "../actions/blogTagListAction"
 import Blog from "../components/Blog"
 import { Outlet } from "react-router-dom"
 import BlogTag from "../components/BlogTag"
-import Select from "../components/Select"
-import { AnimatePresence, motion } from "framer-motion"
 
 const BlogPage = () => {
     const dispatch = useDispatch()
@@ -36,9 +34,9 @@ const BlogPage = () => {
                 <div className="blog-list">
                     {blogList ? 
                         blogList.map((blog) => (
-                            <motion.div key={blog.id}>
+                            <div key={blog.id}>
                                 <Blog data={blog}/>
-                            </motion.div>
+                            </div>
                         ))
                     : <p>No posts found.</p>
                     }

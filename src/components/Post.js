@@ -116,7 +116,7 @@ const Post = () => {
                 return
             }
         }
-        console.log(comment)
+        // console.log(comment)
         setComment(state => ({
             ...state,
             comments: [newPost,...state.comments]
