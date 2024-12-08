@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/eCommerceApp/static/css/main.0eada6d3.css",
-    "main.js": "/eCommerceApp/static/js/main.f769c1ff.js",
+    "main.js": "/eCommerceApp/static/js/main.c81f706c.js",
     "static/media/gandalf-you-shall-not-pass.gif": "/eCommerceApp/static/media/gandalf-you-shall-not-pass.12c86eacba1b3bd4bea4.gif",
     "static/media/tormarch19-min.jpg": "/eCommerceApp/static/media/tormarch19-min.845af6a31e6f44e3098f.jpg",
     "static/media/scroll.gif": "/eCommerceApp/static/media/scroll.3d5357ef94ba396d8ea0.gif",
@@ -27,10 +27,10 @@
     "static/media/slick.woff": "/eCommerceApp/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/eCommerceApp/index.html",
     "main.0eada6d3.css.map": "/eCommerceApp/static/css/main.0eada6d3.css.map",
-    "main.f769c1ff.js.map": "/eCommerceApp/static/js/main.f769c1ff.js.map"
+    "main.c81f706c.js.map": "/eCommerceApp/static/js/main.c81f706c.js.map"
   },
   "entrypoints": [
     "static/css/main.0eada6d3.css",
-    "static/js/main.f769c1ff.js"
+    "static/js/main.c81f706c.js"
   ]
 }
